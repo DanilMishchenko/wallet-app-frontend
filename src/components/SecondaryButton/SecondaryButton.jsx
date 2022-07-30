@@ -3,7 +3,7 @@ import { Button } from './SecondaryButton.styled';
 
 export const SecondaryButton = ({ textBtn, onClick }) => {
   return (
-    <Button type="submit" onClick={onClick}>
+    <Button type="button" onClick={onClick}>
       {textBtn}
     </Button>
   );
