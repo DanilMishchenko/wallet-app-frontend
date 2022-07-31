@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { Section } from './stylesheet/Section.styled';
+import { BackgroundBlur } from './stylesheet/BackgroundBlur';
+import { Container } from './stylesheet/Container.styled';
 
 import HomePages from './pages/HomePages';
 import DashBoardPage from './pages/DashBoardPage';
@@ -13,7 +14,9 @@ import NotFoundPages from './pages/NotFoundPages';
 export const App = () => {
   return (
     <>
-      <Section>
+      {/* Будет рендер если пользователь залогинен */}
+      <BackgroundBlur />
+      <Container>
         <Routes>
           <Route path="/" element={<DashBoardPage />}>
             <Route index path="home" element={<HomePages />} />
@@ -24,7 +27,7 @@ export const App = () => {
           <Route path="logout" element={<LogoutPages />} />
           <Route path="*" element={<NotFoundPages />} />
         </Routes>
-      </Section>
+      </Container>
     </>
   );
 };

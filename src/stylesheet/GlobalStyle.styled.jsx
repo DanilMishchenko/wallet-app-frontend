@@ -57,6 +57,7 @@ body {
    margin: 0;
    font-family: 'Circe', sans-serif;
    font-weight: 400;
+   background-color: var(--background-color);
  }
 
  a {
