@@ -11,5 +11,5 @@ export const SecondaryButton = ({ textBtn, onClick }) => {
 
 SecondaryButton.propTypes = {
   textBtn: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
