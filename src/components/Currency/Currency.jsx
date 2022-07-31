@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { CurrencyLayout } from './Currency.styled';
 import { currencyInfo, baseCurrency } from './constants';
+import getDate from '../../utils/normalizeDate';
+
 
 const TableContainer = styled.table`
   width: 100%;
@@ -48,7 +50,7 @@ export const Currency = () => {
   const fetch = () =>
     axios
       .get(
-        `https://api.privatbank.ua/p24api/exchange_rates?json&date=31.07.2022`,
+        `https://api.privatbank.ua/p24api/exchange_rates?json&date=${getDate(new Date())}`,
       )
       .then(({ data }) => {
         data &&
