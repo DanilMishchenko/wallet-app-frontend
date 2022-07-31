@@ -14,7 +14,8 @@ export const Button = styled.button`
   letter-spacing: 0.1em;
   text-transform: uppercase;
 
-  :hover {
+  :hover,
+  :focus {
     box-shadow: 0px 6px 15px rgba(36, 200, 165, 0.5);
   }
 
