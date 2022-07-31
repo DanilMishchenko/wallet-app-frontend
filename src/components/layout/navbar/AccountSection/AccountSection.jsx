@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import exit from './exit.svg'
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,7 +31,6 @@ const Logout = styled.button`
 const IconWrap = styled.div`
   width: 18px;
   height: 18px;
-  padding-right: 8px;
 `
 const LogoutText = styled.p`
   padding: 0;
@@ -41,6 +39,7 @@ const LogoutText = styled.p`
 
     @media (min-width: 768px) {
       display: block;
+      margin-left: 8px;
     };
 `
 
@@ -52,7 +51,7 @@ const AccountSection = () => {
       <Title>{'Name'}</Title>
       <Logout>
         <IconWrap>
-          <img src={exit} width="100%" height="100%" alt="exit button"/>
+          <img src="images/icons/exit.svg" alt="exit button"/>
         </IconWrap>
         <LogoutText>Exit</LogoutText>
       </Logout>
