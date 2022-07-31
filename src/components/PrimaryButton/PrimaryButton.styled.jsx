@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
   display: block;
-  min-width: 300px;
+  min-width: 280px;
   height: 50px;
   background-color: var(--green);
   border: 0;
@@ -13,4 +13,17 @@ export const Button = styled.button`
   text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+
+  :hover,
+  :focus {
+    box-shadow: 0px 6px 15px rgba(36, 200, 165, 0.5);
+  }
+
+  :disabled {
+    background-color: #21b897;
+  }
+
+  @media screen and (min-width: 760px) {
+    min-width: 300px;
+  }
 `;

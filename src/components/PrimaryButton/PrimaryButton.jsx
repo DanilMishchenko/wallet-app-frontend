@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { Button } from './PrimaryButton.styled';
 
-export const PrimaryButton = ({ textBtn, onClick }) => {
+export const PrimaryButton = ({ textBtn, onClick, disabled }) => {
   return (
-    <Button type="submit" onClick={onClick}>
+    <Button type="submit" onClick={onClick} disabled={disabled}>
       {textBtn}
     </Button>
   );
@@ -11,5 +11,6 @@ export const PrimaryButton = ({ textBtn, onClick }) => {
 
 PrimaryButton.propTypes = {
   textBtn: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 };
