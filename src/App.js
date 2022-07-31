@@ -1,8 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { Container } from './stylesheet/Container.styled';
+import { Section } from './stylesheet/Section.styled';
 
 import HomePages from './pages/HomePages';
+import DashBoardPage from './pages/DashBoardPage';
 import RegisterPages from './pages/RegisterPages';
 import LoginPages from './pages/LoginPages';
 import LogoutPages from './pages/LogoutPages';
@@ -12,16 +13,18 @@ import NotFoundPages from './pages/NotFoundPages';
 export const App = () => {
   return (
     <>
-      <Container>
+      <Section>
         <Routes>
-          <Route path="/" element={<HomePages />} />
-          <Route path="register" element={<RegisterPages />} />
+          <Route path="/" element={<DashBoardPage />}>
+            <Route index path="home" element={<HomePages />} />
+            <Route path="diagram" element={<StatisticsPages />} />
+          </Route>
           <Route path="login" element={<LoginPages />} />
+          <Route path="register" element={<RegisterPages />} />
           <Route path="logout" element={<LogoutPages />} />
-          <Route path="statistics" element={<StatisticsPages />} />
           <Route path="*" element={<NotFoundPages />} />
         </Routes>
-      </Container>
+      </Section>
     </>
   );
 };

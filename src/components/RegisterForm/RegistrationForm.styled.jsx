@@ -18,7 +18,7 @@ export const Div = styled.div`
     margin: auto;
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     bottom: 50%;
     right: 85px;
     transform: translateY(50%);
