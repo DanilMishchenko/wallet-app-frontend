@@ -1,6 +1,7 @@
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 
 import { ReactComponent as EmailIcon } from '../../images/email.svg';
 import { ReactComponent as PasswordIcon } from '../../images/passwordLock.svg';
@@ -14,20 +15,51 @@ import { TextInput } from '../TextInput/TextInput';
 import { Div, InputForm, ButtonDiv } from './RegistrationForm.styled';
 
 export const RegisterForm = () => {
+  const [password, setPassword] = useState('');
+
+  const number = password.length;
+
+  const progressColor = () => {
+    if (number < 6) {
+      return '#FF6596';
+    } else {
+      return '#24CCA7';
+    }
+  };
+
+  const changePasswordColor = () => ({
+    width: `${number * 8.5}%`,
+    maxWidth: '100%',
+    height: '4px',
+    background: progressColor(),
+    boxShadow: '0px 1px 8px rgba(36, 204, 167, 0.5)',
+    borderRadius: '4px',
+  });
+
+  const changeProgressStyle = () => ({
+    maxWidth: '100%',
+    height: '4px',
+    marginTop: '-20px',
+    marginBottom: '20px',
+    backgroundColor: '#E5F1EF',
+  });
+
   const validationForm = Yup.object({
-    email: Yup.string().email('no valid email').required('Required'),
+    email: Yup.string()
+      .email('no valid email')
+      .required('This field is required'),
     password: Yup.string()
       .min(6, '6 symbols minimum')
-      .max(14, '14 symbols maximum')
-      .required('Required'),
+      .max(12, '12 symbols maximum')
+      .required('This field is required'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password')], 'Passwords do not match')
-      .required('Required'),
+      .required('This field is required'),
     name: Yup.string()
       .typeError()
       .min(1, '1 symbol minimum')
       .max(12, '12 symbols maximum')
-      .required('Required'),
+      .required('This field is required'),
   });
   return (
     <>
@@ -58,6 +90,7 @@ export const RegisterForm = () => {
                   label={<PasswordIcon />}
                   name="password"
                   placeholder="Password"
+                  onInput={e => setPassword(e.target.value)}
                 />
 
                 <TextInput
@@ -65,6 +98,9 @@ export const RegisterForm = () => {
                   name="confirmPassword"
                   placeholder="Confirm password"
                 />
+                <div style={changeProgressStyle()}>
+                  <div style={changePasswordColor()}></div>
+                </div>
 
                 <TextInput
                   label={<NameIcon />}
@@ -74,7 +110,6 @@ export const RegisterForm = () => {
               </InputForm>
               <ButtonDiv>
                 <PrimaryButton
-                  //    disabled={true}
                   disabled={!(isValid && dirty)}
                   type="submit"
                   textBtn="REGISTER"
