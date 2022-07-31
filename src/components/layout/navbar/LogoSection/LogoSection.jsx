@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import logo from './logo.svg'
 
 const Wrapper = styled.div`
   display: flex;
@@ -35,10 +34,7 @@ const Title = styled.h1`
 const LogoSection = () => (
   <Wrapper>
     <LogoIcon>
-      <img
-        src={logo}
-        width="100%" height="100%" alt="logo"
-      />
+      <img src="images/icons/logo.svg" alt="logo"/>
     </LogoIcon>
     <Title>Wallet</Title>
   </Wrapper>
