@@ -5,7 +5,7 @@ import purpleShape from '../images/purpleShape.svg';
 
 export const Section = styled.div`
   @media screen and (min-width: 768px) {
-    height: 100vh;
+    height: (100vh - 70px);
     background-color: var(--background-color);
     background-repeat: no-repeat;
     background-image: url(${beigeShape2});
@@ -25,6 +25,7 @@ export const Section = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
+    height: (100vh - 85px);
     background-image: url(${beigeShape1});
 
     ::before {
