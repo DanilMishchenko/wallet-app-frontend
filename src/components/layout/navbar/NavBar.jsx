@@ -24,7 +24,7 @@ const Wrapper = styled.div`
 const NavBar = () => (
   <Wrapper>
       <LogoSection/>
-      <AccountSection />
+      <AccountSection/>
   </Wrapper>
 )
 

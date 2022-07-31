@@ -51,7 +51,7 @@ const AccountSection = () => {
       <Title>{'Name'}</Title>
       <Logout>
         <IconWrap>
-          <img src="images/icons/exit.svg" alt="exit button"/>
+          <img src="images/icons/navigation/exit.svg" alt="exit button"/>
         </IconWrap>
         <LogoutText>Exit</LogoutText>
       </Logout>
