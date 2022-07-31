@@ -34,7 +34,7 @@ const Title = styled.h1`
 const LogoSection = () => (
   <Wrapper>
     <LogoIcon>
-      <img src="images/icons/logo.svg" alt="logo"/>
+      <img src="images/icons/navigation/logo.svg" alt="logo"/>
     </LogoIcon>
     <Title>Wallet</Title>
   </Wrapper>
