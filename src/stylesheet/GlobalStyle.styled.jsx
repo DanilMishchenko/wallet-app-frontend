@@ -16,6 +16,7 @@ export const GlobalStyle = createGlobalStyle`
   --outline: #e7e5f2;
   --light-gray: #e0e0e0;
   --grey-balance: #a6a6a6;
+  --background-color: #E7EAF2;
 }
 
 @font-face {
@@ -56,7 +57,6 @@ body {
    margin: 0;
    font-family: 'Circe', sans-serif;
    font-weight: 400;
-   
  }
 
  a {
