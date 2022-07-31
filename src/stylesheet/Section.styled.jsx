@@ -3,9 +3,11 @@ import beigeShape1 from '../images/beigeShape1.svg';
 import purpleShape from '../images/purpleShape.svg';
 
 export const Section = styled.div`
+  background-color: var(--background-color);
+  min-height: 100vh;
+
   @media screen and (min-width: 768px) {
     height: 100vh;
-    background-color: var(--background-color);
 
       ::before {
         content: '';
