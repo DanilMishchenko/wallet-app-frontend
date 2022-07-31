@@ -20,7 +20,6 @@ const MainSection = styled.div`
       min-height: 1024px;
       padding-top: 0;
     };
-
     @media (min-width: 1280px) {
       display: flex;
       min-height: calc(100vh - 105px);
@@ -35,7 +34,6 @@ const MainContent = styled.div`
     @media (min-width: 768px) {
       padding: 32px;
     };
-  
     @media (min-width: 1280px) {
       padding: 46px 70px;
     };
