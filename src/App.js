@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 import { Header } from './components/Header/Header';
+import { Loader } from './components/Loader/Loader';
 
 import { MainBackground } from './stylesheet/MainBackground';
 
@@ -14,10 +15,10 @@ import NotFoundPages from './pages/NotFoundPages';
 export const App = () => {
   return (
     <>
-      <MainBackground blur/>
+      <MainBackground blur />
       {/* Будет рендериться по условию если пользователь залогинен */}
       <Header />
-
+      <Loader />
       <Routes>
         <Route path="/" element={<DashBoardPage />}>
           <Route index path="home" element={<HomePages />} />
