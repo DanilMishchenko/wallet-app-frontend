@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+
 import { Section } from './stylesheet/Section.styled';
 
 import HomePages from './pages/HomePages';
@@ -8,7 +9,6 @@ import LoginPages from './pages/LoginPages';
 import LogoutPages from './pages/LogoutPages';
 import StatisticsPages from './pages/StatisticsPages';
 import NotFoundPages from './pages/NotFoundPages';
-
 
 export const App = () => {
   return (
