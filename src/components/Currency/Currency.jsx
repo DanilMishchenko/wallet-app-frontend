@@ -1,48 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
-import { CurrencyLayout } from './Currency.styled';
+import {
+  CurrencyLayout,
+  TableContainer,
+  TableHead,
+  TableHeadText,
+  TableRow,
+  TableData,
+} from './Currency.styled';
 import { currencyInfo, baseCurrency } from './constants';
 import getDate from '../../utils/normalizeDate';
 
-
-const TableContainer = styled.table`
-  width: 100%;
-  border-spacing: 0;
-  color: var(--primary-text);
-  line-height: 1.43;
-`;
-
-const TableHead = styled.thead`
-  color: var(--primary-text);
-  background: rgba(255, 255, 255, 0.2);
-  font-size: 18px;
-  text-transform: capitalize;
-  text-align: center;
-`;
-
-const TableHeadText = styled.td`
-  padding: 10px 0px;
-  min-width: 70px;
-  @media (min-width: 768px) {
-    padding: 16px 0px;
-  } ;
-`;
-
-const TableRow = styled.tr`
-  font-size: 16px;
-`;
-
-const TableData = styled.td`
-  text-align: center;
-  padding-top: 12px;
-  @media (min-width: 768px) {
-    padding-top: 12px;
-  }
-  @media (min-width: 1280px) {
-    padding-top: 24px;
-  } ;
-`;
 
 export const Currency = () => {
   const [dataCurrency, setData] = useState();
