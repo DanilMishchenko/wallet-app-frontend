@@ -15,7 +15,7 @@ export const MainBackground = styled.div`
     background-image: url(${purpleShape}), url(${beigeShape1});
     background-position: bottom -50px left 0px, top -150px right -50px;
     background-repeat: no-repeat, no-repeat;
-    filter: blur(50px);
+    filter: ${props => (props.blur ? 'blur(50px)' : 'none')};
   }
 
   @media screen and (min-width: 1280px) {
