@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { AiOutlineUp, AiOutlineDown } from 'react-icons/ai';
 import { useSortBy, useTable } from 'react-table';
 import { COLUMNS } from './columns';
