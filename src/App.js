@@ -14,7 +14,7 @@ import NotFoundPages from './pages/NotFoundPages';
 export const App = () => {
   return (
     <>
-      <MainBackground blur/>
+      <MainBackground blurAll/>
       {/* Будет рендериться по условию если пользователь залогинен */}
       <Header />
 
