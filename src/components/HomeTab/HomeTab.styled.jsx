@@ -27,6 +27,17 @@ export const TabMobile = styled.div`
     display: none;
   }
 `;
+export const TableBodyMobile = styled.tbody`
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  display: table;
+  width: 280px;
+  table-layout: fixed;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+`;
 
 export const Table = styled.table`
   display: none;
@@ -76,6 +87,19 @@ export const TableHeader = styled.thead`
   }
 `;
 export const ColumnHeader = styled.th`
+  font-family: Circe;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 27px;
+
+  @media screen and (max-width: 768px) {
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+`;
+export const ColumnHeaderMobile = styled.td`
   font-family: Circe;
   font-size: 18px;
   font-weight: 700;

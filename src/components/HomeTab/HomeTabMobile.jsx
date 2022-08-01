@@ -5,8 +5,9 @@ import {
   TabMobile,
   TableMobile,
   Column,
-  ColumnHeader,
+  ColumnHeaderMobile,
   RowMobile,
+  TableBodyMobile,
 } from './HomeTab.styled';
 
 const data = [
@@ -30,7 +31,7 @@ const data = [
     category: 'Car',
     date: '2022-07-31',
     balance: 10211,
-    comment: '000000000000000000000000000000000000000000',
+    comment: '0000000000000000000',
     owner: '',
     createdAt: '2022-07-31T08:34:27.687Z',
     updatedAt: '2022-07-31T08:34:27.687Z',
@@ -54,32 +55,32 @@ export const HomeTabMobile = () => {
         {rows.map((row, i) => {
           return (
             <TableMobile key={i} {...getTableProps()} type={data[i].type}>
-              <TabMobile key={row.id} {...getTableBodyProps()}>
+              <TableBodyMobile key={row.id} {...getTableBodyProps()}>
                 <RowMobile>
-                  <ColumnHeader>{COLUMNS[0].Header}</ColumnHeader>
+                  <ColumnHeaderMobile>{COLUMNS[0].Header}</ColumnHeaderMobile>
                   <Column>{data[i].date}</Column>
                 </RowMobile>
                 <RowMobile>
-                  <ColumnHeader>{COLUMNS[1].Header}</ColumnHeader>
+                  <ColumnHeaderMobile>{COLUMNS[1].Header}</ColumnHeaderMobile>
                   <Column>{data[i].type}</Column>
                 </RowMobile>
                 <RowMobile>
-                  <ColumnHeader>{COLUMNS[3].Header}</ColumnHeader>
+                  <ColumnHeaderMobile>{COLUMNS[3].Header}</ColumnHeaderMobile>
                   <Column>{data[i].comment}</Column>
                 </RowMobile>
                 <RowMobile>
-                  <ColumnHeader>{COLUMNS[2].Header}</ColumnHeader>
+                  <ColumnHeaderMobile>{COLUMNS[2].Header}</ColumnHeaderMobile>
                   <Column>{data[i].category}</Column>
                 </RowMobile>
                 <RowMobile>
-                  <ColumnHeader>{COLUMNS[4].Header}</ColumnHeader>
+                  <ColumnHeaderMobile>{COLUMNS[4].Header}</ColumnHeaderMobile>
                   <Column>{data[i].amount}</Column>
                 </RowMobile>
                 <RowMobile>
-                  <ColumnHeader>{COLUMNS[5].Header}</ColumnHeader>
+                  <ColumnHeaderMobile>{COLUMNS[5].Header}</ColumnHeaderMobile>
                   <Column>{data[i].balance}</Column>
                 </RowMobile>
-              </TabMobile>
+              </TableBodyMobile>
             </TableMobile>
           );
         })}
