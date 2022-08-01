@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import beigeShape1 from '../images/beigeShape1.svg';
 import purpleShape from '../images/purpleShape.svg';
 
-export const BackgroundBlur = styled.div`
-  /* min-height: 100vh; */
+export const MainBackground = styled.div`
   z-index: -1;
 
   @media screen and (min-width: 768px) {
