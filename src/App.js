@@ -17,7 +17,6 @@ export const App = () => {
       <MainBackground blurAll/>
       {/* Будет рендериться по условию если пользователь залогинен */}
       <Header />
-
       <Routes>
         <Route path="/" element={<DashBoardPage />}>
           <Route index path="home" element={<HomePages />} />
