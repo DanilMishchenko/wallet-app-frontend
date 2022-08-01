@@ -1,7 +1,9 @@
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import authOperations from '../../redux/auth/auth-operations';
 
 import { ReactComponent as EmailIcon } from '../../images/email.svg';
 import { ReactComponent as PasswordIcon } from '../../images/passwordLock.svg';
@@ -16,6 +18,9 @@ import { Div, InputForm, ButtonDiv } from './RegistrationForm.styled';
 
 export const RegisterForm = () => {
   const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const number = password.length;
 
@@ -74,7 +79,10 @@ export const RegisterForm = () => {
           isValidating={false}
           validateOnBlur
           validationSchema={validationForm}
-          onSubmit={values => console.log(values)}
+          onSubmit={({ email, password, name }) => {
+            dispatch(authOperations.register({ email, password, name }));
+            navigate('/login');
+          }}
         >
           {({ dirty, isValid }) => (
             <Form>
