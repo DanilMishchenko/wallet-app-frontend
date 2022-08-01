@@ -8,13 +8,11 @@ import LoginPages from './pages/LoginPages';
 import LogoutPages from './pages/LogoutPages';
 import StatisticsPages from './pages/StatisticsPages';
 import NotFoundPages from './pages/NotFoundPages';
-import NavBar from './components/layout/navbar/NavBar';
 
 
 export const App = () => {
   return (
     <>
-      <NavBar/>
       <Section>
         <Routes>
           <Route path="/" element={<DashBoardPage />}>
