@@ -36,6 +36,7 @@ export const Logo = styled.div`
 `;
 
 export const InputForm = styled.div`
+  position: relative;
   margin-top: 60px;
 
   @media screen and (min-width: 320px) {
@@ -54,9 +55,16 @@ export const ButtonDiv = styled.div`
 `;
 
 export const PasswordEye = styled.div`
+  position: absolute;
+  top: 70%;
+  right: 1%;
+
   :hover,
   :focus {
     cursor: pointer;
+
+    @media screen and (min-width: 320px) {
+    }
   }
 `;
 

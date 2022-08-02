@@ -1,6 +1,8 @@
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 import { ReactComponent as EmailIcon } from '../../images/email.svg';
 import { ReactComponent as PasswordIcon } from '../../images/passwordLock.svg';
@@ -10,10 +12,18 @@ import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
 
 import { TextInput } from '../TextInput/TextInput';
 
-import { useDispatch } from 'react-redux';
 import authOperations from '../../redux/auth/auth-operations';
+import eye from '../../images/eye.svg';
+import eyeSlash from '../../images/eye-slash.svg';
+import logo from '../../images/logoApp.svg';
 
-import { Div, InputForm, ButtonDiv } from './LoginForm.styled';
+import {
+  Div,
+  InputForm,
+  ButtonDiv,
+  PasswordEye,
+  Logo,
+} from './LoginForm.styled';
 
 const schema = Yup.object({
   email: Yup.string()
@@ -32,6 +42,7 @@ const initialValues = {
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(true);
 
   const onSubmit = (email, password) => {
     dispatch(authOperations.logIn({ email, password }));
@@ -43,9 +54,16 @@ export const LoginForm = () => {
     resetForm();
   };
 
+  const toggleClick = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <>
       <Div>
+        <Logo>
+          <img src={logo} alt="logo" />
+        </Logo>
         <Formik
           initialValues={initialValues}
           isValidating={false}
@@ -67,8 +85,25 @@ export const LoginForm = () => {
                   label={<PasswordIcon />}
                   name="password"
                   placeholder="Password"
-                  type="password"
+                  type={showPassword ? 'password' : 'text'}
                 />
+                <PasswordEye onClick={toggleClick}>
+                  {showPassword ? (
+                    <img
+                      src={eyeSlash}
+                      width="21px"
+                      heigth="21px"
+                      alt="hidden"
+                    />
+                  ) : (
+                    <img
+                      src={eye}
+                      width="21px"
+                      heigth="21px"
+                      alt="visibility"
+                    />
+                  )}
+                </PasswordEye>
               </InputForm>
               <ButtonDiv>
                 <PrimaryButton
