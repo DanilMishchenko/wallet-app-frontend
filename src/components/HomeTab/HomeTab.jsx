@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { AiOutlineUp, AiOutlineDown } from 'react-icons/ai';
 import { useSortBy, useTable } from 'react-table';
-import { COLUMNS } from './columns';
+import { COLUMNS, VALUES_TO_FORMAT } from './table-helpers';
 import { nanoid } from 'nanoid';
 import Media from 'react-media';
 import {
@@ -11,6 +11,7 @@ import {
   Column,
   Row,
   ColumnHeader,
+  ColumnHeaderContent,
 } from './HomeTab.styled';
 import { HomeTabMobile } from './HomeTabMobile';
 
@@ -21,7 +22,7 @@ const data = [
     category: 'Shoping',
     date: '2022-07-31',
     balance: 10211,
-    comment: '0000000000000000000000000000000000000000000000',
+    comment: '00000000000000000000000000',
     owner: '62e63a1794f183c86c330d5a',
     createdAt: '2022-07-31T08:34:27.687Z',
     updatedAt: '2022-07-31T08:34:27.687Z',
@@ -55,7 +56,9 @@ export const HomeTab = () => {
       },
       useSortBy,
     );
-
+  const getAmount = amount => {
+    return amount.toFixed(2);
+  };
   return (
     <>
       {data.length > 0 ? (
@@ -88,18 +91,20 @@ export const HomeTab = () => {
                                 column.getSortByToggleProps(),
                               )}
                             >
-                              {column.render('Header')}
-                              <span>
-                                {column.isSorted ? (
-                                  column.isSortedDesc ? (
-                                    <AiOutlineDown />
+                              <ColumnHeaderContent>
+                                {column.render('Header')}
+                                <span>
+                                  {column.isSorted ? (
+                                    column.isSortedDesc ? (
+                                      <AiOutlineDown />
+                                    ) : (
+                                      <AiOutlineUp />
+                                    )
                                   ) : (
-                                    <AiOutlineUp />
-                                  )
-                                ) : (
-                                  ''
-                                )}
-                              </span>
+                                    ''
+                                  )}
+                                </span>
+                              </ColumnHeaderContent>
                             </ColumnHeader>
                           ))}
                         </tr>
@@ -117,6 +122,23 @@ export const HomeTab = () => {
                             {...row.getRowProps()}
                           >
                             {row.cells.map(cell => {
+                              if (
+                                Object.values(VALUES_TO_FORMAT).includes(
+                                  cell.column.id,
+                                )
+                              ) {
+                                return (
+                                  <Column
+                                    type={row.values.type}
+                                    key={() => {
+                                      nanoid();
+                                    }}
+                                    {...cell.getCellProps()}
+                                  >
+                                    {getAmount(cell.value)}
+                                  </Column>
+                                );
+                              }
                               return (
                                 <Column
                                   type={row.values.type}

@@ -20,7 +20,7 @@ export const COLUMNS = [
     accessor: 'comment',
   },
   {
-    Header: 'Amount',
+    Header: 'Sum',
     accessor: 'amount',
     sticky: 'right',
   },
@@ -29,3 +29,13 @@ export const COLUMNS = [
     accessor: 'balance',
   },
 ];
+
+export const TRANSACTION_TYPES = {
+  add: '+',
+  minus: '-',
+};
+
+export const VALUES_TO_FORMAT = {
+  balance: 'balance',
+  amount: 'amount',
+};

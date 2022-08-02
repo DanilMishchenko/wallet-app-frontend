@@ -1,12 +1,13 @@
 import React, { useMemo } from 'react';
 import { useSortBy, useTable } from 'react-table';
-import { COLUMNS } from './columns';
+import { COLUMNS } from './table-helpers';
 import {
   TabMobile,
   TableMobile,
-  Column,
-  ColumnHeader,
+  ColumnMobile,
+  ColumnHeaderMobile,
   RowMobile,
+  TableBodyMobile,
 } from './HomeTab.styled';
 
 const data = [
@@ -30,7 +31,7 @@ const data = [
     category: 'Car',
     date: '2022-07-31',
     balance: 10211,
-    comment: '000000000000000000000000000000000000000000',
+    comment: '0000000000000000000',
     owner: '',
     createdAt: '2022-07-31T08:34:27.687Z',
     updatedAt: '2022-07-31T08:34:27.687Z',
@@ -48,42 +49,47 @@ export const HomeTabMobile = () => {
     useSortBy,
   );
 
+  const getAmount = amount => {
+    return amount.toFixed(2);
+  };
+
   return (
     <>
       <TabMobile>
         {rows.map((row, i) => {
           return (
             <TableMobile key={i} {...getTableProps()} type={data[i].type}>
-              <TabMobile key={row.id} {...getTableBodyProps()}>
+              <TableBodyMobile key={row.id} {...getTableBodyProps()}>
                 <RowMobile>
-                  <ColumnHeader>{COLUMNS[0].Header}</ColumnHeader>
-                  <Column>{data[i].date}</Column>
+                  <ColumnHeaderMobile>{COLUMNS[0].Header}</ColumnHeaderMobile>
+                  <ColumnMobile>{data[i].date}</ColumnMobile>
                 </RowMobile>
                 <RowMobile>
-                  <ColumnHeader>{COLUMNS[1].Header}</ColumnHeader>
-                  <Column>{data[i].type}</Column>
+                  <ColumnHeaderMobile>{COLUMNS[1].Header}</ColumnHeaderMobile>
+                  <ColumnMobile>{data[i].type}</ColumnMobile>
                 </RowMobile>
                 <RowMobile>
-                  <ColumnHeader>{COLUMNS[3].Header}</ColumnHeader>
-                  <Column>{data[i].comment}</Column>
+                  <ColumnHeaderMobile>{COLUMNS[3].Header}</ColumnHeaderMobile>
+                  <ColumnMobile>{data[i].comment}</ColumnMobile>
                 </RowMobile>
                 <RowMobile>
-                  <ColumnHeader>{COLUMNS[2].Header}</ColumnHeader>
-                  <Column>{data[i].category}</Column>
+                  <ColumnHeaderMobile>{COLUMNS[2].Header}</ColumnHeaderMobile>
+                  <ColumnMobile>{data[i].category}</ColumnMobile>
                 </RowMobile>
                 <RowMobile>
-                  <ColumnHeader>{COLUMNS[4].Header}</ColumnHeader>
-                  <Column>{data[i].amount}</Column>
+                  <ColumnHeaderMobile>{COLUMNS[4].Header}</ColumnHeaderMobile>
+                  <ColumnMobile type={data[i].type}>
+                    {getAmount(data[i].amount)}
+                  </ColumnMobile>
                 </RowMobile>
                 <RowMobile>
-                  <ColumnHeader>{COLUMNS[5].Header}</ColumnHeader>
-                  <Column>{data[i].balance}</Column>
+                  <ColumnHeaderMobile>{COLUMNS[5].Header}</ColumnHeaderMobile>
+                  <ColumnMobile>{getAmount(data[i].balance)}</ColumnMobile>
                 </RowMobile>
-              </TabMobile>
+              </TableBodyMobile>
             </TableMobile>
           );
         })}
-        "Something"
       </TabMobile>
     </>
   );
