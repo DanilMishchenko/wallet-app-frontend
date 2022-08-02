@@ -18,8 +18,6 @@ export const Div = styled.div`
     height: 468px;
     border-radius: 20px;
   }
-  @media screen and (min-width: 1200px) {
-  }
 `;
 
 export const Logo = styled.div`
