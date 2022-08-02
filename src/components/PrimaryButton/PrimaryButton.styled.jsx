@@ -21,6 +21,7 @@ export const Button = styled.button`
 
   :disabled {
     background-color: #21b897;
+    box-shadow: none;
   }
 
   @media screen and (min-width: 760px) {
