@@ -1,22 +1,27 @@
-import React from 'react'
-import logout from '../../../images/logoutIcon.svg'
-import { Wrapper, Title, Logout, IconWrap, LogoutText } from './AccountSection.style'
+import React from 'react';
+import logout from '../../../images/logoutIcon.svg';
+import {
+  Wrapper,
+  Title,
+  Logout,
+  IconWrap,
+  LogoutText,
+} from './AccountSection.style';
 
-
-const AccountSection = () => {
-// const userName = useSelector(authSelectors.getUserName)
+const AccountSection = ({ onModal }) => {
+  // const userName = useSelector(authSelectors.getUserName)
 
   return (
     <Wrapper>
       <Title>{'Name'}</Title>
       <Logout>
         <IconWrap>
-          <img src={logout} alt="exit button"/>
+          <img src={logout} alt="exit button" />
         </IconWrap>
-        <LogoutText>Exit</LogoutText>
+        <LogoutText onClick={onModal}>Exit</LogoutText>
       </Logout>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default AccountSection
+export default AccountSection;

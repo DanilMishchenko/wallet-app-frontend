@@ -128,10 +128,7 @@ export const RegisterForm = () => {
         </Formik>
         <ButtonDiv>
           <NavLink to="/Login">
-            <SecondaryButton
-              textBtn="LOG IN"
-              onClick={() => console.log('hi')}
-            />
+            <SecondaryButton textBtn="LOG IN" />
           </NavLink>
         </ButtonDiv>
       </Div>
