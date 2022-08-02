@@ -4,6 +4,7 @@ export const Div = styled.div`
   background-color: var(--primary-text);
 
   @media screen and (min-width: 320px) {
+    margin: 0 auto;
     padding-top: 110px;
     padding-left: 20px;
     padding-right: 20px;
