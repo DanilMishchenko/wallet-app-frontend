@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { BackgroundBlur } from './stylesheet/BackgroundBlur';
 import { Container } from './stylesheet/Container.styled';
-import { HomeTab } from './components/HomeTab/HomeTab';
+
 import HomePages from './pages/HomePages';
 import DashBoardPage from './pages/DashBoardPage';
 import RegisterPages from './pages/RegisterPages';
@@ -27,7 +27,6 @@ export const App = () => {
           <Route path="logout" element={<LogoutPages />} />
           <Route path="*" element={<NotFoundPages />} />
         </Routes>
-        <HomeTab />
       </Container>
     </>
   );
