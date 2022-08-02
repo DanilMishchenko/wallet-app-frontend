@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
 import { useSortBy, useTable } from 'react-table';
-import { COLUMNS } from './columns';
+import { COLUMNS } from './table-helpers';
 import {
   TabMobile,
   TableMobile,
-  Column,
+  ColumnMobile,
   ColumnHeaderMobile,
   RowMobile,
   TableBodyMobile,
@@ -49,6 +49,10 @@ export const HomeTabMobile = () => {
     useSortBy,
   );
 
+  const getAmount = amount => {
+    return amount.toFixed(2);
+  };
+
   return (
     <>
       <TabMobile>
@@ -58,33 +62,34 @@ export const HomeTabMobile = () => {
               <TableBodyMobile key={row.id} {...getTableBodyProps()}>
                 <RowMobile>
                   <ColumnHeaderMobile>{COLUMNS[0].Header}</ColumnHeaderMobile>
-                  <Column>{data[i].date}</Column>
+                  <ColumnMobile>{data[i].date}</ColumnMobile>
                 </RowMobile>
                 <RowMobile>
                   <ColumnHeaderMobile>{COLUMNS[1].Header}</ColumnHeaderMobile>
-                  <Column>{data[i].type}</Column>
+                  <ColumnMobile>{data[i].type}</ColumnMobile>
                 </RowMobile>
                 <RowMobile>
                   <ColumnHeaderMobile>{COLUMNS[3].Header}</ColumnHeaderMobile>
-                  <Column>{data[i].comment}</Column>
+                  <ColumnMobile>{data[i].comment}</ColumnMobile>
                 </RowMobile>
                 <RowMobile>
                   <ColumnHeaderMobile>{COLUMNS[2].Header}</ColumnHeaderMobile>
-                  <Column>{data[i].category}</Column>
+                  <ColumnMobile>{data[i].category}</ColumnMobile>
                 </RowMobile>
                 <RowMobile>
                   <ColumnHeaderMobile>{COLUMNS[4].Header}</ColumnHeaderMobile>
-                  <Column>{data[i].amount}</Column>
+                  <ColumnMobile type={data[i].type}>
+                    {getAmount(data[i].amount)}
+                  </ColumnMobile>
                 </RowMobile>
                 <RowMobile>
                   <ColumnHeaderMobile>{COLUMNS[5].Header}</ColumnHeaderMobile>
-                  <Column>{data[i].balance}</Column>
+                  <ColumnMobile>{getAmount(data[i].balance)}</ColumnMobile>
                 </RowMobile>
               </TableBodyMobile>
             </TableMobile>
           );
         })}
-        "Something"
       </TabMobile>
     </>
   );
