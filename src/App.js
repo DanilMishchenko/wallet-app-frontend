@@ -1,31 +1,44 @@
 import { Route, Routes } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 
-import { Header } from './components/Header/Header';
+import { Layout } from './components/Layout/Layout';
 
-import { MainBackground } from './stylesheet/MainBackground';
-
-import HomePages from './pages/HomePages';
-import DashBoardPage from './pages/DashBoardPage';
-import RegisterPages from './pages/RegisterPages';
-import LoginPages from './pages/LoginPages';
-import StatisticsPages from './pages/StatisticsPages';
-import NotFoundPages from './pages/NotFoundPages';
+const HomePages = lazy(() =>
+  import('./pages/HomePages' /* webpackChunkName: "home-page" */),
+);
+const DashBoardPage = lazy(() =>
+  import('./pages/DashBoardPage' /* webpackChunkName: "dash-board-page" */),
+);
+const RegisterPages = lazy(() =>
+  import('./pages/RegisterPages' /* webpackChunkName: "register-page" */),
+);
+const LoginPages = lazy(() =>
+  import('./pages/LoginPages' /* webpackChunkName: "login-page" */),
+);
+const StatisticsPages = lazy(() =>
+  import('./pages/StatisticsPages' /* webpackChunkName: "statistics-page" */),
+);
+const NotFoundPages = lazy(() =>
+  import('./pages/NotFoundPages' /* webpackChunkName: "not-found-page" */),
+);
 
 export const App = () => {
   return (
     <>
-      <MainBackground blurAll/>
-      {/* Будет рендериться по условию если пользователь залогинен */}
-      <Header />
-      <Routes>
-        <Route path="/" element={<DashBoardPage />}>
-          <Route index path="home" element={<HomePages />} />
-          <Route path="diagram" element={<StatisticsPages />} />
-        </Route>
-        <Route path="login" element={<LoginPages />} />
-        <Route path="register" element={<RegisterPages />} />
-        <Route path="*" element={<NotFoundPages />} />
-      </Routes>
+      <Suspense>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<DashBoardPage />}>
+              <Route index element={<HomePages />} />
+              <Route path="home" element={<HomePages />} />
+              <Route path="diagram" element={<StatisticsPages />} />
+            </Route>
+            <Route path="login" element={<LoginPages />} />
+            <Route path="register" element={<RegisterPages />} />
+            <Route path="*" element={<NotFoundPages />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </>
   );
 };
