@@ -15,6 +15,8 @@ import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
 import { TextInput } from '../TextInput/TextInput';
 import logo from '../../images/logoApp.svg';
 import girl from '../../images/registerMiniature.svg';
+import eye from '../../images/eye.svg';
+import eyeSlash from '../../images/eye-slash.svg';
 
 import {
   MainContainer,
@@ -26,10 +28,12 @@ import {
   Wrapper,
   Title,
   ImagineBox,
+  PasswordEye,
 } from './RegistrationForm.styled';
 
 export const RegisterForm = () => {
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -41,6 +45,9 @@ export const RegisterForm = () => {
     } else {
       return '#24CCA7';
     }
+  };
+  const toggleClick = () => {
+    setShowPassword(!showPassword);
   };
 
   const changePasswordColor = () => ({
@@ -111,19 +118,41 @@ export const RegisterForm = () => {
                   placeholder="E-mail"
                   type="email"
                 />
+                <div style={{ position: 'relative' }}>
+                  <TextInput
+                    label={<PasswordIcon />}
+                    name="password"
+                    placeholder="Password"
+                    type={showPassword ? 'password' : 'text'}
+                    onInput={e => setPassword(e.target.value)}
+                  />
 
-                <TextInput
-                  label={<PasswordIcon />}
-                  name="password"
-                  placeholder="Password"
-                  onInput={e => setPassword(e.target.value)}
-                />
+                  <PasswordEye onClick={toggleClick}>
+                    {showPassword ? (
+                      <img
+                        src={eyeSlash}
+                        width="21px"
+                        heigth="21px"
+                        alt="hidden"
+                      />
+                    ) : (
+                      <img
+                        src={eye}
+                        width="21px"
+                        heigth="21px"
+                        alt="visibility"
+                      />
+                    )}
+                  </PasswordEye>
+                </div>
 
                 <TextInput
                   label={<PasswordIcon />}
                   name="confirmPassword"
                   placeholder="Confirm password"
+                  type={showPassword ? 'password' : 'text'}
                 />
+
                 <div style={changeProgressStyle()}>
                   <div style={changePasswordColor()}></div>
                 </div>
