@@ -1,3 +1,4 @@
+import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { Container } from './Chart.styled';
@@ -8,7 +9,6 @@ export const Chart = () => {
   const data = {
     datasets: [
       {
-        label: '# of Votes',
         data: [8700, 3800.74, 1500, 800, 2208.5, 300, 3400, 1230, 610],
         backgroundColor: [
           '#FED057',
@@ -21,23 +21,28 @@ export const Chart = () => {
           '#24CCA7',
           '#00AD84',
         ],
+        borderWidth: 0,
+        cutout: '70%',
+        hoverOffset: 4,
       },
     ],
   };
 
-  // const options = {
-  //   maintainAspectRatio: false,
-  //   scales: {},
-  //   legend: {
-  //     labels: {
-  //       fontSize: 25,
-  //     },
-  //   },
-  // };
+  const options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        intersect: true,
+      },
+    },
+  };
 
   return (
     <Container>
-      <Doughnut data={data} />
+      <Doughnut data={data} options={options} />
+      {/* <h2>₴ 24 000.00 </h2> Заглушка */}
     </Container>
   );
 };
