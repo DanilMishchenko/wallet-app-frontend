@@ -67,19 +67,19 @@ export const Wrapper = styled.div`
 `;
 
 export const ImagineBox = styled.div`
-display: none;
-@media (min-width: 768px) {
-  margin: 60px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: none;
+  @media (min-width: 768px) {
+    margin: 60px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   @media screen and (min-width: 1280px) {
     flex-direction: column;
     justify-content: start;
     padding: 150px 65px;
-   }
-
-
+  }
 `;
 export const Img = styled.img`
   height: 250px;
