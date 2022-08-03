@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   CurrencyLayout,
   TableContainer,
@@ -7,32 +7,22 @@ import {
   TableHeadText,
   TableRow,
   TableData,
+  WrapperLoader,
 } from './Currency.styled';
-import { currencyInfo, baseCurrency } from './constants';
+import { currencyInfo } from './constants';
+import { getRates, getStatus } from '../../redux/currency/currency-selectors';
+import { Loader } from '../Loader/Loader';
 import getDate from '../../utils/normalizeDate';
-
+import currencyOperations from '../../redux/currency/currency-operations';
 
 export const Currency = () => {
-  const [dataCurrency, setData] = useState();
-
-  const fetch = () =>
-    axios
-      .get(
-        `https://api.privatbank.ua/p24api/exchange_rates?json&date=${getDate(new Date())}`,
-      )
-      .then(({ data }) => {
-        data &&
-          setData(
-            data.exchangeRate.filter(({ currency }) =>
-              baseCurrency.includes(currency),
-            ),
-          );
-        //return dispatch(actions.fetchContactSuccess(data));
-      });
+  const currencies = useSelector(getRates);
+  const isLoading = useSelector(getStatus);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch();
-  }, []);
+    dispatch(currencyOperations.fetch(getDate(new Date())));
+  }, [dispatch]);
 
   return (
     <CurrencyLayout>
@@ -45,18 +35,22 @@ export const Currency = () => {
           </tr>
         </TableHead>
         <tbody>
-          {dataCurrency &&
-            dataCurrency.map(
-              ({ currency, saleRateNB, purchaseRateNB }, index) => (
-                <TableRow key={saleRateNB + index}>
-                  <TableData>{currency}</TableData>
-                  <TableData>{saleRateNB.toFixed(2)}</TableData>
-                  <TableData>{purchaseRateNB.toFixed(2)}</TableData>
-                </TableRow>
-              ),
-            )}
+          {currencies &&
+            !isLoading &&
+            currencies.map(({ currency, saleRate, purchaseRate }, index) => (
+              <TableRow key={saleRate + index}>
+                <TableData>{currency}</TableData>
+                <TableData>{saleRate.toFixed(2)}</TableData>
+                <TableData>{purchaseRate.toFixed(2)}</TableData>
+              </TableRow>
+            ))}
         </tbody>
       </TableContainer>
+      {isLoading && (
+        <WrapperLoader>
+          <Loader />
+        </WrapperLoader>
+      )}
     </CurrencyLayout>
   );
 };

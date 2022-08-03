@@ -59,3 +59,8 @@ export const TableData = styled.td`
     padding-top: 24px;
   } ;
 `;
+
+export const WrapperLoader = styled.div`
+  position: relative;
+  top: 30%;
+`;
