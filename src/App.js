@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 
 import { Layout } from './components/Layout/Layout';
+import { Loader } from './components/Loader/Loader';
 
 const HomePages = lazy(() =>
   import('./pages/HomePages' /* webpackChunkName: "home-page" */),
@@ -25,7 +26,7 @@ const NotFoundPages = lazy(() =>
 export const App = () => {
   return (
     <>
-      <Suspense>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<DashBoardPage />}>
