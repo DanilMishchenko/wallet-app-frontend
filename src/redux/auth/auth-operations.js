@@ -21,8 +21,6 @@ const register = createAsyncThunk(
       console.log(data);
       return data;
     } catch (error) {
-      error.message =
-        "Please try again! Can't register new user with this name and email!";
       return rejectWithValue(error.message);
     }
   },
@@ -36,20 +34,22 @@ export const logIn = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
-      alert('Sorry, your name or email is incorrect! Try again!');
       return rejectWithValue(error.message);
     }
   },
 );
 
-const logOut = createAsyncThunk('/auth/logout', async credentials => {
-  try {
-    await axios.get('/users/logout');
-    token.unset();
-  } catch (error) {
-    alert(error);
-  }
-});
+const logOut = createAsyncThunk(
+  '/auth/logout',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      await axios.get('/users/logout');
+      token.unset();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
 const fetchCurrentUser = createAsyncThunk(
   'user/current',
   async (_, thunkAPI) => {

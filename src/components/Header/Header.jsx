@@ -3,8 +3,12 @@ import styled from 'styled-components';
 import LogoSection from './LogoSection/LogoSection';
 import AccountSection from './AccountSection/AccountSection';
 import { ModalLogout } from '../ModalLogout/ModalLogout';
-import { useState } from 'react';
 
+import { useSelector } from 'react-redux';
+
+import { useDispatch } from 'react-redux';
+import { modalLogout } from '../../redux/global/globalSlice';
+import { getIsModalLogoutOpen } from '../../redux/global/globalSlice';
 const Wrapper = styled.div`
   position: fixed;
   display: flex;
@@ -22,11 +26,16 @@ const Wrapper = styled.div`
     padding: 20px 16px;
   } ;
 `;
-export const Header = () => {
-  const [showModal, setShowModal] = useState(false);
 
+export const Header = () => {
+  const dispatch = useDispatch();
+
+  const ModalLogoutOpen = useSelector(getIsModalLogoutOpen);
   const onModal = () => {
-    setShowModal(!showModal);
+    dispatch(modalLogout(true));
+  };
+  const onModalClose = () => {
+    dispatch(modalLogout(false));
   };
 
   return (
@@ -35,7 +44,7 @@ export const Header = () => {
         <LogoSection />
         <AccountSection onModal={onModal} />
       </Wrapper>
-      {showModal && <ModalLogout onModal={onModal} />}
+      {ModalLogoutOpen && <ModalLogout onModal={onModalClose} />}
     </>
   );
 };
