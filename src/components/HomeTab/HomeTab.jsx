@@ -2,7 +2,9 @@ import React, { useMemo } from 'react';
 import { AiOutlineUp, AiOutlineDown } from 'react-icons/ai';
 import { useSortBy, useTable } from 'react-table';
 import { COLUMNS, VALUES_TO_FORMAT } from './table-helpers';
+import { ModalAddTransaction } from '../ModalAddTransaction/ModalAddTransaction';
 import { nanoid } from 'nanoid';
+import EllipsisText from 'react-ellipsis-text';
 import Media from 'react-media';
 import {
   Tab,
@@ -12,6 +14,8 @@ import {
   Row,
   ColumnHeader,
   ColumnHeaderContent,
+  NoTransactions,
+  NoTransactionsMsg,
 } from './HomeTab.styled';
 import { HomeTabMobile } from './HomeTabMobile';
 
@@ -147,7 +151,7 @@ export const HomeTab = () => {
                                   }}
                                   {...cell.getCellProps()}
                                 >
-                                  {cell.render('Cell')}
+                                  <EllipsisText text={cell.value} length={12} />
                                 </Column>
                               );
                             })}
@@ -162,8 +166,11 @@ export const HomeTab = () => {
           </Media>
         </>
       ) : (
-        'EEE'
+        <NoTransactions>
+          <NoTransactionsMsg>Транзакций не найдено</NoTransactionsMsg>
+        </NoTransactions>
       )}
+      <ModalAddTransaction />
     </>
   );
 };
