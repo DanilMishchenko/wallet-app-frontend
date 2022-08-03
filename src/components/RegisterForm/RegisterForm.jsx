@@ -13,12 +13,23 @@ import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
 import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
 
 import { TextInput } from '../TextInput/TextInput';
+import logo from '../../images/logoApp.svg';
+import girl from '../../images/registerMiniature.svg';
 
-import { Div, InputForm, ButtonDiv } from './RegistrationForm.styled';
+import {
+  MainContainer,
+  Img,
+  H,
+  Div,
+  InputForm,
+  ButtonDiv,
+  Wrapper,
+  Title,
+  ImagineBox,
+} from './RegistrationForm.styled';
 
 export const RegisterForm = () => {
   const [password, setPassword] = useState('');
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -40,18 +51,17 @@ export const RegisterForm = () => {
     boxShadow: '0px 1px 8px rgba(36, 204, 167, 0.5)',
     borderRadius: '4px',
   });
-
   const changeProgressStyle = () => ({
     maxWidth: '100%',
     height: '4px',
-    marginTop: '-20px',
-    marginBottom: '20px',
+    marginTop: '10px',
+    marginBottom: '-20px',
     backgroundColor: '#E5F1EF',
   });
 
   const validationForm = Yup.object({
     email: Yup.string()
-      .email('no valid email')
+      .email('No valid email')
       .required('This field is required'),
     password: Yup.string()
       .min(6, '6 symbols minimum')
@@ -67,8 +77,16 @@ export const RegisterForm = () => {
       .required('This field is required'),
   });
   return (
-    <>
+    <MainContainer>
+      <ImagineBox>
+        <Img src={girl} alt="girl" />
+        <H>Finance App</H>
+      </ImagineBox>
       <Div>
+        <Wrapper>
+          <img src={logo} alt="girl" />
+          <Title>Wallet</Title>
+        </Wrapper>
         <Formik
           initialValues={{
             email: '',
@@ -81,7 +99,7 @@ export const RegisterForm = () => {
           validationSchema={validationForm}
           onSubmit={({ email, password, name }) => {
             dispatch(authOperations.register({ email, password, name }));
-            navigate('/login');
+            navigate('/');
           }}
         >
           {({ dirty, isValid }) => (
@@ -132,6 +150,6 @@ export const RegisterForm = () => {
           </NavLink>
         </ButtonDiv>
       </Div>
-    </>
+    </MainContainer>
   );
 };

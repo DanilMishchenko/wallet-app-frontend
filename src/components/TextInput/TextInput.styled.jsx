@@ -10,7 +10,7 @@ export const Label = styled.label`
 
   color: #bdbdbd;
   /* margin-bottom: 25px; */
-  margin-bottom: 40px;
+  margin-top: 40px;
 `;
 
 export const Input = styled.input`
