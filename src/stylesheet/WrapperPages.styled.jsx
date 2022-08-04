@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const ContainerPages = styled.div`
+  display: flex;
   margin-left: auto;
   margin-right: auto;
   padding-left: 20px;
@@ -20,5 +21,21 @@ export const Container = styled.div`
     width: 1280px;
     padding-left: 16px;
     padding-right: 16px;
+  }
+`;
+
+export const BlurContainer = styled.div`
+  ::before {
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    filter: blur(50px);
   }
 `;

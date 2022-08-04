@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import authOperations from '../../redux/auth/auth-operations';
+import { useNavigate } from 'react-router-dom';
 
 import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
 import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
@@ -12,6 +13,8 @@ import logo from '../../images/logoApp.svg';
 const modalRoot = document.querySelector('#modal-logout');
 
 export const ModalLogout = ({ onModal }) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
@@ -33,6 +36,8 @@ export const ModalLogout = ({ onModal }) => {
 
   const logOut = () => {
     dispatch(authOperations.logOut());
+    navigate('/login');
+    onModal();
   };
   return createPortal(
     <Overlay onClick={handleBackdropClick}>
