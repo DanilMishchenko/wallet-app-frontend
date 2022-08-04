@@ -21,7 +21,6 @@ export default function HomePages() {
   };
   return (
     <>
-      <h1>HomePages</h1>
       <HomeTab />
       <ButtonAddTransactions onModal={onModal} />
       {ModalTransitionOpen && <ModalAddTransaction onModal={onModalClose} />}

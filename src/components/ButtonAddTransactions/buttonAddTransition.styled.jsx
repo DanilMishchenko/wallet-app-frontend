@@ -16,6 +16,7 @@ export const Container = styled.div`
     bottom: 40px;
     right: 40px;
   }
+
   :hover,
   :focus {
     box-shadow: 0px 6px 15px rgba(36, 200, 165, 0.5);
