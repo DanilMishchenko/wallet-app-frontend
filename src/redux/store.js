@@ -17,6 +17,7 @@ import authSlice from './auth/authSlice.js';
 // import { transactionsApi } from './transactions/transactions-reducers';
 import { default as transactionsReducer } from './transactions/transactions-reducers';
 import { currencySlice } from './currency/currency-reducer';
+import { balanceSlice } from './balance/balance-reducer';
 
 const authPersistConfig = {
   key: 'auth',
@@ -33,6 +34,7 @@ export const store = configureStore({
     currency: currencySlice.reducer,
     transactions: transactionsReducer,
     // [transactionsApi.reducerPath]: transactionsApi.reducer,
+    balance: balanceSlice.reducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({

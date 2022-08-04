@@ -13,16 +13,24 @@ import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
 import { TextInput } from '../TextInput/TextInput';
 
 import authOperations from '../../redux/auth/auth-operations';
+
+import loginImage from '../../images/loginMiniature.svg';
 import eye from '../../images/eye.svg';
 import eyeSlash from '../../images/eye-slash.svg';
 import logo from '../../images/logoApp.svg';
 
 import {
+  Wrapper,
+  ImageBox,
+  Img,
+  Title,
   Div,
   InputForm,
   ButtonDiv,
   PasswordEye,
+  LogoWrapper,
   Logo,
+  LogoTitle,
 } from './LoginForm.styled';
 
 const schema = Yup.object({
@@ -59,11 +67,16 @@ export const LoginForm = () => {
   };
 
   return (
-    <>
+    <Wrapper>
+      <ImageBox>
+        <Img src={loginImage} alt="boy and phone" />
+        <Title>Finance App</Title>
+      </ImageBox>
       <Div>
-        <Logo>
-          <img src={logo} alt="logo" />
-        </Logo>
+        <LogoWrapper>
+          <Logo src={logo} alt="logo" />
+          <LogoTitle>Wallet</LogoTitle>
+        </LogoWrapper>
         <Formik
           initialValues={initialValues}
           isValidating={false}
@@ -121,6 +134,6 @@ export const LoginForm = () => {
           </NavLink>
         </ButtonDiv>
       </Div>
-    </>
+    </Wrapper>
   );
 };

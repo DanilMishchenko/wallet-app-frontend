@@ -58,7 +58,8 @@ const data = [
 export const HomeTab = () => {
   const columns = useMemo(() => COLUMNS, []);
   // const featchData = useSelector(getTransactions);
-  // const token = useSelector(state => state.auth.token);
+  const token = useSelector(state => state.auth.token);
+  const state = useSelector(state => state);
   // const { data = [], isLoading } = useFetchTransactionsQuery(token);
   const data = useSelector(getTransactions);
   const dispatch = useDispatch();
@@ -71,6 +72,7 @@ export const HomeTab = () => {
       useSortBy,
     );
   useEffect(() => {
+    console.log(state);
     dispatch(fetchTransactions());
   }, [dispatch]);
   // useEffect(() => {
