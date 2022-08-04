@@ -1,5 +1,3 @@
-// import { lazy } from 'react';
-// import { useState, useEffect } from 'react';
 import {
   TableWrapper,
   TableTitle,
@@ -7,11 +5,13 @@ import {
   TableListItem,
   CategoryWrapper,
   CategoryColorLabel,
+  ResultList,
+  ExpensesItem,
+  IncomeItem,
+  ResultAccentItem,
 } from './Table.styled';
 
 export const Table = ({ tableData }) => {
-  // const [data, setData] = useState(null);
-
   return (
     <TableWrapper>
       <TableTitle>
@@ -26,12 +26,25 @@ export const Table = ({ tableData }) => {
               <CategoryWrapper>
                 <CategoryColorLabel background={color}></CategoryColorLabel>
                 <span>{category}</span>
-                <span>{sum}</span>
               </CategoryWrapper>
+              <span>{sum}</span>
             </TableListItem>
           );
         })}
       </TableList>
+
+      <ResultList>
+        <ExpensesItem>
+          Expenses:
+          <ResultAccentItem color={'var(--expense)'}>
+            22 549.24
+          </ResultAccentItem>
+        </ExpensesItem>
+        <IncomeItem>
+          Income:
+          <ResultAccentItem color={'var(--green)'}>27 350.00</ResultAccentItem>
+        </IncomeItem>
+      </ResultList>
     </TableWrapper>
   );
 };

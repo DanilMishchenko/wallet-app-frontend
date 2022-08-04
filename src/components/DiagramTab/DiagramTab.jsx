@@ -1,5 +1,12 @@
 import { Chart } from '../Chart/Chart';
 import { Table } from '../Table/Table';
+import {
+  Title,
+  SelectWrapper,
+  CustomSelect,
+  BtnWrapper,
+} from './DiagramTab.styled';
+import arrow from '../../images/arrow.svg';
 
 export const DiagramTab = () => {
   const data = [
@@ -52,8 +59,38 @@ export const DiagramTab = () => {
 
   return (
     <>
-      <h1>DiagramTab</h1>
+      <Title>Statistics</Title>
       <Chart />
+      <SelectWrapper>
+        <BtnWrapper>
+          <CustomSelect id="mounth">
+            <option value="hide">Month</option>
+            <option value="january">January</option>
+            <option value="february">February</option>
+            <option value="march">March</option>
+            <option value="april">April</option>
+            <option value="may">May</option>
+            <option value="june">June</option>
+            <option value="july">July</option>
+            <option value="august">August</option>
+            <option value="september">September</option>
+            <option value="october">October</option>
+            <option value="november">November</option>
+            <option value="december">December</option>
+          </CustomSelect>
+          <img src={arrow} width="18px" height="9px" alt="arrow" />
+        </BtnWrapper>
+
+        <BtnWrapper>
+          <CustomSelect id="year">
+            <option value="hide">Year</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+          </CustomSelect>
+          <img src={arrow} width="18px" height="9px" alt="arrow" />
+        </BtnWrapper>
+      </SelectWrapper>
       <Table tableData={data} />
     </>
   );
