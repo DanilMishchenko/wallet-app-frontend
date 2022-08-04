@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './auth/authSlice';
 import { globalSlice } from './global/globalSlice';
 import {
   persistStore,
@@ -12,7 +11,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import authSlice from './auth/authSlice.js';
+import authSlice from './auth/authSlice';
 import { currencySlice } from './currency/currency-reducer';
 import { balanceSlice } from './balance/balance-reducer';
 
@@ -22,11 +21,9 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-export const persistedReducer = persistReducer(authPersistConfig, authSlice);
-
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
+    auth: persistReducer(authPersistConfig, authSlice),
     global: globalSlice.reducer,
     currency: currencySlice.reducer,
     balance: balanceSlice.reducer,

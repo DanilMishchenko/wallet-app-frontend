@@ -30,7 +30,7 @@ const register = createAsyncThunk(
   },
 );
 
-export const logIn = createAsyncThunk(
+const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
@@ -46,7 +46,7 @@ export const logIn = createAsyncThunk(
 
 const logOut = createAsyncThunk(
   '/auth/logout',
-  async (credentials, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
       await axios.get('/users/logout');
       token.unset();

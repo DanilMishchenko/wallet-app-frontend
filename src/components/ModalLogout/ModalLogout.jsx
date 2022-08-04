@@ -2,8 +2,7 @@ import { useDispatch } from 'react-redux';
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import authOperations from '../../redux/auth/auth-operations';
-import { useNavigate } from 'react-router-dom';
-
+// import { useNavigate } from 'react-router-dom';
 
 import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
 import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
@@ -11,12 +10,10 @@ import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
 import { Overlay, Mod, Title, Wrapper, H, Div } from './ModalLogout.styled';
 import logo from '../../images/logoApp.svg';
 
-
-
 const modalRoot = document.querySelector('#modal-logout');
 
 export const ModalLogout = ({ onModal }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const handleKeyDown = e => {
@@ -42,7 +39,6 @@ export const ModalLogout = ({ onModal }) => {
     // toast('log out');
     onModal();
     // setTimeout(()=>navigate('/login'), 2000)
-    
   };
   return createPortal(
     <Overlay onClick={handleBackdropClick}>
