@@ -24,7 +24,8 @@ import {
   ImageBox,
   Img,
   Title,
-  Div,
+  FormBackgraund,
+  FormWrapper,
   InputForm,
   ButtonDiv,
   PasswordEye,
@@ -72,7 +73,7 @@ export const LoginForm = () => {
         <Img src={loginImage} alt="boy and phone" />
         <Title>Finance App</Title>
       </ImageBox>
-      <Div>
+      <FormWrapper>
         <LogoWrapper>
           <Logo src={logo} alt="logo" />
           <LogoTitle>Wallet</LogoTitle>
@@ -133,7 +134,8 @@ export const LoginForm = () => {
             <SecondaryButton textBtn="register" />
           </NavLink>
         </ButtonDiv>
-      </Div>
+      </FormWrapper>
+      <FormBackgraund />
     </Wrapper>
   );
 };
