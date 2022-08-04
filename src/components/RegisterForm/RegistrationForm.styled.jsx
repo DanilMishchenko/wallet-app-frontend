@@ -21,9 +21,9 @@ export const Div = styled.div`
   @media screen and (min-width: 768px) {
     padding-top: 40px;
     width: 540px;
-    border-radius: 50px;
+    border-radius: 20px;
     padding-bottom: 50px;
-    margin: 1px auto;
+    margin: 0 auto 50px auto;
     top: 360px;
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
   }
