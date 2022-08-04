@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://wallet-app-backend-project.herokuapp.com';
 
-export const token = {
+const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
