@@ -1,9 +1,12 @@
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-export const PublicRoute = ({ children, restricted = false }) => {
+export const PublicRoute = ({ children }) => {
   const isAuth = useSelector(state => state.auth.session.isAuth);
-  const shouldRedirect = isAuth && restricted;
 
-  return shouldRedirect ? <Navigate to="/home" /> : children;
+  if (isAuth) {
+    return <Navigate to="/home" />;
+  }
+
+  return <>{children}</>;
 };

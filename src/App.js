@@ -1,8 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { /*useEffect,*/ lazy, Suspense } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { authOperations, authSelectors } from './redux/auth';
 
 import { Layout } from './components/Layout/Layout';
 import { Loader } from './components/Loader/Loader';
+// import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
+// import { PublicRoute } from './components/PublicRoute/PublicRoute';
 
 const HomePages = lazy(() =>
   import('./pages/HomePages' /* webpackChunkName: "home-page" */),
@@ -24,22 +28,54 @@ const NotFoundPages = lazy(() =>
 );
 
 export const App = () => {
+  // const dispatch = useDispatch();
+  // const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
+
+  // useEffect(() => {
+  //   dispatch(authOperations.fetchCurrentUser());
+  // }, [dispatch]);
+
   return (
     <>
+      {/* {isFetchingCurrentUser ? (
+        <Loader />
+      ) : ( */}
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route path="/" element={<DashBoardPage />}>
+            <Route
+              path="/"
+              element={
+                // <PrivateRoute>
+                <DashBoardPage />
+                // </PrivateRoute>
+              }
+            >
               <Route index element={<HomePages />} />
               <Route path="home" element={<HomePages />} />
               <Route path="diagram" element={<StatisticsPages />} />
             </Route>
-            <Route path="login" element={<LoginPages />} />
-            <Route path="register" element={<RegisterPages />} />
+            <Route
+              path="login"
+              element={
+                // <PublicRoute>
+                <LoginPages />
+                // </PublicRoute>
+              }
+            />
+            <Route
+              path="register"
+              element={
+                // <PublicRoute>
+                <RegisterPages />
+                // </PublicRoute>
+              }
+            />
             <Route path="*" element={<NotFoundPages />} />
           </Route>
         </Routes>
       </Suspense>
+      {/* )} */}
     </>
   );
 };
