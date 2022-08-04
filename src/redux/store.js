@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { setupListeners } from '@reduxjs/toolkit/query';
 import authReducer from './auth/authSlice';
 import { globalSlice } from './global/globalSlice';
 import {
@@ -14,8 +13,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authSlice from './auth/authSlice.js';
-// import { transactionsApi } from './transactions/transactions-reducers';
-import { default as transactionsReducer } from './transactions/transactions-reducers';
+import { transactionsSlice } from './transactions/transactions-reducers';
 import { currencySlice } from './currency/currency-reducer';
 import { balanceSlice } from './balance/balance-reducer';
 
@@ -32,8 +30,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     global: globalSlice.reducer,
     currency: currencySlice.reducer,
-    transactions: transactionsReducer,
-    // [transactionsApi.reducerPath]: transactionsApi.reducer,
+    transactions: transactionsSlice.reducer,
     balance: balanceSlice.reducer,
   },
   middleware: getDefaultMiddleware => [
@@ -42,8 +39,6 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-    // transactionsApi.middleware,
   ],
 });
-setupListeners(store.dispatch);
 export const persistor = persistStore(store);

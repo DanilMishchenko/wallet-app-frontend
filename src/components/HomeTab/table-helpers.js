@@ -21,21 +21,22 @@ export const COLUMNS = [
   },
   {
     Header: 'Sum',
-    accessor: 'amount',
+    accessor: 'sum',
     sticky: 'right',
   },
   {
     Header: 'Balance',
     accessor: 'balance',
+    sticky: 'right',
   },
 ];
 
 export const TRANSACTION_TYPES = {
-  add: '+',
-  minus: '-',
+  add: 'true',
+  minus: 'false',
 };
 
 export const VALUES_TO_FORMAT = {
   balance: 'balance',
-  amount: 'amount',
+  sum: 'sum',
 };

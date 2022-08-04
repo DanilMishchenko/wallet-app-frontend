@@ -1,10 +1,15 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineUp, AiOutlineDown } from 'react-icons/ai';
 import { useSortBy, useTable } from 'react-table';
 import { COLUMNS, VALUES_TO_FORMAT } from './table-helpers';
 import { getTransactions } from '../../redux/transactions/transactions-selectors';
 import { fetchTransactions } from '../../redux/transactions/transactions-operations';
+import moment from 'moment';
+import {
+  incrementByAmount,
+  decrementByAmount,
+} from '../../redux/balance/balance-reducer';
 // import { useFetchTransactionsQuery } from '../../redux/transactions/transactions-reducers';
 
 // import { ModalAddTransaction } from '../ModalAddTransaction/ModalAddTransaction';
@@ -57,10 +62,9 @@ const data = [
 
 export const HomeTab = () => {
   const columns = useMemo(() => COLUMNS, []);
-  // const featchData = useSelector(getTransactions);
-  const token = useSelector(state => state.auth.token);
-  const state = useSelector(state => state);
-  // const { data = [], isLoading } = useFetchTransactionsQuery(token);
+  const balance = useSelector(state => state.balance);
+  const [balanceShow, setBalanceShow] = useState(balance.value);
+  const items = useSelector(state => state.transactions.items);
   const data = useSelector(getTransactions);
   const dispatch = useDispatch();
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -71,18 +75,25 @@ export const HomeTab = () => {
       },
       useSortBy,
     );
-  useEffect(() => {
-    console.log(state);
-    dispatch(fetchTransactions());
-  }, [dispatch]);
-  // useEffect(() => {
-  //   console.log(data);
-  // }, []);
 
-  const getAmount = amount => {
-    console.log(data);
-    return amount.toFixed(2);
-  };
+  useEffect(() => {
+    dispatch(fetchTransactions());
+  }, []);
+
+  useEffect(() => {
+    if (items[items.length - 1]) {
+      if (items[items.length - 1].type === false) {
+        dispatch(decrementByAmount(items[items.length - 1].sum));
+        setBalanceShow(balance.value);
+        return;
+      } else {
+        dispatch(incrementByAmount(items[items.length - 1].sum));
+        setBalanceShow(balance.value);
+        return;
+      }
+    }
+    return;
+  }, [items]);
 
   return (
     <>
@@ -147,34 +158,88 @@ export const HomeTab = () => {
                             {...row.getRowProps()}
                           >
                             {row.cells.map(cell => {
+                              // console.log(row);
                               if (
-                                Object.values(VALUES_TO_FORMAT).includes(
-                                  cell.column.id,
-                                )
+                                cell.column.id === 'date' &&
+                                typeof cell.value !== 'boolean'
                               ) {
                                 return (
                                   <Column
-                                    type={row.values.type}
+                                    type={String(row.values.type)}
                                     key={() => {
                                       nanoid();
                                     }}
                                     {...cell.getCellProps()}
                                   >
-                                    {getAmount(cell.value)}
+                                    {moment
+                                      .utc(cell.value)
+                                      .format('MM.DD.YYYY')}
                                   </Column>
                                 );
                               }
-                              return (
-                                <Column
-                                  type={row.values.type}
-                                  key={() => {
-                                    nanoid();
-                                  }}
-                                  {...cell.getCellProps()}
-                                >
-                                  <EllipsisText text={cell.value} length={12} />
-                                </Column>
-                              );
+                              if (typeof cell.value === 'boolean') {
+                                return (
+                                  <Column
+                                    type={String(row.values.type)}
+                                    key={() => {
+                                      nanoid();
+                                    }}
+                                    {...cell.getCellProps()}
+                                  >
+                                    {cell.value === false ? '-' : '+'}
+                                  </Column>
+                                );
+                              }
+                              if (
+                                cell.value &&
+                                typeof cell.value !== 'boolean'
+                              ) {
+                                return (
+                                  <Column
+                                    type={String(row.values.type)}
+                                    key={() => {
+                                      nanoid();
+                                    }}
+                                    {...cell.getCellProps()}
+                                  >
+                                    <EllipsisText
+                                      text={String(cell.value)}
+                                      length={12}
+                                    />
+                                  </Column>
+                                );
+                              }
+                              if (!cell.value && cell.column.id !== 'balance') {
+                                return (
+                                  <Column
+                                    type={String(row.values.type)}
+                                    key={() => {
+                                      nanoid();
+                                    }}
+                                    {...cell.getCellProps()}
+                                  >
+                                    {' '}
+                                  </Column>
+                                );
+                              }
+                              if (cell.column.id === 'balance' && !cell.value) {
+                                return (
+                                  <Column
+                                    type={String(row.values.type)}
+                                    key={() => {
+                                      nanoid();
+                                    }}
+                                    {...cell.getCellProps()}
+                                  >
+                                    {/* {items[items.length - 1].type === false
+                                      ? balance.value -
+                                        items[items.length - 1].sum
+                                      : balance.value +
+                                        items[items.length - 1].sum} */}
+                                    {balanceShow}
+                                  </Column>
+                                );
+                              }
                             })}
                           </Row>
                         );
