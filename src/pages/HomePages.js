@@ -1,12 +1,14 @@
+import { useSelector, useDispatch } from 'react-redux';
+
+import {
+  getIsModalTransitionOpen,
+  modalTransition,
+} from '../redux/global/globalSlice';
+
 import { ButtonAddTransactions } from '../components/ButtonAddTransactions/ButtonAddTransactions';
-import { HomeTab } from '../components/HomeTab/HomeTab';
 import { ModalAddTransaction } from '../components/ModalAddTransaction/ModalAddTransaction';
+import { HomeTab } from '../components/HomeTab/HomeTab';
 
-import { useSelector } from 'react-redux';
-
-import { useDispatch } from 'react-redux';
-import { modalTransition } from '../redux/global/globalSlice';
-import { getIsModalTransitionOpen } from '../redux/global/globalSlice';
 export default function HomePages() {
   const dispatch = useDispatch();
 

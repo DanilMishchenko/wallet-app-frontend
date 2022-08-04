@@ -3,10 +3,14 @@ import { TRANSACTION_TYPES } from './table-helpers';
 
 export const Tab = styled.div`
   width: 100%;
+  height: 100%;
   margin-top: 27px;
+  overflow: hidden;
+
   @media screen and (min-width: 768px) {
     margin-top: 76px;
   }
+  
   @media screen and (min-width: 1280px) {
     overflow-y: auto;
     max-height: 312px;
@@ -17,6 +21,7 @@ export const Tab = styled.div`
     border-bottom: 1px solid #dcdcdf;
   }
 `;
+
 export const TabMobile = styled.div`
   position: relative;
   margin-left: auto;
@@ -28,6 +33,7 @@ export const TabMobile = styled.div`
     display: none;
   }
 `;
+
 export const TableBodyMobile = styled.tbody`
   position: relative;
   width: 280px;
@@ -50,6 +56,7 @@ export const Table = styled.table`
     display: table;
   }
 `;
+
 export const TableMobile = styled.table`
   background: #ffffff;
   opacity: 0.8;
@@ -81,6 +88,7 @@ export const TableHeader = styled.thead`
     text-align: center;
   }
 `;
+
 export const ColumnHeader = styled.th`
   font-size: 18px;
   line-height: 27px;
@@ -91,11 +99,13 @@ export const ColumnHeader = styled.th`
     padding-bottom: 10px;
   }
 `;
+
 export const ColumnHeaderContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
+
 export const ColumnHeaderMobile = styled.td`
   font-size: 18px;
   font-weight: 700;
@@ -120,6 +130,7 @@ export const Column = styled.td`
         : `color:#ff6596;`}
   }
 `;
+
 export const ColumnMobile = styled.td`
   text-align: right;
   line-height: 24px;
@@ -148,6 +159,7 @@ export const Row = styled.tr`
 export const RowMobile = styled.tr`
   table-layout: fixed;
 `;
+
 export const NoTransactions = styled.div`
   margin-top: 20px;
   padding: 20px;
@@ -157,6 +169,7 @@ export const NoTransactions = styled.div`
     margin-top: 100px;
   }
 `;
+
 export const NoTransactionsMsg = styled.span`
   font-size: 30px;
   font-style: normal;

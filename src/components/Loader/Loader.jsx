@@ -11,7 +11,6 @@ export const Loader = () => {
         position: 'absolute',
         top: '50%',
         left: '50%',
-        //   margin: '0, -50%, 0, 0',
         transform: 'translate(-50%, -50%)',
       }}
       visible={true}
