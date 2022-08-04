@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   @media screen and (min-width: 1280px) {
-    /* position: relative; */
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -11,7 +11,6 @@ export const Wrapper = styled.div`
 `;
 
 export const ImageBox = styled.div`
-  /* width: 40%; */
   display: none;
   @media (min-width: 768px) {
     margin: 60px auto;
@@ -20,6 +19,7 @@ export const ImageBox = styled.div`
     align-items: center;
   }
   @media screen and (min-width: 1280px) {
+    width: 40%;
     flex-direction: column;
     justify-content: start;
     padding: 150px 65px;
@@ -44,19 +44,19 @@ export const Title = styled.h2`
   }
 `;
 
-// export const FormWrapper = styled.div`
-// @media screen and (min-width: 1280px) {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-// width: 60%;
-// height: 100vh;
-// background: rgba(255, 255, 255, 0.4);
-// backdrop-filter: blur(50px);
-//   }
-// `;
+export const FormBackgraund = styled.div`
+  @media screen and (min-width: 1280px) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(50px);
+  }
+`;
 
-export const Div = styled.div`
+export const FormWrapper = styled.div`
   background-color: var(--primary-text);
 
   @media screen and (min-width: 320px) {
@@ -75,6 +75,9 @@ export const Div = styled.div`
     width: 533px;
     min-height: 468px;
     border-radius: 20px;
+  }
+  @media screen and (min-width: 1280px) {
+    z-index: 999;
   }
 `;
 
