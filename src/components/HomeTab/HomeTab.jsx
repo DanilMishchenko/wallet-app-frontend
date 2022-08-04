@@ -1,8 +1,13 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineUp, AiOutlineDown } from 'react-icons/ai';
 import { useSortBy, useTable } from 'react-table';
 import { COLUMNS, VALUES_TO_FORMAT } from './table-helpers';
-import { ModalAddTransaction } from '../ModalAddTransaction/ModalAddTransaction';
+import { getTransactions } from '../../redux/transactions/transactions-selectors';
+import { fetchTransactions } from '../../redux/transactions/transactions-operations';
+// import { useFetchTransactionsQuery } from '../../redux/transactions/transactions-reducers';
+
+// import { ModalAddTransaction } from '../ModalAddTransaction/ModalAddTransaction';
 import { nanoid } from 'nanoid';
 import EllipsisText from 'react-ellipsis-text';
 import Media from 'react-media';
@@ -52,6 +57,11 @@ const data = [
 
 export const HomeTab = () => {
   const columns = useMemo(() => COLUMNS, []);
+  // const featchData = useSelector(getTransactions);
+  // const token = useSelector(state => state.auth.token);
+  // const { data = [], isLoading } = useFetchTransactionsQuery(token);
+  const data = useSelector(getTransactions);
+  const dispatch = useDispatch();
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable(
       {
@@ -60,9 +70,18 @@ export const HomeTab = () => {
       },
       useSortBy,
     );
+  useEffect(() => {
+    dispatch(fetchTransactions());
+  }, [dispatch]);
+  // useEffect(() => {
+  //   console.log(data);
+  // }, []);
+
   const getAmount = amount => {
+    console.log(data);
     return amount.toFixed(2);
   };
+
   return (
     <>
       {data.length > 0 ? (
@@ -167,10 +186,10 @@ export const HomeTab = () => {
         </>
       ) : (
         <NoTransactions>
-          <NoTransactionsMsg>Транзакций не найдено</NoTransactionsMsg>
+          <NoTransactionsMsg>No Transactions added</NoTransactionsMsg>
         </NoTransactions>
       )}
-      <ModalAddTransaction />
+      {/* <ModalAddTransaction /> */}
     </>
   );
 };
