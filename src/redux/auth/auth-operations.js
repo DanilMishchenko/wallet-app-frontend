@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://wallet-app-backend-project.herokuapp.com';
 
@@ -18,9 +19,11 @@ const register = createAsyncThunk(
     try {
       const { data } = await axios.post('/users/register', credentials);
       token.set(data.data.token);
-      console.log(data);
       return data;
     } catch (error) {
+      toast.error(
+        "Please try again! Can't register new user with this name and email!",
+      );
       return rejectWithValue(error.message);
     }
   },
@@ -31,9 +34,10 @@ export const logIn = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/login', credentials);
-      token.set(data.token);
+      token.set(data.data.token);
       return data;
     } catch (error) {
+      toast.error('Sorry, your name or email is incorrect! Try again!');
       return rejectWithValue(error.message);
     }
   },
@@ -45,7 +49,10 @@ const logOut = createAsyncThunk(
     try {
       await axios.get('/users/logout');
       token.unset();
+      toast('logging out');
     } catch (error) {
+      toast.error('Sorry, something went wrong!');
+      console.log(error.message);
       return rejectWithValue(error.message);
     }
   },
