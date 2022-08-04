@@ -7,7 +7,7 @@ export const fetchTransactions = createAsyncThunk(
   'transactions/fetchTransactions',
   async (_, { rejectWithValue }) => {
     try {
-      const { data: response } = await axios.get(`${BACK_END}/transactions`);
+      const { data: response } = await axios.get(`/transactions`);
       console.log(response);
       return response.data.result;
     } catch (err) {
@@ -21,7 +21,7 @@ export const addTransaction = createAsyncThunk(
   async (transactionBody, { rejectWithValue }) => {
     try {
       const { data: response } = await axios.post(
-        `${BACK_END}/transactions`,
+        `/transactions`,
         transactionBody,
       );
       console.log(response);
@@ -36,37 +36,7 @@ export const fetchTransactionsByCategory = createAsyncThunk(
   'transactions/fetchTransactionsByCategory',
   async (_, { rejectWithValue }) => {
     try {
-      const { data: response } = await axios.get(
-        `${BACK_END}/api/transactions/categories`,
-      );
-      return response.data;
-    } catch (err) {
-      return rejectWithValue(err.response.data);
-    }
-  },
-);
-
-export const getTransactionDate = createAsyncThunk(
-  'transactions/getTransactionDate',
-  async ({ month, year }, { rejectWithValue }) => {
-    try {
-      const { data: response } = await axios.get(
-        `${BACK_END}/transactions/categories?month=${month}&year=${year}`,
-      );
-      return response.data;
-    } catch (err) {
-      return rejectWithValue(err.response.data);
-    }
-  },
-);
-
-export const getTransactionsList = createAsyncThunk(
-  'transactions/getTransactionsList',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data: response } = await axios.get(
-        `${BACK_END}/transactions/list`,
-      );
+      const { data: response } = await axios.get(`/transactions/categories`);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);

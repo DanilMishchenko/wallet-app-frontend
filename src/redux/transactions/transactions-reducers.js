@@ -100,20 +100,7 @@
 //   transactionsApi;
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-import {
-  fetchTransactions,
-  addTransaction,
-  getTransactionDate,
-  getTransactionsList,
-} from './transactions-operations';
-
-const stats = createReducer(null, {
-  [getTransactionDate.fulfilled]: (_, { payload }) => payload,
-});
-
-const categoriesList = createReducer(null, {
-  [getTransactionsList.fulfilled]: (_, { payload }) => payload,
-});
+import { fetchTransactions, addTransaction } from './transactions-operations';
 
 const items = createReducer([], {
   [fetchTransactions.fulfilled]: (_, { payload }) => payload,
@@ -127,9 +114,6 @@ const isLoading = createReducer(false, {
   [addTransaction.pending]: () => true,
   [addTransaction.fulfilled]: () => false,
   [addTransaction.rejected]: () => false,
-  [getTransactionDate.pending]: () => true,
-  [getTransactionDate.fulfilled]: () => false,
-  [getTransactionDate.rejected]: () => false,
 });
 
 const error = createReducer(null, {
@@ -137,13 +121,9 @@ const error = createReducer(null, {
   [fetchTransactions.pending]: () => null,
   [addTransaction.rejected]: (_, { payload }) => payload,
   [addTransaction.pending]: () => null,
-  [getTransactionDate.rejected]: (_, { payload }) => payload,
-  [getTransactionDate.pending]: (_, { payload }) => null,
 });
 
 export default combineReducers({
-  stats,
-  categoriesList,
   items,
   isLoading,
   error,
