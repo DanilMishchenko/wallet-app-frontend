@@ -1,12 +1,13 @@
 import { Chart } from '../Chart/Chart';
 import { Table } from '../Table/Table';
+
+import arrow from '../../images/arrow.svg';
 import {
   Title,
   SelectWrapper,
   CustomSelect,
   BtnWrapper,
 } from './DiagramTab.styled';
-import arrow from '../../images/arrow.svg';
 
 export const DiagramTab = () => {
   const data = [

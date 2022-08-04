@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
-import authOperations from '../../redux/auth/auth-operations';
 // import { useNavigate } from 'react-router-dom';
+import authOperations from '../../redux/auth/auth-operations';
 
 import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
 import { SecondaryButton } from '../SecondaryButton/SecondaryButton';

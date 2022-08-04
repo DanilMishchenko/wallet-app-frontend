@@ -3,9 +3,9 @@ import { TRANSACTION_TYPES } from './table-helpers';
 
 export const Tab = styled.div`
   width: 100%;
-  height: 100%
+  height: 100%;
   margin-top: 27px;
-  overflow:hidden;
+  overflow: hidden;
   @media screen and (min-width: 768px) {
     margin-top: 76px;
   }

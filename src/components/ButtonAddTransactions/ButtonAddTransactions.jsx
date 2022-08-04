@@ -1,13 +1,12 @@
 import plus from '../../images/plusIcon.svg';
-
-import { Div } from './buttonAddTransition.styled';
+import { Container } from './ButtonAddTransition.styled';
 
 export const ButtonAddTransactions = ({ onModal }) => {
   return (
     <>
-      <Div onClick={onModal}>
+      <Container onClick={onModal}>
         <img src={plus} alt="girl" />
-      </Div>
+      </Container>
     </>
   );
 };

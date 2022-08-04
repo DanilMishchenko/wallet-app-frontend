@@ -1,4 +1,5 @@
 import React from 'react';
+
 import logout from '../../../images/logoutIcon.svg';
 import {
   Wrapper,
@@ -8,7 +9,7 @@ import {
   LogoutText,
 } from './AccountSection.style';
 
-const AccountSection = ({ onModal }) => {
+export const AccountSection = ({ onModal }) => {
   // const userName = useSelector(authSelectors.getUserName)
 
   return (
@@ -23,5 +24,3 @@ const AccountSection = ({ onModal }) => {
     </Wrapper>
   );
 };
-
-export default AccountSection;
