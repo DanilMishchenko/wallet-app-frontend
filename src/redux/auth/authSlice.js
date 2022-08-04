@@ -15,6 +15,7 @@ const authSlice = createSlice({
       state.user = action.payload.data.user;
       state.token = action.payload.data.token;
       state.session.isAuth = true;
+      state.session.error = null;
     },
     [authOperations.register.rejected](state, { payload }) {
       state.session.error = payload;
@@ -23,6 +24,7 @@ const authSlice = createSlice({
       state.user = action.payload.data.user;
       state.token = action.payload.data.token;
       state.session.isAuth = true;
+      state.session.error = null;
     },
     [authOperations.logIn.rejected](state, { payload }) {
       state.session.error = payload;
@@ -31,6 +33,7 @@ const authSlice = createSlice({
       state.user = { name: null, email: null };
       state.token = null;
       state.session.isAuth = false;
+      state.session.error = null;
     },
     [authOperations.logOut.rejected](state, { payload }) {
       state.session.error = payload;
@@ -38,6 +41,7 @@ const authSlice = createSlice({
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
       state.user = action.payload.data.user;
       state.session.isAuth = true;
+      state.session.error = null;
     },
   },
 });
