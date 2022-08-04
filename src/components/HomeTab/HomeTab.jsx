@@ -10,9 +10,6 @@ import {
   incrementByAmount,
   decrementByAmount,
 } from '../../redux/balance/balance-reducer';
-// import { useFetchTransactionsQuery } from '../../redux/transactions/transactions-reducers';
-
-// import { ModalAddTransaction } from '../ModalAddTransaction/ModalAddTransaction';
 import { nanoid } from 'nanoid';
 import EllipsisText from 'react-ellipsis-text';
 import Media from 'react-media';
@@ -80,20 +77,24 @@ export const HomeTab = () => {
     dispatch(fetchTransactions());
   }, []);
 
-  useEffect(() => {
-    if (items[items.length - 1]) {
-      if (items[items.length - 1].type === false) {
-        dispatch(decrementByAmount(items[items.length - 1].sum));
-        setBalanceShow(balance.value);
-        return;
-      } else {
-        dispatch(incrementByAmount(items[items.length - 1].sum));
-        setBalanceShow(balance.value);
-        return;
-      }
-    }
-    return;
-  }, [items]);
+  // useEffect(() => {
+  //   if (items[items.length - 1]) {
+  //     if (items[items.length - 1].type === false) {
+  //       dispatch(decrementByAmount(items[items.length - 1].sum));
+  //       setBalanceShow(balance.value);
+  //       return;
+  //     } else {
+  //       dispatch(incrementByAmount(items[items.length - 1].sum));
+  //       setBalanceShow(balance.value);
+  //       return;
+  //     }
+  //   }
+  //   return;
+  // }, [items]);
+
+  const formatAmount = amount => {
+    return amount.toFixed(2);
+  };
 
   return (
     <>
@@ -158,7 +159,6 @@ export const HomeTab = () => {
                             {...row.getRowProps()}
                           >
                             {row.cells.map(cell => {
-                              // console.log(row);
                               if (
                                 cell.column.id === 'date' &&
                                 typeof cell.value !== 'boolean'
@@ -174,6 +174,22 @@ export const HomeTab = () => {
                                     {moment
                                       .utc(cell.value)
                                       .format('MM.DD.YYYY')}
+                                  </Column>
+                                );
+                              }
+                              if (
+                                cell.column.id === VALUES_TO_FORMAT.sum &&
+                                typeof cell.value !== 'boolean'
+                              ) {
+                                return (
+                                  <Column
+                                    type={String(row.values.type)}
+                                    key={() => {
+                                      nanoid();
+                                    }}
+                                    {...cell.getCellProps()}
+                                  >
+                                    {formatAmount(cell.value)}
                                   </Column>
                                 );
                               }
@@ -236,7 +252,7 @@ export const HomeTab = () => {
                                         items[items.length - 1].sum
                                       : balance.value +
                                         items[items.length - 1].sum} */}
-                                    {balanceShow}
+                                    {formatAmount(balanceShow)}
                                   </Column>
                                 );
                               }
