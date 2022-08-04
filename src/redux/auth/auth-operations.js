@@ -19,7 +19,6 @@ const register = createAsyncThunk(
     try {
       const { data } = await axios.post('/users/register', credentials);
       token.set(data.data.token);
-
       return data;
     } catch (error) {
       toast.error(
@@ -64,7 +63,6 @@ const fetchCurrentUser = createAsyncThunk(
     const state = thunkAPI.getState();
 
     const persistedToken = state.auth.token;
-
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue();
     }

@@ -1,8 +1,17 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineUp, AiOutlineDown } from 'react-icons/ai';
 import { useSortBy, useTable } from 'react-table';
 import { COLUMNS, VALUES_TO_FORMAT } from './table-helpers';
+import { getTransactions } from '../../redux/transactions/transactions-selectors';
+import { fetchTransactions } from '../../redux/transactions/transactions-operations';
+import moment from 'moment';
+import {
+  incrementByAmount,
+  decrementByAmount,
+} from '../../redux/balance/balance-reducer';
 import { nanoid } from 'nanoid';
+import EllipsisText from 'react-ellipsis-text';
 import Media from 'react-media';
 import {
   Tab,
@@ -12,6 +21,8 @@ import {
   Row,
   ColumnHeader,
   ColumnHeaderContent,
+  NoTransactions,
+  NoTransactionsMsg,
 } from './HomeTab.styled';
 import { HomeTabMobile } from './HomeTabMobile';
 
@@ -48,6 +59,11 @@ const data = [
 
 export const HomeTab = () => {
   const columns = useMemo(() => COLUMNS, []);
+  const balance = useSelector(state => state.balance);
+  const [balanceShow, setBalanceShow] = useState(balance.value);
+  const items = useSelector(state => state.transactions.items);
+  const data = useSelector(getTransactions);
+  const dispatch = useDispatch();
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable(
       {
@@ -56,9 +72,30 @@ export const HomeTab = () => {
       },
       useSortBy,
     );
-  const getAmount = amount => {
+
+  useEffect(() => {
+    dispatch(fetchTransactions());
+  }, []);
+
+  // useEffect(() => {
+  //   if (items[items.length - 1]) {
+  //     if (items[items.length - 1].type === false) {
+  //       dispatch(decrementByAmount(items[items.length - 1].sum));
+  //       setBalanceShow(balance.value);
+  //       return;
+  //     } else {
+  //       dispatch(incrementByAmount(items[items.length - 1].sum));
+  //       setBalanceShow(balance.value);
+  //       return;
+  //     }
+  //   }
+  //   return;
+  // }, [items]);
+
+  const formatAmount = amount => {
     return amount.toFixed(2);
   };
+
   return (
     <>
       {data.length > 0 ? (
@@ -123,33 +160,102 @@ export const HomeTab = () => {
                           >
                             {row.cells.map(cell => {
                               if (
-                                Object.values(VALUES_TO_FORMAT).includes(
-                                  cell.column.id,
-                                )
+                                cell.column.id === 'date' &&
+                                typeof cell.value !== 'boolean'
                               ) {
                                 return (
                                   <Column
-                                    type={row.values.type}
+                                    type={String(row.values.type)}
                                     key={() => {
                                       nanoid();
                                     }}
                                     {...cell.getCellProps()}
                                   >
-                                    {getAmount(cell.value)}
+                                    {moment
+                                      .utc(cell.value)
+                                      .format('MM.DD.YYYY')}
                                   </Column>
                                 );
                               }
-                              return (
-                                <Column
-                                  type={row.values.type}
-                                  key={() => {
-                                    nanoid();
-                                  }}
-                                  {...cell.getCellProps()}
-                                >
-                                  {cell.render('Cell')}
-                                </Column>
-                              );
+                              if (
+                                cell.column.id === VALUES_TO_FORMAT.sum &&
+                                typeof cell.value !== 'boolean'
+                              ) {
+                                return (
+                                  <Column
+                                    type={String(row.values.type)}
+                                    key={() => {
+                                      nanoid();
+                                    }}
+                                    {...cell.getCellProps()}
+                                  >
+                                    {formatAmount(cell.value)}
+                                  </Column>
+                                );
+                              }
+                              if (typeof cell.value === 'boolean') {
+                                return (
+                                  <Column
+                                    type={String(row.values.type)}
+                                    key={() => {
+                                      nanoid();
+                                    }}
+                                    {...cell.getCellProps()}
+                                  >
+                                    {cell.value === false ? '-' : '+'}
+                                  </Column>
+                                );
+                              }
+                              if (
+                                cell.value &&
+                                typeof cell.value !== 'boolean'
+                              ) {
+                                return (
+                                  <Column
+                                    type={String(row.values.type)}
+                                    key={() => {
+                                      nanoid();
+                                    }}
+                                    {...cell.getCellProps()}
+                                  >
+                                    <EllipsisText
+                                      text={String(cell.value)}
+                                      length={12}
+                                    />
+                                  </Column>
+                                );
+                              }
+                              if (!cell.value && cell.column.id !== 'balance') {
+                                return (
+                                  <Column
+                                    type={String(row.values.type)}
+                                    key={() => {
+                                      nanoid();
+                                    }}
+                                    {...cell.getCellProps()}
+                                  >
+                                    {' '}
+                                  </Column>
+                                );
+                              }
+                              if (cell.column.id === 'balance' && !cell.value) {
+                                return (
+                                  <Column
+                                    type={String(row.values.type)}
+                                    key={() => {
+                                      nanoid();
+                                    }}
+                                    {...cell.getCellProps()}
+                                  >
+                                    {/* {items[items.length - 1].type === false
+                                      ? balance.value -
+                                        items[items.length - 1].sum
+                                      : balance.value +
+                                        items[items.length - 1].sum} */}
+                                    {formatAmount(balanceShow)}
+                                  </Column>
+                                );
+                              }
                             })}
                           </Row>
                         );
@@ -162,8 +268,11 @@ export const HomeTab = () => {
           </Media>
         </>
       ) : (
-        'EEE'
+        <NoTransactions>
+          <NoTransactionsMsg>No Transactions added</NoTransactionsMsg>
+        </NoTransactions>
       )}
+      {/* <ModalAddTransaction /> */}
     </>
   );
 };

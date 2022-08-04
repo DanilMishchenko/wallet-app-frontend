@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useSortBy, useTable } from 'react-table';
 import { COLUMNS } from './table-helpers';
+import EllipsisText from 'react-ellipsis-text';
 import {
   TabMobile,
   TableMobile,
@@ -70,7 +71,9 @@ export const HomeTabMobile = () => {
                 </RowMobile>
                 <RowMobile>
                   <ColumnHeaderMobile>{COLUMNS[3].Header}</ColumnHeaderMobile>
-                  <ColumnMobile>{data[i].comment}</ColumnMobile>
+                  <ColumnMobile>
+                    <EllipsisText text={data[i].comment} length={20} />
+                  </ColumnMobile>
                 </RowMobile>
                 <RowMobile>
                   <ColumnHeaderMobile>{COLUMNS[2].Header}</ColumnHeaderMobile>
