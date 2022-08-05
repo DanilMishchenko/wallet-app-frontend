@@ -1,5 +1,5 @@
 import plus from '../../images/plusIcon.svg';
-import { Container } from './ButtonAddTransiti.styled';
+import { Container } from './ButtonAddTransitions.styled';
 
 export const ButtonAddTransactions = ({ onModal }) => {
   return (
