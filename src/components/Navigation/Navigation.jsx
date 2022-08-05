@@ -16,7 +16,7 @@ export const Navigation = () => (
         <NavText>{title}</NavText>
       </StyledLink>
     ))}
-    <StyledLink onlyMobile to={'*'}>
+    <StyledLink /*onlyMobile*/ to={'*'}>
       <img src={currency} alt="currency link" />
     </StyledLink>
   </Wrapper>
