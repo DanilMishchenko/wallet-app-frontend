@@ -1,7 +1,7 @@
 import home from '../../images/homeIcon.svg';
 import currency from '../../images/currencyIcon.svg';
 import statistics from '../../images/statisticsIcon.svg';
-import { Wrapper, StyledLink, NavText } from './Navigation.style';
+import { Wrapper, StyledLink, CurrencyLink, NavText } from './Navigation.style';
 
 const navConfig = [
   { icon: home, title: 'home', link: '/home' },
@@ -16,8 +16,8 @@ export const Navigation = () => (
         <NavText>{title}</NavText>
       </StyledLink>
     ))}
-    <StyledLink onlyMobile to={'*'}>
+    <CurrencyLink to={'*'}>
       <img src={currency} alt="currency link" />
-    </StyledLink>
+    </CurrencyLink>
   </Wrapper>
 );

@@ -12,9 +12,10 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const StyledLink = styled(NavLink)`
-  display: flex;
+const Link = props => <NavLink {...props}>{props.children}</NavLink>;
 
+export const StyledLink = styled(Link)`
+  display: flex;
   &:not(:first-child) {
     margin-left: 40px;
   }
@@ -28,8 +29,7 @@ export const StyledLink = styled(NavLink)`
     }
   }
 
-  @media screen and (min-width: 768px) {
-    display: ${props => (props.onlyMobile ? 'none' : 'flex')};
+  @media screen and (min-width: 767px) {
     align-items: center;
 
     &:not(:first-child) {
@@ -45,8 +45,16 @@ export const StyledLink = styled(NavLink)`
   }
 `;
 
+export const CurrencyLink = styled(StyledLink)`
+  @media screen and (min-width: 767px) {
+    display: 'none';
+`;
+
 export const NavText = styled.div`
-  display: none;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+
   @media screen and (min-width: 768px) {
     display: block;
     font-size: 18px;
