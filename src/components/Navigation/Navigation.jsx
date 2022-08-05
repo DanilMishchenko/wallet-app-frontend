@@ -20,7 +20,10 @@ export const Navigation = () => (
         <NavText>{title}</NavText>
       </StyledLink>
     ))}
-    <CurrencyLink to={'*'}>
+    <CurrencyLink
+      to={'*'}
+      className={isActive => (isActive ? 'activeLink' : '')}
+    >
       <img src={currency} alt="currency link" />
     </CurrencyLink>
   </Wrapper>

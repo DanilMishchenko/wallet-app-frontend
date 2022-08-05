@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 20px 16px;
+  padding: 16px 20px;
   background-color: var(--primary-text);
 
   @media (min-width: 768px) {
