@@ -1,3 +1,4 @@
-const getDate = (date) => `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
+const getDate = date =>
+  `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
 
-export default getDate
+export default getDate;
