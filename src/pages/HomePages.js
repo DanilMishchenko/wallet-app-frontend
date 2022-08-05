@@ -28,15 +28,11 @@ export default function HomePages() {
     <>
       <h1>HomePages</h1>
       <HomeTab />
-      {/* {isModalAddTransactionOpen && (
-          <Modal>
-            <ModalAddTransaction />
-          </Modal>
-        )} */}
+
       <ButtonAddTransactions
         onClick={() => dispatch(globalActions.openModalAddTransaction())}
       />
-      {/* <ButtonAddTransactions onModal={onModal} /> */}
+
       {/* {ModalTransitionOpen && <ModalAddTransaction onModal={onModalClose} />} */}
     </>
   );
