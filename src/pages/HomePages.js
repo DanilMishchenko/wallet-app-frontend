@@ -32,8 +32,6 @@ export default function HomePages() {
       <ButtonAddTransactions
         onClick={() => dispatch(globalActions.openModalAddTransaction())}
       />
-
-      {/* {ModalTransitionOpen && <ModalAddTransaction onModal={onModalClose} />} */}
     </>
   );
 }
