@@ -11,7 +11,11 @@ const navConfig = [
 export const Navigation = () => (
   <Wrapper>
     {navConfig.map(({ icon, title, link }, index) => (
-      <StyledLink key={icon + index} to={link}>
+      <StyledLink
+        key={icon + index}
+        to={link}
+        className={isActive => (isActive ? 'activeLink' : '')}
+      >
         <img src={icon} alt="home link" />
         <NavText>{title}</NavText>
       </StyledLink>

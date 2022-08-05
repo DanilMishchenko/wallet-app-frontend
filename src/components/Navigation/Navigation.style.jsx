@@ -43,6 +43,13 @@ export const StyledLink = styled(Link)`
     height: 18px;
     border-radius: 2px;
   }
+
+  .activeLink {
+    font-weight: 700;
+    img {
+      box-shadow: 0px 6px 15px rgba(118, 138, 225, 0.5);
+    }
+  }
 `;
 
 export const CurrencyLink = styled(StyledLink)`
