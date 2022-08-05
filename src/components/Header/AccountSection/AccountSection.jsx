@@ -15,11 +15,11 @@ export const AccountSection = ({ onModal }) => {
   return (
     <Wrapper>
       <Title>{'Name'}</Title>
-      <Logout>
+      <Logout onClick={onModal}>
         <IconWrap>
           <img src={logout} alt="exit button" />
         </IconWrap>
-        <LogoutText onClick={onModal}>Exit</LogoutText>
+        <LogoutText>Exit</LogoutText>
       </Logout>
     </Wrapper>
   );
