@@ -10,7 +10,7 @@ export const fetchTransactions = createAsyncThunk(
       const { data: response } = await axios.get(`/transactions`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(response);
+      // console.log(response);
       return response.data.result;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -30,7 +30,7 @@ export const addTransaction = createAsyncThunk(
           headers: { Authorization: `Bearer ${token}` },
         },
       );
-      console.log(response);
+      // console.log(response);
       return response.data.transaction;
     } catch (err) {
       return rejectWithValue(err.response.data);
