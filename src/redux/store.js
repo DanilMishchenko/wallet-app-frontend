@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './auth/authSlice';
-import { globalSlice } from './global/globalSlice';
+import { globalSlice } from './global/global-slice';
 import {
   persistStore,
   persistReducer,

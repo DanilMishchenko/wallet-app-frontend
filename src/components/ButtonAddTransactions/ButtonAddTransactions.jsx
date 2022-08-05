@@ -1,13 +1,12 @@
-import plus from '../../images/plusIcon.svg';
+import s from './ButtonAddTransactions.module.css';
 
-import { Div } from './buttonAddTransition.styled';
+import Plus from '../../images/plusIcon.svg';
 
-export const ButtonAddTransactions = ({ onModal }) => {
+const ButtonAddTransactions = ({ onClick }) => {
   return (
-    <>
-      <Div onClick={onModal}>
-        <img src={plus} alt="girl" />
-      </Div>
-    </>
+    <button className={`${s.button} ${s.position}`} onClick={onClick}>
+      <img className={s.icon} src={Plus} alt="Add transaction" />
+    </button>
   );
 };
+export default ButtonAddTransactions;

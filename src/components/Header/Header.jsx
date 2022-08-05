@@ -7,8 +7,8 @@ import { ModalLogout } from '../ModalLogout/ModalLogout';
 import { useSelector } from 'react-redux';
 
 import { useDispatch } from 'react-redux';
-import { modalLogout } from '../../redux/global/globalSlice';
-import { getIsModalLogoutOpen } from '../../redux/global/globalSlice';
+import { modalLogout } from '../../redux/global/global-slice';
+import { getIsModalLogoutOpen } from '../../redux/global/global-slice';
 const Wrapper = styled.div`
   position: fixed;
   display: flex;
