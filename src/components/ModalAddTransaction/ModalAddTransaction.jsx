@@ -68,8 +68,8 @@ export const ModalAddTransaction = ({ onModal }) => {
               onColor="#E0E0E0"
               offHandleColor="#24CCA7"
               onHandleColor="#FF6596"
-              boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
-              activeBoxShadow="10px 10px 15px rgba(255, 101, 150, 0.5)"
+              activeBoxShadow="none"
+              shd
               height={40}
               width={80}
               borderRadius={30}
@@ -82,6 +82,9 @@ export const ModalAddTransaction = ({ onModal }) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     height: '100%',
+                    backgroundColor: 'transparent',
+                    borderRadius: '30px',
+                    boxShadow: '0px 6px 15px rgba(36, 204, 167, 0.5)',
                   }}
                 >
                   <img src={plusIcon} alt="plus" />
@@ -94,6 +97,9 @@ export const ModalAddTransaction = ({ onModal }) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     height: '100%',
+                    backgroundColor: 'transparent',
+                    borderRadius: '30px',
+                    boxShadow: '0px 6px 15px rgba(255, 101, 150, 0.5)',
                   }}
                 >
                   <img src={minusIcon} alt="minus" />

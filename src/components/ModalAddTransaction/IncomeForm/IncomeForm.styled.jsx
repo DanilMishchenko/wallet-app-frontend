@@ -5,12 +5,7 @@ export const SelectContainer = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  width: 100%;
-  max-width: 320px;
-  margin-top: 40px;
-  background-color: #ffffff;
-  border-radius: 3px;
-  overflow: hidden;
+  margin-bottom: 40px;
 
   ::after {
     content: '';
@@ -23,14 +18,26 @@ export const SelectContainer = styled.div`
   }
 `;
 
+export const ArrowSvg = styled.img`
+  position: absolute;
+  pointer-events: none;
+  right: 20px;
+  width: 18px;
+  height: 9px;
+`;
+
 export const FieldSelect = styled(Field)`
-  display: inline-block;
   width: 100%;
   height: 34px;
   appearance: none;
   border: none;
   outline: none;
   padding-left: 20px;
+
+  option {
+    border: none;
+    border-radius: 5px;
+  }
 `;
 
 export const InputSum = styled.input`
@@ -38,11 +45,17 @@ export const InputSum = styled.input`
   width: 100%;
   height: 34px;
   padding-left: 20px;
+  color: #24cca7;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
+  line-height: 1.5;
   border: none;
   cursor: pointer;
   outline: none;
+
+  ::placeholder {
+    color: #bdbdbd;
+  }
 `;
 
 export const InputContainer = styled.div`
@@ -51,7 +64,6 @@ export const InputContainer = styled.div`
   position: relative;
   width: 100%;
   max-width: 320px;
-  margin-top: 40px;
   margin-bottom: 40px;
 
   ::after {
@@ -83,6 +95,7 @@ export const DataContainer = styled.div`
   align-items: center;
   position: relative;
   width: 100%;
+  margin-bottom: 40px;
   max-width: 320px;
   ::after {
     content: '';

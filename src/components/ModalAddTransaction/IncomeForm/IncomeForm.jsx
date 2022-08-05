@@ -6,9 +6,10 @@ import { PrimaryButton } from '../../PrimaryButton/PrimaryButton';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import {
+  SelectContainer,
+  ArrowSvg,
   InputSum,
   FieldSelect,
-  SelectContainer,
   InputContainer,
   TextAreaComment,
   DataContainer,
@@ -17,8 +18,10 @@ import arrow from '../../../images/arrow.svg';
 import calendarIcon from '../../../images/calendarIcon.svg';
 
 const initialValues = {
+  type: 'income',
+  category: 'Regular Income',
   sum: '',
-  incomeSelect: 'Regular Income',
+  date: '',
   comment: '',
 };
 
@@ -37,28 +40,18 @@ export const IncomeForm = () => {
                 <option value="Regular Income">Regular Income</option>
                 <option value="Irregular Income">Irregular Income</option>
               </FieldSelect>
-              <img
-                style={{
-                  position: 'absolute',
-                  pointerEvents: 'none',
-                  right: '15px',
-                  width: '18px',
-                  height: '9px',
-                }}
-                src={arrow}
-                alt="arrow"
-              />
+              <ArrowSvg src={arrow} alt="arrow" />
             </SelectContainer>
             <InputContainer>
               <InputSum
                 type="number"
                 name="sum"
-                required
                 min="0.00"
                 step="0.01"
                 placeholder="0.00"
                 onChange={handleChange}
                 value={values.sum}
+                required
               />
             </InputContainer>
             <DataContainer>
