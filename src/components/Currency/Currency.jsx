@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getRates, getStatus } from '../../redux/currency/currency-selectors';
 import currencyOperations from '../../redux/currency/currency-operations';
 import { currencyInfo } from './constants';
-import getDate from '../../utils/normalizeDate';
 import { Loader } from '../Loader/Loader';
 
 import {
@@ -23,7 +22,7 @@ export const Currency = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(currencyOperations.fetch(getDate(new Date())));
+    dispatch(currencyOperations.fetch());
   }, [dispatch]);
 
   return (
@@ -39,11 +38,13 @@ export const Currency = () => {
         <tbody>
           {currencies &&
             !isLoading &&
-            currencies.map(({ currency, saleRate, purchaseRate }, index) => (
-              <TableRow key={saleRate + index}>
-                <TableData>{currency}</TableData>
-                <TableData>{saleRate.toFixed(2)}</TableData>
-                <TableData>{purchaseRate.toFixed(2)}</TableData>
+            currencies.map(({ ccy, base_ccy, sale, buy }, index) => (
+              <TableRow key={sale + index}>
+                <TableData>
+                  {ccy} / {base_ccy}
+                </TableData>
+                <TableData>{Number(sale).toFixed(2)}</TableData>
+                <TableData>{Number(buy).toFixed(2)}</TableData>
               </TableRow>
             ))}
         </tbody>
