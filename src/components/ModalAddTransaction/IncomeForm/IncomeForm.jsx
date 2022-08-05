@@ -11,8 +11,10 @@ import {
   SelectContainer,
   InputContainer,
   TextAreaComment,
+  DataContainer,
 } from './IncomeForm.styled';
 import arrow from '../../../images/arrow.svg';
+import calendarIcon from '../../../images/calendarIcon.svg';
 
 const initialValues = {
   sum: '',
@@ -59,22 +61,31 @@ export const IncomeForm = () => {
                 value={values.sum}
               />
             </InputContainer>
-            <DatePicker
-              style={{
-                with: '300px',
-              }}
-              selected={startDate}
-              onChange={date => setStartDate(date)}
-            />
-            {/* <Select
-              type="text"
-              defaultValue={options[0]}
-              options={options}
-              name="select"
-              onChange={handleChange}
-            /> */}
+            <DataContainer>
+              <DatePicker
+                selected={startDate}
+                onChange={date => setStartDate(date)}
+                dateFormat="dd.MM.yyyy"
+                maxDate={new Date()}
+                customInput={<InputSum />}
+              />
+              <img
+                style={{
+                  position: 'absolute',
+                  pointerEvents: 'none',
+                  right: '10px',
+                  bottom: '10px',
+                }}
+                src={calendarIcon}
+                alt="calendarIcon"
+              />
+            </DataContainer>
             <InputContainer>
-              <TextAreaComment name="comment"></TextAreaComment>
+              <TextAreaComment
+                rows={5}
+                name="comment"
+                placeholder="Comment"
+              ></TextAreaComment>
             </InputContainer>
 
             <PrimaryButton textBtn="add" />
