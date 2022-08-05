@@ -1,19 +1,15 @@
-import axios from 'axios';
+//import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const CURRENCY_URI = `https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5`;
 
-const fetch = createAsyncThunk('currency/fetch', async (date, _) => {
-  try {
-    const { data } = await axios.get(CURRENCY_URI);
-    return data;
-  } catch (error) {
-    return error.message;
-  }
+const getCurrency = createAsyncThunk('currency/fetch', async thunkAPI => {
+  const res = await fetch(CURRENCY_URI).then(data => data.json());
+  return res;
 });
 
 const currencyOperations = {
-  fetch,
+  getCurrency,
 };
 
 export default currencyOperations;

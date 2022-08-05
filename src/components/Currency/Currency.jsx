@@ -22,7 +22,7 @@ export const Currency = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(currencyOperations.fetch());
+    dispatch(currencyOperations.getCurrency());
   }, [dispatch]);
 
   return (
