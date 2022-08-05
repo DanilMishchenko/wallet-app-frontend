@@ -10,16 +10,16 @@ export const currencySlice = createSlice({
   name: 'currency',
   initialState,
   extraReducers: {
-    [currencyOperations.fetch.fulfilled](state, action) {
+    [currencyOperations.getCurrency.fulfilled](state, action) {
       state.exchangeRate = action.payload;
       state.session.isLoading = false;
     },
-    [currencyOperations.fetch.rejected](state, { payload }) {
+    [currencyOperations.getCurrency.rejected](state, { payload }) {
       state.session.error = payload;
       state.session.isLoading = false;
     },
 
-    [currencyOperations.fetch.pending](state, _) {
+    [currencyOperations.getCurrency.pending](state, _) {
       state.session.isLoading = true;
     },
   },
