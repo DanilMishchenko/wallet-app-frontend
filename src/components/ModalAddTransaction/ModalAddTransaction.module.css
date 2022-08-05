@@ -1,0 +1,479 @@
+/* import styled from 'styled-components'; */
+
+.addTransContainer {
+  padding-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  padding-bottom: 40px;
+  /* width: 100%; */
+  min-width: 320px;
+  max-width: 480px;
+  height: 100vh;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+}
+
+.closeBtnBox {
+  display: none;
+}
+
+.closeButton {
+  height: fit-content;
+  padding: unset;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.closeIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.form {
+  padding: 0 20px;
+}
+
+.transTypeContainer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 220px;
+  height: 44px;
+  margin-top: 40px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.transTypeText {
+  font-size: 16px;
+  font-weight: 600;
+  color: #bdbdbd;
+}
+
+.transTypeTextActiveIncome {
+  color: #24cca7;
+}
+
+.transTypeTextActiveSpending {
+  color: #ff6596;
+}
+
+.switchToggleContainer {
+  position: relative;
+  width: 80px;
+}
+
+.switchToggleBody {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 40px;
+  border-radius: 30px;
+  border: 1px solid #bdbdbd;
+  cursor: pointer;
+}
+
+.switchToggleIncome {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -2px;
+  transform: translateX(-4px);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #24cca7;
+  pointer-events: none;
+  box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
+  transition: transform 0.25s ease-in-out;
+}
+
+.switchToggleSpending {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -2px;
+  transform: translateX(40px);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #ff6596;
+  box-shadow: 0px 6px 15px rgba(255, 101, 150, 0.5);
+  pointer-events: none;
+  transition: transform 0.25s ease-in-out;
+}
+
+svg[data-src='/static/media/Minus.8fbfeac6337b8e7674275c5595939370.svg'] {
+  height: 7px;
+}
+
+.switchToggleInput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+.switchToggleSvg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.dropDownContainer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 40px;
+  padding-right: 20px;
+  padding-left: 20px;
+  color: black;
+  cursor: pointer;
+  border-bottom: 1px solid #e0e0e0;
+  z-index: 4;
+}
+
+/* .dropDownContainer::after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #bdbdbd;
+} */
+
+.dropDownField {
+  height: 34px;
+  /* width: 100%; */
+  background-color: transparent;
+  /* background-color: green; */
+  color: #bdbdbd;
+  /* padding-left: 20px; */
+  font-size: 18px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.selectedCategory {
+  font-size: 18px;
+  font-weight: 600;
+
+  color: var(--main-text-color);
+}
+
+.arowIcon {
+  width: 40px;
+  height: 20px;
+}
+
+/* .dropDownFieldActive {
+  color: black;
+  font-size: 18px;
+  font-weight: 400;
+} */
+
+.dropDownList {
+  position: absolute;
+  padding: 0;
+  z-index: 1;
+  margin: 0;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  overflow: scroll;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(247, 247, 247, 0.7);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dropDownList::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.dropDownItemSpending {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding-left: 20px;
+  height: 44px;
+  vertical-align: middle;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.dropDownItemSpending:hover {
+  color: var(--red-color);
+  background-color: rgb(255, 255, 255);
+}
+
+.dropDownItemIncome {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding-left: 20px;
+  height: 44px;
+  vertical-align: middle;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.dropDownItemIncome:hover {
+  color: var(--green-color);
+  background-color: rgb(255, 255, 255);
+}
+
+.selectedCategory {
+  vertical-align: middle;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.dropDownIcon {
+  position: absolute;
+  pointer-events: none;
+  right: 10px;
+  top: 5px;
+  width: 18px;
+  height: 9px;
+}
+
+.summFieldContainer {
+  position: relative;
+  margin-top: 40px;
+  width: 100%;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* .summFieldContainer::after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #bdbdbd;
+} */
+
+.summField {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding-left: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.summField:focus {
+  outline: none;
+}
+
+.summField::-webkit-outer-spin-button,
+.summField::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.calendarContainer {
+  position: relative;
+  margin-top: 40px;
+  width: 100%;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* .calendarContainer::after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #bdbdbd;
+} */
+
+.calendarField {
+  width: 100%;
+  height: 34px;
+  border: 0;
+  padding-left: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.calendarField:focus {
+  outline: none;
+}
+
+.calendarIcon {
+  position: absolute;
+  pointer-events: none;
+  right: 20px;
+  top: 5px;
+  width: 18px;
+  height: 20px;
+}
+
+.commentFieldContainer {
+  position: relative;
+  margin-top: 40px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.commentField {
+  position: relative;
+  display: block;
+  padding-left: 20px;
+  width: 100%;
+  min-height: 74px;
+  resize: none;
+  border: none;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* .commentFieldContainer::after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #bdbdbd;
+} */
+
+.commentField:focus {
+  outline: none;
+}
+
+.buttonsContainer {
+  margin-top: 40px;
+  padding: 0 10px;
+}
+
+.submitButton {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cancelButton {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .addTransContainer {
+    padding-top: 40px;
+    padding-left: 65px;
+    padding-right: 65px;
+    padding-bottom: 60px;
+    /* top: 204px; */
+    width: 540px;
+    max-width: none;
+    height: auto;
+    border-radius: 20px;
+    position: absolute;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+  }
+
+  /* .backdrop {
+    width: 100%;
+    height: 100%;
+  } */
+
+  .closeBtnBox {
+    position: absolute;
+    box-sizing: border-box;
+    display: block;
+    padding: 8px;
+    opacity: 1;
+    pointer-events: all;
+    border: 2px solid #ff659600;
+    top: 10px;
+    right: 10px;
+    width: auto;
+    height: 38px;
+    cursor: pointer;
+  }
+
+  .closeBtnBox:hover,
+  .closeBtnBox:focus {
+    border-radius: 50%;
+    border: 2px solid #ff6596;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .form {
+    padding: 0;
+  }
+
+  .summFieldContainer {
+    display: inline-block;
+    width: 190px;
+  }
+
+  .summField {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .calendarContainer {
+    display: inline-block;
+    margin-left: 30px;
+    width: 190px;
+  }
+
+  .commentField {
+    min-height: 34px;
+  }
+
+  .submitButton {
+    width: 300px;
+  }
+
+  .cancelButton {
+    width: 300px;
+  }
+}
