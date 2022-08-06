@@ -11,18 +11,11 @@ import {
 } from './AccountSection.style';
 
 export const AccountSection = ({ onModal }) => {
-  const userName = useSelector(authSelectors.getUserName);
-  const [name, setName] = useState('');
-
-  useEffect(() => {
-    if (userName) {
-      setName(userName);
-    }
-  }, [userName]);
+  const userName = useSelector(state => state.auth.user.name);
 
   return (
     <Wrapper>
-      <Title>{name}</Title>
+      <Title>{userName}</Title>
       <Logout onClick={onModal}>
         <IconWrap>
           <img src={logout} alt="exit button" />
