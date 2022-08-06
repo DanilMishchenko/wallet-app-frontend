@@ -1,5 +1,6 @@
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { toast } from 'react-toastify';
 //import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
@@ -34,22 +35,26 @@ const initialValues = {
   category: 'Regular Income',
   sum: '',
   date: new Date(),
-  comment: '',
 };
 
-export const IncomeForm = () => {
+export const IncomeForm = ({ onClose }) => {
   //const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
+
+  const handleTransactionSubmit = values => {
+    dispatch(addTransaction(values));
+    toast.success(`transaction amount ${values.sum} was saved`);
+    onClose();
+
+    console.log(values);
+  };
 
   return (
     <>
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
-        onSubmit={({ type, category, sum, date, comment }) => {
-          dispatch(addTransaction({ type, category, sum, date, comment }));
-          console.log(type, category, sum, date, comment);
-        }}
+        onSubmit={handleTransactionSubmit}
       >
         {({ handleSubmit, values, handleChange, setFieldValue, dirty }) => (
           <Form onSubmit={handleSubmit}>
