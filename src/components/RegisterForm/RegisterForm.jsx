@@ -67,13 +67,34 @@ export const RegisterForm = () => {
     backgroundColor: '#E5F1EF',
   });
 
+  const ifEmailIsValid = string => {
+    // if (string[0]=== '-'){
+    throw Error('no valid email');
+    // }
+  };
+  Yup.addMethod(Yup.string, 'valid', ifEmailIsValid);
   const validationForm = Yup.object({
     email: Yup.string()
       .email('No valid email')
-      .required('This field is required'),
+      .min(10)
+      .max(30)
+      .required('This field is required')
+      .test('isValid', 'No valid', email => {
+        const dog = email.split('@');
+
+        if (
+          email[0] === '-' ||
+          dog[0].length < 2 ||
+          !email.match(/^[А-Яа-я]*$/)
+        ) {
+          return false;
+        }
+        return true;
+      }),
+
     password: Yup.string()
       .min(6, '6 symbols minimum')
-      .max(12, '12 symbols maximum')
+      .max(16, '16 symbols maximum')
       .required('This field is required'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password')], 'Passwords do not match')
@@ -82,6 +103,7 @@ export const RegisterForm = () => {
       .typeError()
       .min(1, '1 symbol minimum')
       .max(12, '12 symbols maximum')
+      .matches(/^[A-Za-zА-Яа-я0-9]*$/, 'Only letters and numbers are allowed')
       .required('This field is required'),
   });
   return (
@@ -97,7 +119,7 @@ export const RegisterForm = () => {
         </Wrapper>
         <Formik
           initialValues={{
-            email: '',
+            email: ' ',
             password: '',
             confirmPassword: '',
             name: '',
@@ -114,6 +136,7 @@ export const RegisterForm = () => {
             <Form>
               <InputForm>
                 <TextInput
+                  required
                   label={<EmailIcon />}
                   name="email"
                   placeholder="E-mail"
@@ -121,6 +144,7 @@ export const RegisterForm = () => {
                 />
                 <div style={{ position: 'relative' }}>
                   <TextInput
+                    required
                     label={<PasswordIcon />}
                     name="password"
                     placeholder="Password"
@@ -148,6 +172,7 @@ export const RegisterForm = () => {
                 </div>
 
                 <TextInput
+                  required
                   label={<PasswordIcon />}
                   name="confirmPassword"
                   placeholder="Confirm password"
@@ -159,6 +184,7 @@ export const RegisterForm = () => {
                 </div>
 
                 <TextInput
+                  required
                   label={<NameIcon />}
                   name="name"
                   placeholder="First name"
