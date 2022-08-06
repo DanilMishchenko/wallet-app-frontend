@@ -68,7 +68,12 @@ export const IncomeForm = () => {
               />
             </InputContainer>
             <DataContainer>
-              <InputSum type="date" name="date" onChange={handleChange} />
+              <InputSum
+                type="date"
+                name="date"
+                onChange={handleChange}
+                required
+              />
 
               {/* <DatePicker
                 selected={startDate}
@@ -76,6 +81,7 @@ export const IncomeForm = () => {
                 dateFormat="dd.MM.yyyy"
                 maxDate={new Date()}
                 customInput={<InputSum />}
+                required
               />
               <img
                 style={{
