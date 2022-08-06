@@ -1,5 +1,5 @@
 import { Formik, Form } from 'formik';
-import { useState } from 'react';
+//import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 
@@ -24,12 +24,12 @@ const initialValues = {
   type: false,
   category: 'Select a category',
   sum: '',
-  date: '',
+  date: new Date(),
   comment: '',
 };
 
 export const ExpenseForm = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  //const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
 
   return (
@@ -41,7 +41,7 @@ export const ExpenseForm = () => {
           console.log(type, category, sum, date, comment);
         }}
       >
-        {({ handleSubmit, values, handleChange }) => (
+        {({ handleSubmit, values, handleChange, setFieldValue }) => (
           <Form onSubmit={handleSubmit}>
             <SelectContainer>
               <FieldSelect
@@ -76,17 +76,18 @@ export const ExpenseForm = () => {
               />
             </InputContainer>
             <DataContainer>
-              <InputSum
+              {/* <InputSum
                 type="date"
                 name="date"
                 onChange={handleChange}
                 required
-              />
+              /> */}
 
-              {/* <DatePicker
-                selected={startDate}
-                onChange={date => setStartDate(date)}
-                dateFormat="dd.MM.yyyy"
+              <DatePicker
+                selected={values.date}
+                name="date"
+                onChange={date => setFieldValue('date', date)}
+                dateFormat="dd MM.yyyy"
                 maxDate={new Date()}
                 customInput={<InputSum />}
                 required
@@ -100,7 +101,7 @@ export const ExpenseForm = () => {
                 }}
                 src={calendarIcon}
                 alt="calendarIcon"
-              /> */}
+              />
             </DataContainer>
             <InputContainer>
               <TextAreaComment
