@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   @media screen and (min-width: 1280px) {
     position: relative;
     display: flex;
+    height: 100vh;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -13,16 +14,17 @@ export const Wrapper = styled.div`
 export const ImageBox = styled.div`
   display: none;
   @media (min-width: 768px) {
-    margin: 60px auto;
+    margin: 60px auto 50px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   @media screen and (min-width: 1280px) {
-    width: 40%;
+    display: flex;
+    width: 45%;
     flex-direction: column;
     justify-content: start;
-    padding: 150px 65px;
+    padding: 120px 65px;
   }
 `;
 
@@ -35,10 +37,11 @@ export const Img = styled.img`
   }
 `;
 export const Title = styled.h2`
-  margin-left: 40px;
+  margin-left: 20px;
   font-family: Poppins;
   font-size: 30px;
   font-weight: 400;
+  line-height: 1.5;
   @media screen and (min-width: 1280px) {
     margin-top: 31px;
   }
@@ -46,38 +49,40 @@ export const Title = styled.h2`
 
 export const FormBackgraund = styled.div`
   @media screen and (min-width: 1280px) {
-    position: absolute;
+    position: relative;
     top: 0;
     right: 0;
-    width: 60%;
+    width: 55%;
     height: 100vh;
     background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(50px);
   }
 `;
 
 export const FormWrapper = styled.div`
+  height: 100vh;
   background-color: var(--primary-text);
 
-  @media screen and (min-width: 320px) {
-    margin: 0 auto;
-    padding-top: 110px;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 320px;
-    min-height: 568px;
-  }
+  margin: 0 auto;
+  padding-top: 110px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: auto;
+  min-height: 568px;
+
   @media screen and (min-width: 768px) {
-    padding-top: 40px;
-    padding-left: 65px;
-    padding-right: 58px;
-    padding-bottom: 40px;
+    padding: 40px 65px;
     width: 533px;
+    height: auto;
     min-height: 468px;
     border-radius: 20px;
   }
+
   @media screen and (min-width: 1280px) {
-    z-index: 999;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    transform: translate(-50%, -50%);
   }
 `;
 
@@ -112,14 +117,11 @@ export const LogoTitle = styled.h2`
 
 export const InputForm = styled.div`
   position: relative;
-  margin-top: 60px;
+  max-width: 300px;
+  margin: 60px auto 0;
 
-  @media screen and (min-width: 320px) {
-    margin-bottom: 40px;
-  }
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 42px;
+  @media (min-width: 768px) {
+    max-width: 410px;
   }
 `;
 
