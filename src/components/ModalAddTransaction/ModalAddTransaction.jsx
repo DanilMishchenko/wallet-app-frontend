@@ -16,7 +16,7 @@ import {
 import plusIcon from '../../images/plusIcon.svg';
 import minusIcon from '../../images/minusIcon.svg';
 import { IncomeForm } from './IncomeForm/IncomeForm';
-import { ExpenceForm } from './ExpenceForm/ExpenseForm';
+import { ExpenseForm } from './ExpenceForm/ExpenseForm';
 import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
 
 import closeModal from '../../images/closeModal.svg';
@@ -110,7 +110,7 @@ export const ModalAddTransaction = ({ onModal }) => {
           <ExpenseTrigger checked={checked}>Expense</ExpenseTrigger>
         </Container>
         <FormContainer>
-          {!checked ? <IncomeForm /> : <ExpenceForm />}
+          {!checked ? <IncomeForm /> : <ExpenseForm />}
         </FormContainer>
         <SecondaryButton textBtn="cancel" />
       </Wrapper>
