@@ -18,7 +18,7 @@ export const SelectContainer = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   }
 `;
 
