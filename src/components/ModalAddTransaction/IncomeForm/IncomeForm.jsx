@@ -8,11 +8,14 @@ import 'react-datepicker/dist/react-datepicker.css';
 import {
   SelectContainer,
   ArrowSvg,
-  InputSum,
   FieldSelect,
   InputContainer,
-  TextAreaComment,
+  Wrapper,
+  InputSum,
+  InputDate,
   DataContainer,
+  TextAreaComment,
+  CommentContainer,
 } from './IncomeForm.styled';
 import arrow from '../../../images/arrow.svg';
 import calendarIcon from '../../../images/calendarIcon.svg';
@@ -36,50 +39,55 @@ export const IncomeForm = () => {
         {({ handleSubmit, values, handleChange }) => (
           <Form onSubmit={handleSubmit}>
             <SelectContainer>
-              <FieldSelect as="select" name="incomeSelect">
+              <FieldSelect
+                as="select"
+                name="incomeSelect"
+                onChange={handleChange}
+              >
                 <option value="Regular Income">Regular Income</option>
                 <option value="Irregular Income">Irregular Income</option>
               </FieldSelect>
               <ArrowSvg src={arrow} alt="arrow" />
             </SelectContainer>
-            <InputContainer>
-              <InputSum
-                type="number"
-                name="sum"
-                min="0.00"
-                step="0.01"
-                placeholder="0.00"
-                onChange={handleChange}
-                value={values.sum}
-                required
-              />
-            </InputContainer>
-            <DataContainer>
-              <DatePicker
-                selected={startDate}
-                onChange={date => setStartDate(date)}
-                dateFormat="dd.MM.yyyy"
-                maxDate={new Date()}
-                customInput={<InputSum />}
-              />
-              <img
-                style={{
-                  position: 'absolute',
-                  pointerEvents: 'none',
-                  right: '10px',
-                  bottom: '10px',
-                }}
-                src={calendarIcon}
-                alt="calendarIcon"
-              />
-            </DataContainer>
-            <InputContainer>
+            <Wrapper>
+              <InputContainer>
+                <InputSum
+                  type="number"
+                  name="sum"
+                  min="0.00"
+                  step="0.01"
+                  placeholder="0.00"
+                  onChange={handleChange}
+                  value={values.sum}
+                  required
+                />
+              </InputContainer>
+              <DataContainer>
+                <DatePicker
+                  selected={startDate}
+                  onChange={date => setStartDate(date)}
+                  dateFormat="dd.MM.yyyy"
+                  maxDate={new Date()}
+                  customInput={<InputDate />}
+                />
+                <img
+                  style={{
+                    position: 'absolute',
+                    pointerEvents: 'none',
+                    right: '10px',
+                    bottom: '10px',
+                  }}
+                  src={calendarIcon}
+                  alt="calendarIcon"
+                />
+              </DataContainer>
+            </Wrapper>
+            <CommentContainer>
               <TextAreaComment
-                rows={5}
                 name="comment"
                 placeholder="Comment"
               ></TextAreaComment>
-            </InputContainer>
+            </CommentContainer>
 
             <PrimaryButton textBtn="add" />
           </Form>

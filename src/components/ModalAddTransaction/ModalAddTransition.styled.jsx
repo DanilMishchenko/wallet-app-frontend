@@ -25,17 +25,40 @@ export const Wrapper = styled.div`
   transform: translate(-50%);
   width: 100%;
   height: 100vh;
-  padding: 20px 20px 37px 20px;
+  padding: 20px 20px 37px;
   background-color: #ffffff;
+
+  @media screen and (min-width: 768px) {
+    max-width: 540px;
+    height: auto;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px 73px 60px;
+    border-radius: 20px;
+  }
 `;
 
-export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
-  font-weight: 700;
+export const CloseButton = styled.button`
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+    position: absolute;
+    right: 40px;
+    top: 40px;
+    width: 26px;
+    outline: 1px solid #a6a6a6;
+    background-color: #ffffff;
+    border: 0px;
+    margin-left: auto;
+    cursor: pointer;
+    padding: 7px;
+    border-radius: 50%;
+
+    :hover {
+      box-shadow: rgb(0 0 0 / 60%) 0px 1px 5px;
+    }
+  }
 `;
 
 export const Title = styled.h2`
@@ -44,6 +67,26 @@ export const Title = styled.h2`
   font-size: 24px;
   line-height: 1.5;
   color: #000000;
+
+  @media screen and (min-width: 768px) {
+    font-size: 30px;
+  }
+`;
+
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 40px 0;
+  font-weight: 700;
+`;
+
+export const SwitchContainer = styled.div`
+  padding: 0px 20px;
+
+  @media screen and (min-width: 768px) {
+    padding: 0px 16px;
+  }
 `;
 
 export const IncomeTrigger = styled.span`
@@ -56,23 +99,8 @@ export const ExpenseTrigger = styled.span`
 
 export const FormContainer = styled.div`
   margin-bottom: 20px;
-`;
 
-export const SwitchContainer = styled.div`
-  margin: 40px 20px;
-`;
-
-export const CloseButton = styled.button`
-  width: 26px;
-  outline: 1px solid #a6a6a6;
-  background-color: #ffffff;
-  border: 0px;
-  margin-left: auto;
-  cursor: pointer;
-  padding: 7px;
-  border-radius: 50%;
-
-  :hover {
-    box-shadow: rgb(0 0 0 / 60%) 0px 1px 5px;
+  @media screen and (min-width: 768px) {
+    width: 394px;
   }
 `;

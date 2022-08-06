@@ -4,6 +4,8 @@ export const Button = styled.button`
   display: block;
   min-width: 280px;
   height: 50px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: var(--green);
   border: 0;
   border-radius: 20px;
@@ -24,7 +26,7 @@ export const Button = styled.button`
     box-shadow: none;
   }
 
-  @media screen and (min-width: 760px) {
+  @media screen and (min-width: 768px) {
     min-width: 300px;
   }
 `;

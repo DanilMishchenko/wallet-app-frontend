@@ -19,7 +19,7 @@ export const Button = styled.button`
     box-shadow: 0px 6px 15px rgba(118, 138, 225, 0.5);
   }
 
-  @media screen and (min-width: 760px) {
+  @media screen and (min-width: 768px) {
     min-width: 300px;
   }
 `;
