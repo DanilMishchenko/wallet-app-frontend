@@ -54,6 +54,7 @@ export const InputSum = styled.input`
   display: block;
   width: 100%;
   height: 34px;
+  text-align: center;
   padding-left: 20px;
   color: #24cca7;
   font-size: 18px;
