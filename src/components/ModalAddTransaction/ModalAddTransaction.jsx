@@ -24,7 +24,7 @@ import closeModal from '../../images/closeModal.svg';
 const modalRoot = document.querySelector('#modal-transaction');
 
 export const ModalAddTransaction = ({ onModal }) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
 
   //Работа модалки
   useEffect(() => {
