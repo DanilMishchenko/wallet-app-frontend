@@ -27,6 +27,7 @@ export const Mod = styled.div`
 
 export const Title = styled.h2`
   margin: 0;
+
   margin-left: 16px;
   font-size: 16px;
   font-weight: 700;
@@ -45,6 +46,7 @@ export const Wrapper = styled.div`
 
 export const H = styled.h2`
   margin: 20px 0;
+  text-align: center;
 `;
 
 export const Div = styled.div`
