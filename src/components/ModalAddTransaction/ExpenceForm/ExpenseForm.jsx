@@ -94,13 +94,6 @@ export const ExpenseForm = () => {
                 />
               </InputContainer>
               <DataContainer>
-                {/* <InputSum
-                type="date"
-                name="date"
-                onChange={handleChange}
-                required
-              /> */}
-
                 <DatePicker
                   selected={values.date}
                   name="date"

@@ -54,11 +54,9 @@ export const InputSum = styled.input`
   display: block;
   width: 100%;
   height: 34px;
-  text-align: center;
   padding-left: 20px;
-  color: #24cca7;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.5;
   border: none;
   cursor: pointer;
@@ -66,6 +64,11 @@ export const InputSum = styled.input`
 
   ::placeholder {
     color: #bdbdbd;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding-left: 0px;
+    text-align: center;
   }
 `;
 
