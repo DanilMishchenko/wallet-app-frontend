@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
   --light-gray: #e0e0e0;
   --grey-balance: #a6a6a6;
   --background-color: #E7EAF2;
+  height: 100vh;
 }
 
 @font-face {

@@ -73,69 +73,70 @@ export const LoginForm = () => {
         <Img src={loginImage} alt="boy and phone" />
         <Title>Finance App</Title>
       </ImageBox>
-      <FormWrapper>
-        <LogoWrapper>
-          <Logo src={logo} alt="logo" />
-          <LogoTitle>Wallet</LogoTitle>
-        </LogoWrapper>
-        <Formik
-          initialValues={initialValues}
-          isValidating={false}
-          validateOnBlur
-          validationSchema={schema}
-          onSubmit={handleSubmit}
-        >
-          {({ dirty, isValid }) => (
-            <Form>
-              <InputForm>
-                <TextInput
-                  label={<EmailIcon />}
-                  name="email"
-                  placeholder="E-mail"
-                  type="email"
-                />
+      <FormBackgraund>
+        <FormWrapper>
+          <LogoWrapper>
+            <Logo src={logo} alt="logo" />
+            <LogoTitle>Wallet</LogoTitle>
+          </LogoWrapper>
+          <Formik
+            initialValues={initialValues}
+            isValidating={false}
+            validateOnBlur
+            validationSchema={schema}
+            onSubmit={handleSubmit}
+          >
+            {({ dirty, isValid }) => (
+              <Form>
+                <InputForm>
+                  <TextInput
+                    label={<EmailIcon />}
+                    name="email"
+                    placeholder="E-mail"
+                    type="email"
+                  />
 
-                <TextInput
-                  label={<PasswordIcon />}
-                  name="password"
-                  placeholder="Password"
-                  type={showPassword ? 'password' : 'text'}
-                />
-                <PasswordEye onClick={toggleClick}>
-                  {showPassword ? (
-                    <img
-                      src={eyeSlash}
-                      width="21px"
-                      heigth="21px"
-                      alt="hidden"
-                    />
-                  ) : (
-                    <img
-                      src={eye}
-                      width="21px"
-                      heigth="21px"
-                      alt="visibility"
-                    />
-                  )}
-                </PasswordEye>
-              </InputForm>
-              <ButtonDiv>
-                <PrimaryButton
-                  disabled={!(isValid && dirty)}
-                  type="submit"
-                  textBtn="log in"
-                />
-              </ButtonDiv>
-            </Form>
-          )}
-        </Formik>
-        <ButtonDiv>
-          <NavLink to="/register">
-            <SecondaryButton textBtn="register" />
-          </NavLink>
-        </ButtonDiv>
-      </FormWrapper>
-      <FormBackgraund />
+                  <TextInput
+                    label={<PasswordIcon />}
+                    name="password"
+                    placeholder="Password"
+                    type={showPassword ? 'password' : 'text'}
+                  />
+                  <PasswordEye onClick={toggleClick}>
+                    {showPassword ? (
+                      <img
+                        src={eyeSlash}
+                        width="21px"
+                        heigth="21px"
+                        alt="hidden"
+                      />
+                    ) : (
+                      <img
+                        src={eye}
+                        width="21px"
+                        heigth="21px"
+                        alt="visibility"
+                      />
+                    )}
+                  </PasswordEye>
+                </InputForm>
+                <ButtonDiv>
+                  <PrimaryButton
+                    disabled={!(isValid && dirty)}
+                    type="submit"
+                    textBtn="log in"
+                  />
+                </ButtonDiv>
+              </Form>
+            )}
+          </Formik>
+          <ButtonDiv>
+            <NavLink to="/register">
+              <SecondaryButton textBtn="register" />
+            </NavLink>
+          </ButtonDiv>
+        </FormWrapper>
+      </FormBackgraund>
     </Wrapper>
   );
 };
