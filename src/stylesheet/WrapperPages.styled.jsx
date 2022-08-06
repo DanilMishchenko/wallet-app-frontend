@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ContainerPages = styled.div`
   margin-left: auto;
   margin-right: auto;
+  padding-top: 72px;
   padding-left: 20px;
   padding-right: 20px;
 
@@ -12,6 +13,7 @@ export const ContainerPages = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 768px;
+    padding-top: 32px;
     padding-left: 32px;
     padding-right: 32px;
   }
@@ -19,6 +21,7 @@ export const ContainerPages = styled.div`
   @media screen and (min-width: 1280px) {
     display: flex;
     width: 1280px;
+    padding-top: 40px;
     padding-left: 16px;
     padding-right: 16px;
   }

@@ -1,4 +1,4 @@
-const getUserName = state => state.auth.user.name;
+const getUserName = state => state.auth.user.data.name;
 const getError = state => state.auth.session.error;
 const getIsAuth = state => state.auth.session.isAuth;
 const getIsFetchingCurrent = state => state.auth.isFetchingCurrentUser;
