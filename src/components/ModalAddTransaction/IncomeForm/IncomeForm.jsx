@@ -1,10 +1,13 @@
 import { Formik, Form } from 'formik';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 
 import { PrimaryButton } from '../../PrimaryButton/PrimaryButton';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import { addTransaction } from '../../../redux/transactions/transactions-operations';
+
 import {
   SelectContainer,
   ArrowSvg,
@@ -21,7 +24,7 @@ import arrow from '../../../images/arrow.svg';
 import calendarIcon from '../../../images/calendarIcon.svg';
 
 const initialValues = {
-  type: 'income',
+  type: true,
   category: 'Regular Income',
   sum: '',
   date: '',
@@ -30,19 +33,25 @@ const initialValues = {
 
 export const IncomeForm = () => {
   const [startDate, setStartDate] = useState(new Date());
+  const dispatch = useDispatch();
+
   return (
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={value => console.log(value)}
+        onSubmit={({ type, category, sum, date, comment }) => {
+          dispatch(addTransaction({ type, category, sum, date, comment }));
+          console.log(type, category, sum, date, comment);
+        }}
       >
         {({ handleSubmit, values, handleChange }) => (
           <Form onSubmit={handleSubmit}>
             <SelectContainer>
               <FieldSelect
                 as="select"
-                name="incomeSelect"
+                name="category"
                 onChange={handleChange}
+                value={values.category}
               >
                 <option value="Regular Income">Regular Income</option>
                 <option value="Irregular Income">Irregular Income</option>
@@ -63,6 +72,14 @@ export const IncomeForm = () => {
                 />
               </InputContainer>
               <DataContainer>
+              {/*
+              <InputSum
+                type="date"
+                name="date"
+                onChange={handleChange}
+                required
+              /> 
+              */}
                 <DatePicker
                   selected={startDate}
                   onChange={date => setStartDate(date)}
@@ -86,6 +103,7 @@ export const IncomeForm = () => {
               <TextAreaComment
                 name="comment"
                 placeholder="Comment"
+                onChange={handleChange}
               ></TextAreaComment>
             </CommentContainer>
 
