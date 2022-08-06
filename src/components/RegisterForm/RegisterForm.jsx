@@ -82,11 +82,7 @@ export const RegisterForm = () => {
       .test('isValid', 'No valid', email => {
         const dog = email.split('@');
 
-        if (
-          email[0] === '-' ||
-          dog[0].length < 2 ||
-          !email.match(/^[А-Яа-я]*$/)
-        ) {
+        if (email[0] === '-' || dog[0].length < 2) {
           return false;
         }
         return true;
