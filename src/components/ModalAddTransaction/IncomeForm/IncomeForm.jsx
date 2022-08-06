@@ -1,5 +1,5 @@
 import { Formik, Form } from 'formik';
-import { useState } from 'react';
+//import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 
@@ -27,12 +27,12 @@ const initialValues = {
   type: true,
   category: 'Regular Income',
   sum: '',
-  date: '',
+  date: new Date(),
   comment: '',
 };
 
 export const IncomeForm = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  //const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
 
   return (
@@ -44,7 +44,7 @@ export const IncomeForm = () => {
           console.log(type, category, sum, date, comment);
         }}
       >
-        {({ handleSubmit, values, handleChange }) => (
+        {({ handleSubmit, values, handleChange, setFieldValue }) => (
           <Form onSubmit={handleSubmit}>
             <SelectContainer>
               <FieldSelect
@@ -72,7 +72,7 @@ export const IncomeForm = () => {
                 />
               </InputContainer>
               <DataContainer>
-              {/*
+                {/*
               <InputSum
                 type="date"
                 name="date"
@@ -81,11 +81,13 @@ export const IncomeForm = () => {
               /> 
               */}
                 <DatePicker
-                  selected={startDate}
-                  onChange={date => setStartDate(date)}
-                  dateFormat="dd.MM.yyyy"
+                  selected={values.date}
+                  name="date"
+                  onChange={date => setFieldValue('date', date)}
+                  dateFormat="dd MM.yyyy"
                   maxDate={new Date()}
-                  customInput={<InputDate />}
+                  customInput={<InputSum />}
+                  required
                 />
                 <img
                   style={{
