@@ -59,11 +59,6 @@ export const StyledLink = styled(Link)`
   }
 `;
 
-export const CurrencyLink = styled(StyledLink)`
-  @media screen and (min-width: 767px) {
-    display: none;
-`;
-
 export const NavText = styled.div`
   @media screen and (max-width: 767px) {
     display: none;
