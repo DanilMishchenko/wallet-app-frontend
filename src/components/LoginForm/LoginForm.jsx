@@ -55,7 +55,6 @@ export const LoginForm = () => {
 
   const onSubmit = (email, password) => {
     dispatch(authOperations.logIn({ email, password }));
-    console.log('log in');
   };
 
   const handleSubmit = (values, { resetForm }) => {
