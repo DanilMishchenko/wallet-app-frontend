@@ -16,6 +16,9 @@ export const SelectContainer = styled.div`
     width: 100%;
     background-color: #bdbdbd;
   }
+  @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const ArrowSvg = styled.img`
@@ -24,6 +27,13 @@ export const ArrowSvg = styled.img`
   right: 20px;
   width: 18px;
   height: 9px;
+`;
+
+export const Wrapper = styled.div`
+  @media screen and (min-width: 768px) {
+    display: flex;
+    margin-top: 40px;
+  }
 `;
 
 export const FieldSelect = styled(Field)`
@@ -44,6 +54,7 @@ export const InputSum = styled.input`
   display: block;
   width: 100%;
   height: 34px;
+  text-align: center;
   padding-left: 20px;
   color: #24cca7;
   font-size: 18px;
@@ -63,7 +74,6 @@ export const InputContainer = styled.div`
   align-items: center;
   position: relative;
   width: 100%;
-  max-width: 320px;
   margin-bottom: 40px;
 
   ::after {
@@ -82,12 +92,21 @@ export const TextAreaComment = styled.textarea`
   display: block;
   padding-left: 20px;
   width: 100%;
-  min-height: 74px;
   resize: none;
   border: none;
   font-size: 18px;
   font-weight: 400;
   outline: none;
+  height: 4em;
+  resize: inherit;
+
+  ::placeholder {
+    color: #bdbdbd;
+  }
+
+  @media screen and (min-width: 768px) {
+    height: 2.3em;
+  }
 `;
 
 export const DataContainer = styled.div`
@@ -109,6 +128,10 @@ export const DataContainer = styled.div`
 
   div.input {
     outline: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-left: 32px;
   }
 `;
 
