@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import { store } from '../store';
 
 export const fetchTransactions = createAsyncThunk(
@@ -33,6 +34,7 @@ export const addTransaction = createAsyncThunk(
       // console.log(response);
       return response.data.transaction;
     } catch (err) {
+      toast.error('error, transaction was not saved');
       return rejectWithValue(err.response.data);
     }
   },
