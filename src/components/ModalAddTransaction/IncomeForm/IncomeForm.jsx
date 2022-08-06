@@ -87,14 +87,6 @@ export const IncomeForm = () => {
                 />
               </InputContainer>
               <DataContainer>
-                {/*
-              <InputSum
-                type="date"
-                name="date"
-                onChange={handleChange}
-                required
-              /> 
-              */}
                 <DatePicker
                   selected={values.date}
                   name="date"
