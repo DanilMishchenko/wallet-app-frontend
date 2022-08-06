@@ -16,6 +16,10 @@ export const SelectContainer = styled.div`
     width: 100%;
     background-color: #bdbdbd;
   }
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const ArrowSvg = styled.img`
@@ -40,11 +44,18 @@ export const FieldSelect = styled(Field)`
   }
 `;
 
+export const Wrapper = styled.div`
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+  }
+`;
+
 export const InputSum = styled.input`
   display: block;
+  text-align: center;
   width: 100%;
   height: 34px;
-  padding-left: 20px;
   color: #24cca7;
   font-size: 18px;
   font-weight: 700;
@@ -63,7 +74,6 @@ export const InputContainer = styled.div`
   align-items: center;
   position: relative;
   width: 100%;
-  max-width: 320px;
   margin-bottom: 40px;
 
   ::after {
@@ -75,6 +85,10 @@ export const InputContainer = styled.div`
     width: 100%;
     background-color: #bdbdbd;
   }
+
+  @media screen and (min-width: 768px) {
+    width: 181px;
+  }
 `;
 
 export const TextAreaComment = styled.textarea`
@@ -82,21 +96,28 @@ export const TextAreaComment = styled.textarea`
   display: block;
   padding-left: 20px;
   width: 100%;
-  min-height: 74px;
   resize: none;
   border: none;
   font-size: 18px;
   font-weight: 400;
   outline: none;
+  height: 4em;
+  resize: inherit;
+
+  ::placeholder {
+    color: #bdbdbd;
+  }
+
+  @media screen and (min-width: 768px) {
+    height: 2.3em;
+  }
 `;
 
 export const DataContainer = styled.div`
   display: flex;
-  align-items: center;
   position: relative;
-  width: 100%;
   margin-bottom: 40px;
-  max-width: 320px;
+
   ::after {
     content: '';
     position: absolute;
@@ -110,6 +131,10 @@ export const DataContainer = styled.div`
   div.input {
     outline: none;
   }
+
+  @media screen and (min-width: 768px) {
+    width: 181px;
+  }
 `;
 
 export const InputDate = styled.input`
@@ -122,4 +147,26 @@ export const InputDate = styled.input`
   border: none;
   cursor: pointer;
   outline: none;
+
+  @media screen and (min-width: 768px) {
+    padding-left: 8px;
+  }
+`;
+
+export const CommentContainer = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin-bottom: 40px;
+
+  ::after {
+    content: '';
+    position: absolute;
+    display: block;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #bdbdbd;
+  }
 `;

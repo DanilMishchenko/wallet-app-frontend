@@ -69,7 +69,6 @@ export const ModalAddTransaction = ({ onModal }) => {
               offHandleColor="#24CCA7"
               onHandleColor="#FF6596"
               activeBoxShadow="none"
-              shd
               height={40}
               width={80}
               borderRadius={30}
@@ -112,7 +111,7 @@ export const ModalAddTransaction = ({ onModal }) => {
         <FormContainer>
           {!checked ? <IncomeForm /> : <ExpenseForm />}
         </FormContainer>
-        <SecondaryButton textBtn="cancel" />
+        <SecondaryButton textBtn="cancel" onClick={() => onModal()} />
       </Wrapper>
     </Overlay>,
     modalRoot,
