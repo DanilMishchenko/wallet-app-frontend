@@ -21,7 +21,7 @@ export default function DashBoardPage() {
         <div>
           <Navigation />
           <Balance />
-          <Currency />
+          {/* <Currency /> */}
         </div>
         <div>
           <Outlet />
