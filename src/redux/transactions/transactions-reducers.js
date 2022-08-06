@@ -24,7 +24,7 @@ export const transactionsSlice = createSlice({
       state.error = payload;
     },
     [addTransaction.fulfilled](state, { payload }) {
-      state.items = [payload, ...state];
+      state.items = [payload, ...state.items];
       state.isLoading = false;
     },
     [addTransaction.pending](state, { payload }) {

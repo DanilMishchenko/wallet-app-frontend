@@ -7,7 +7,6 @@ import { PrimaryButton } from '../../PrimaryButton/PrimaryButton';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import { addTransaction } from '../../../redux/transactions/transactions-operations';
-
 import {
   SelectContainer,
   ArrowSvg,
