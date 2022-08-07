@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { string } from 'yup/lib/locale';
 import { getColor } from '../../stylesheet/chartColor';
 import {
   TableWrapper,
