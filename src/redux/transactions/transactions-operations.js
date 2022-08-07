@@ -11,7 +11,6 @@ export const fetchTransactions = createAsyncThunk(
       const { data: response } = await axios.get(`/transactions`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      // console.log(response);
       return response.data.result;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -21,21 +20,13 @@ export const fetchTransactions = createAsyncThunk(
 
 export const addTransaction = createAsyncThunk(
   'transactions/addTransaction',
-  async (transactionBody, { rejectWithValue }) => {
-    const token = store.getState().auth.token;
+  async (credentials, { rejectWithValue }) => {
     try {
-      const { data: response } = await axios.post(
-        `/transactions`,
-        transactionBody,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      );
-      // console.log(response);
-      return response.data.transaction;
+      const { data } = await axios.post(`/transactions`, credentials);
+      return data;
     } catch (err) {
       toast.error('error, transaction was not saved');
-      return rejectWithValue(err.response.data);
+      return rejectWithValue(err.message);
     }
   },
 );
@@ -43,12 +34,10 @@ export const addTransaction = createAsyncThunk(
 export const fetchTransactionsByCategory = createAsyncThunk(
   'transactions/fetchTransactionsByCategory',
   async (_, { rejectWithValue }) => {
-    const token = store.getState().auth.token;
     try {
-      const { data: response } = await axios.get(`/transactions/categories`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      return response.data;
+      const { data } = await axios.get(`/transactions/categories`);
+      console.log(data);
+      return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
