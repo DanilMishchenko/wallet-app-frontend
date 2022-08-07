@@ -21,14 +21,15 @@ import eyeSlash from '../../images/eye-slash.svg';
 
 import {
   MainContainer,
+  ImagineBox,
   Img,
-  H,
-  Div,
+  Title,
+  FormBackgraund,
+  LogoTitle,
+  FormWrapper,
   InputForm,
   ButtonDiv,
   Wrapper,
-  Title,
-  ImagineBox,
   PasswordEye,
 } from './RegistrationForm.styled';
 
@@ -106,102 +107,104 @@ export const RegisterForm = () => {
     <MainContainer>
       <ImagineBox>
         <Img src={girl} alt="girl" />
-        <H>Finance App</H>
+        <Title>Finance App</Title>
       </ImagineBox>
-      <Div>
-        <Wrapper>
-          <img src={logo} alt="girl" />
-          <Title>Wallet</Title>
-        </Wrapper>
-        <Formik
-          initialValues={{
-            email: ' ',
-            password: '',
-            confirmPassword: '',
-            name: '',
-          }}
-          isValidating={false}
-          validateOnBlur
-          validationSchema={validationForm}
-          onSubmit={({ email, password, name }) => {
-            dispatch(authOperations.register({ email, password, name }));
-            navigate('/');
-          }}
-        >
-          {({ dirty, isValid }) => (
-            <Form>
-              <InputForm>
-                <TextInput
-                  required
-                  label={<EmailIcon />}
-                  name="email"
-                  placeholder="E-mail"
-                  type="email"
-                />
-                <div style={{ position: 'relative' }}>
+      <FormBackgraund>
+        <FormWrapper>
+          <Wrapper>
+            <img src={logo} alt="girl" />
+            <LogoTitle>Wallet</LogoTitle>
+          </Wrapper>
+          <Formik
+            initialValues={{
+              email: ' ',
+              password: '',
+              confirmPassword: '',
+              name: '',
+            }}
+            isValidating={false}
+            validateOnBlur
+            validationSchema={validationForm}
+            onSubmit={({ email, password, name }) => {
+              dispatch(authOperations.register({ email, password, name }));
+              navigate('/');
+            }}
+          >
+            {({ dirty, isValid }) => (
+              <Form>
+                <InputForm>
+                  <TextInput
+                    required
+                    label={<EmailIcon />}
+                    name="email"
+                    placeholder="E-mail"
+                    type="email"
+                  />
+                  <div style={{ position: 'relative' }}>
+                    <TextInput
+                      required
+                      label={<PasswordIcon />}
+                      name="password"
+                      placeholder="Password"
+                      type={showPassword ? 'password' : 'text'}
+                      onInput={e => setPassword(e.target.value)}
+                    />
+
+                    <PasswordEye onClick={toggleClick}>
+                      {showPassword ? (
+                        <img
+                          src={eyeSlash}
+                          width="21px"
+                          heigth="21px"
+                          alt="hidden"
+                        />
+                      ) : (
+                        <img
+                          src={eye}
+                          width="21px"
+                          heigth="21px"
+                          alt="visibility"
+                        />
+                      )}
+                    </PasswordEye>
+                  </div>
+
                   <TextInput
                     required
                     label={<PasswordIcon />}
-                    name="password"
-                    placeholder="Password"
+                    name="confirmPassword"
+                    placeholder="Confirm password"
                     type={showPassword ? 'password' : 'text'}
-                    onInput={e => setPassword(e.target.value)}
                   />
 
-                  <PasswordEye onClick={toggleClick}>
-                    {showPassword ? (
-                      <img
-                        src={eyeSlash}
-                        width="21px"
-                        heigth="21px"
-                        alt="hidden"
-                      />
-                    ) : (
-                      <img
-                        src={eye}
-                        width="21px"
-                        heigth="21px"
-                        alt="visibility"
-                      />
-                    )}
-                  </PasswordEye>
-                </div>
+                  <div style={changeProgressStyle()}>
+                    <div style={changePasswordColor()}></div>
+                  </div>
 
-                <TextInput
-                  required
-                  label={<PasswordIcon />}
-                  name="confirmPassword"
-                  placeholder="Confirm password"
-                  type={showPassword ? 'password' : 'text'}
-                />
-
-                <div style={changeProgressStyle()}>
-                  <div style={changePasswordColor()}></div>
-                </div>
-
-                <TextInput
-                  required
-                  label={<NameIcon />}
-                  name="name"
-                  placeholder="First name"
-                />
-              </InputForm>
-              <ButtonDiv>
-                <PrimaryButton
-                  disabled={!(isValid && dirty)}
-                  type="submit"
-                  textBtn="REGISTER"
-                />
-              </ButtonDiv>
-            </Form>
-          )}
-        </Formik>
-        <ButtonDiv>
-          <NavLink to="/Login">
-            <SecondaryButton textBtn="LOG IN" />
-          </NavLink>
-        </ButtonDiv>
-      </Div>
+                  <TextInput
+                    required
+                    label={<NameIcon />}
+                    name="name"
+                    placeholder="First name"
+                  />
+                </InputForm>
+                <ButtonDiv>
+                  <PrimaryButton
+                    disabled={!(isValid && dirty)}
+                    type="submit"
+                    textBtn="REGISTER"
+                  />
+                </ButtonDiv>
+              </Form>
+            )}
+          </Formik>
+          <ButtonDiv>
+            <NavLink to="/Login">
+              <SecondaryButton textBtn="LOG IN" />
+            </NavLink>
+          </ButtonDiv>
+        </FormWrapper>
+      </FormBackgraund>
     </MainContainer>
   );
 };
