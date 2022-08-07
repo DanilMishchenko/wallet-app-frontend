@@ -21,7 +21,7 @@ export const Table = ({ tableData }) => (
     </TableTitle>
 
     <TableList>
-      {tableData.map(({ category, sum }) => {
+      {tableData.map(({ category, totalSum }) => {
         return (
           <TableListItem key={category}>
             <CategoryWrapper>
@@ -30,7 +30,7 @@ export const Table = ({ tableData }) => (
               ></CategoryColorLabel>
               <span>{category}</span>
             </CategoryWrapper>
-            <span>{sum}</span>
+            <span>{totalSum}</span>
           </TableListItem>
         );
       })}
@@ -53,7 +53,7 @@ Table.propTypes = {
   tableData: PropTypes.arrayOf(
     PropTypes.shape({
       category: PropTypes.string,
-      sum: PropTypes.string,
+      totalSum: PropTypes.string,
     }),
   ).isRequired,
 };
