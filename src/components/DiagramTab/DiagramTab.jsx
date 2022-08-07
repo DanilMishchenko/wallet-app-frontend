@@ -20,6 +20,7 @@ export const DiagramTab = () => {
   const [selectYear, setSelectYear] = useState(currentYear.toString());
   const [selectMonth, setSelectMonth] = useState('hide');
   const categories = useSelector(getCategories);
+
   const dispatch = useDispatch();
 
   const handleSelect = ({ target }, action) => action(target.value);
@@ -45,7 +46,7 @@ export const DiagramTab = () => {
     <Container>
       <div>
         <Title>Statistics</Title>
-        <Chart />
+        <Chart categories={categories} />
       </div>
       <CategorySection>
         <SelectWrapper>
