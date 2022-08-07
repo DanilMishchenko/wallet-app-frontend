@@ -13,6 +13,45 @@ import {
   ResultAccentItem,
 } from './Table.styled';
 
+const colors = [
+  {
+    id: 1,
+    color: '#FED057',
+  },
+  {
+    id: 2,
+    color: '#FFD8D0',
+  },
+  {
+    id: 3,
+    color: '#FD9498',
+  },
+  {
+    id: 4,
+    color: '#C5BAFF',
+  },
+  {
+    id: 5,
+    color: '#6E78E8',
+  },
+  {
+    id: 6,
+    color: '#4A56E2',
+  },
+  {
+    id: 7,
+    color: '#81E1FF',
+  },
+  {
+    id: 8,
+    color: '#24CCA7',
+  },
+  {
+    id: 9,
+    color: '#00AD84',
+  },
+];
+
 export const Table = ({ tableData }) => {
   return (
     <TableWrapper>
@@ -22,11 +61,11 @@ export const Table = ({ tableData }) => {
       </TableTitle>
 
       <TableList>
-        {tableData.map(({ color, category, sum }) => {
+        {tableData.map(({ id, category, sum }) => {
           return (
-            <TableListItem key={category}>
+            <TableListItem key={id}>
               <CategoryWrapper>
-                <CategoryColorLabel background={color}></CategoryColorLabel>
+                <CategoryColorLabel background={colors.id}></CategoryColorLabel>
                 <span>{category}</span>
               </CategoryWrapper>
               <span>{sum}</span>
