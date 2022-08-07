@@ -167,7 +167,6 @@ export const HomeTab = () => {
           <NoTransactionsMsg>No Transactions added</NoTransactionsMsg>
         </NoTransactions>
       )}
-      {/* <ModalAddTransaction /> */}
     </>
   );
 };
