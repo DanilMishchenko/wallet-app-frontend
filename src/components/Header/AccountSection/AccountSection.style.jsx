@@ -5,14 +5,15 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const Title = styled.p`
+export const Title = styled.div`
   margin: 0;
+  padding: 0;
   margin-right: 8px;
   font-size: 12px;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   overflow: hidden;
-  color: #fff;
+  color: var(--primary-text);
 
   @media (min-width: 768px) {
     color: var(--secondary);
@@ -25,10 +26,11 @@ export const Title = styled.p`
 
   @media (max-width: 767px) {
     &:first-letter {
+      margin: 0;
       font-size: 18px;
-      line-height: 50px;
-      border-radius: 50px;
-      padding: 7px 15px;
+      line-height: 43px;
+      border-radius: 50%;
+      padding: 5px 10px;
       border: 1px solid #ccc;
       color: var(--secondary);
     }

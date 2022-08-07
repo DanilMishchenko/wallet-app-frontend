@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { authSelectors } from '../../../redux/auth';
 import logout from '../../../images/logoutIcon.svg';
@@ -11,7 +11,7 @@ import {
 } from './AccountSection.style';
 
 export const AccountSection = ({ onModal }) => {
-  const userName = useSelector(state => state.auth.user.name);
+  const userName = useSelector(authSelectors.getUserName);
 
   return (
     <Wrapper>
