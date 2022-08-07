@@ -1,5 +1,3 @@
-// import { useDispatch, useSelector } from 'react-redux/es/exports';
-
 import {
   TableWrapper,
   TableTitle,
@@ -53,6 +51,26 @@ const colors = [
 ];
 
 export const Table = ({ tableData }) => {
+  const type = tableData.filter(item => {
+    return item.type === false;
+  });
+
+  const incomeCategory = tableData
+    .filter(item => {
+      return item.type === true;
+    })
+    .reduce((total, item) => {
+      return total + item.sum;
+    }, 0);
+
+  const expenseCategory = tableData
+    .filter(item => {
+      return item.type === false;
+    })
+    .reduce((total, item) => {
+      return total + item.sum;
+    }, 0);
+
   return (
     <TableWrapper>
       <TableTitle>
@@ -61,11 +79,13 @@ export const Table = ({ tableData }) => {
       </TableTitle>
 
       <TableList>
-        {tableData.map(({ id, category, sum }) => {
+        {type.map(({ _id, category, sum }) => {
           return (
-            <TableListItem key={id}>
+            <TableListItem key={_id}>
               <CategoryWrapper>
-                <CategoryColorLabel background={colors.id}></CategoryColorLabel>
+                <CategoryColorLabel
+                  background={colors._id}
+                ></CategoryColorLabel>
                 <span>{category}</span>
               </CategoryWrapper>
               <span>{sum}</span>
@@ -78,12 +98,14 @@ export const Table = ({ tableData }) => {
         <ExpensesItem>
           Expenses:
           <ResultAccentItem color={'var(--expense)'}>
-            22 549.24
+            {expenseCategory}
           </ResultAccentItem>
         </ExpensesItem>
         <IncomeItem>
           Income:
-          <ResultAccentItem color={'var(--green)'}>27 350.00</ResultAccentItem>
+          <ResultAccentItem color={'var(--green)'}>
+            {incomeCategory}
+          </ResultAccentItem>
         </IncomeItem>
       </ResultList>
     </TableWrapper>

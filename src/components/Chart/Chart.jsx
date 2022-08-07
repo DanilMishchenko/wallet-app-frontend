@@ -1,16 +1,27 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-
 import { Container, Text } from './Chart.styled';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const Chart = () => {
+export const Chart = ({ chartData }) => {
+  const expenseCategory = chartData
+    .filter(item => {
+      return item.type === false;
+    })
+    .reduce((total, item) => {
+      return total + item.sum;
+    }, 0);
+
+  const dataChart = chartData.map(({ sum }) => {
+    return { sum };
+  });
+
   const data = {
     datasets: [
       {
-        data: [8700, 3800.74, 1500, 800, 2208.5, 300, 3400, 1230, 610],
+        data: dataChart,
         backgroundColor: [
           '#FED057',
           '#FFD8D0',
@@ -44,7 +55,7 @@ export const Chart = () => {
     <Container>
       <Doughnut data={data} options={options} />
       <Text>
-        {'\u20B4'} {0}
+        {'\u20B4'} {expenseCategory}
       </Text>
     </Container>
   );

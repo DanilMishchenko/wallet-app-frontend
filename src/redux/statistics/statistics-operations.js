@@ -8,7 +8,6 @@ export const getStatistics = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/transactions/details', credentials);
-      // console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
