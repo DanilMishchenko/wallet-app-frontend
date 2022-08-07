@@ -1,3 +1,4 @@
+import { getColor } from '../../stylesheet/chartColor';
 import {
   TableWrapper,
   TableTitle,
@@ -20,11 +21,13 @@ export const Table = ({ tableData }) => {
       </TableTitle>
 
       <TableList>
-        {tableData.map(({ color, category, sum }) => {
+        {tableData.map(({ category, sum }) => {
           return (
             <TableListItem key={category}>
               <CategoryWrapper>
-                <CategoryColorLabel background={color}></CategoryColorLabel>
+                <CategoryColorLabel
+                  background={getColor(category)}
+                ></CategoryColorLabel>
                 <span>{category}</span>
               </CategoryWrapper>
               <span>{sum}</span>
