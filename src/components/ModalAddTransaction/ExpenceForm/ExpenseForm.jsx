@@ -102,7 +102,7 @@ export const ExpenseForm = ({ onClose }) => {
                   selected={values.date}
                   name="date"
                   onChange={date => setFieldValue('date', date)}
-                  dateFormat="dd MM.yyyy"
+                  dateFormat="dd.MM.yyyy"
                   maxDate={new Date()}
                   customInput={<InputSum />}
                   required

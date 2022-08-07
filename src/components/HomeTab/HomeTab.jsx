@@ -93,72 +93,68 @@ export const HomeTab = () => {
                     </TableHeader>
                     <tbody>
                       {data[0] &&
-                        data
-                          .map(item => {
-                            if (item.result) {
-                              return (
-                                <Row key={item.result._id}>
-                                  <Column>
-                                    {moment
-                                      .utc(item.result.date)
-                                      .format('MM.DD.YYYY')}
-                                  </Column>
-                                  <Column>
-                                    {item.result.type === false ? '-' : '+'}
-                                  </Column>
-                                  <Column>{item.result.category}</Column>
-                                  <Column onClick={onCommentClick}>
-                                    {!showComment ? (
-                                      <EllipsisText
-                                        text={item.result.comment}
-                                        length={12}
-                                      />
-                                    ) : (
-                                      <EllipsisText
-                                        text={item.result.comment}
-                                        length={50}
-                                      />
-                                    )}
-                                  </Column>
-                                  <Column type={String(item.result.type)}>
-                                    {formatAmount(item.result.sum)}
-                                  </Column>
-                                  <Column>
-                                    {formatAmount(item.result.balance)}
-                                  </Column>
-                                </Row>
-                              );
-                            }
+                        data.map(item => {
+                          if (item.result) {
                             return (
-                              <Row key={item._id}>
+                              <Row key={item.result._id}>
                                 <Column>
-                                  {moment.utc(item.date).format('MM.DD.YYYY')}
+                                  {moment
+                                    .utc(item.result.date)
+                                    .format('DD.MM.YYYY')}
                                 </Column>
                                 <Column>
-                                  {item.type === false ? '-' : '+'}
+                                  {item.result.type === false ? '-' : '+'}
                                 </Column>
-                                <Column>{item.category}</Column>
+                                <Column>{item.result.category}</Column>
                                 <Column onClick={onCommentClick}>
                                   {!showComment ? (
                                     <EllipsisText
-                                      text={item.comment || ''}
+                                      text={item.result.comment}
                                       length={12}
                                     />
                                   ) : (
                                     <EllipsisText
-                                      text={item.comment || ''}
+                                      text={item.result.comment}
                                       length={50}
                                     />
                                   )}
                                 </Column>
-                                <Column type={String(item.type)}>
-                                  {formatAmount(item.sum)}
+                                <Column type={String(item.result.type)}>
+                                  {formatAmount(item.result.sum)}
                                 </Column>
-                                <Column>{formatAmount(item.balance)}</Column>
+                                <Column>
+                                  {formatAmount(item.result.balance)}
+                                </Column>
                               </Row>
                             );
-                          })
-                          .reverse()}
+                          }
+                          return (
+                            <Row key={item._id}>
+                              <Column>
+                                {moment.utc(item.date).format('DD.MM.YYYY')}
+                              </Column>
+                              <Column>{item.type === false ? '-' : '+'}</Column>
+                              <Column>{item.category}</Column>
+                              <Column onClick={onCommentClick}>
+                                {!showComment ? (
+                                  <EllipsisText
+                                    text={item.comment}
+                                    length={12}
+                                  />
+                                ) : (
+                                  <EllipsisText
+                                    text={item.comment}
+                                    length={50}
+                                  />
+                                )}
+                              </Column>
+                              <Column type={String(item.type)}>
+                                {formatAmount(item.sum)}
+                              </Column>
+                              <Column>{formatAmount(item.balance)}</Column>
+                            </Row>
+                          );
+                        })}
                     </tbody>
                   </Table>
                 )}
