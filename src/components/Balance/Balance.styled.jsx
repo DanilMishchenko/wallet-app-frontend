@@ -37,6 +37,7 @@ export const Content = styled.div`
 `;
 
 export const Symbol = styled.p`
+  margin-top: 1px;
   font-family: 'Circe';
   margin-right: 15px;
 `;
