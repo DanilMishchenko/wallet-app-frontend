@@ -13,7 +13,7 @@ export const BalanceBoard = styled.div`
     width: 336px;
   }
 
-  @media screen and (min-width: 1080px) {
+  @media screen and (min-width: 1280px) {
     width: 395px;
   }
 `;

@@ -10,28 +10,29 @@ export const Overlay = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.25);
-  z-index: 1200;
 `;
 
 export const Mod = styled.div`
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
   background-color: white;
-  border-radius: 15px;
   display: flex;
+  border-radius: 15px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 40px 20px;
+
+  @media screen and (min-width: 768px) {
+    max-width: calc(100vw - 48px);
+    max-height: calc(100vh - 24px);
+  }
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h3`
   margin: 0;
-
   margin-left: 16px;
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 1;
 
   @media (min-width: 768px) {
     font-size: 30px;
@@ -41,11 +42,10 @@ export const Title = styled.h2`
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
 `;
 
-export const H = styled.h2`
-  margin: 20px 0;
+export const H = styled.h3`
+  margin: 28px 0;
   text-align: center;
 `;
 
