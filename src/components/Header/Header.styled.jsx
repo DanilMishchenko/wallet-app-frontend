@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   width: 100%;
   padding: 15px 20px;
   background-color: var(--primary-text);
+  z-index: 5;
 
   @media (min-width: 768px) {
     position: static;

@@ -4,13 +4,16 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding-top: 75px;
+  padding-top: 15px;
   padding-bottom: 15px;
 
   @media screen and (min-width: 768px) {
     display: block;
-    padding-top: 40px;
-    padding-bottom: 30px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    display: block;
+    padding-top: 0;
   }
 `;
 
