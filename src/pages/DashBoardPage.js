@@ -11,6 +11,9 @@ import { Header } from '../components/Header/Header';
 import {
   ContainerPages,
   BlurContainer,
+  NavigationSection,
+  MainContainer,
+  NavigationContainer,
 } from '../stylesheet/WrapperPages.styled';
 import useMediaQuery from '../hooks/useMediaQuery';
 
@@ -26,15 +29,17 @@ export default function DashBoardPage() {
       <ToastContainer />
       <Header />
       <ContainerPages>
-        <div>
-          <Navigation />
-          {isBalanceShow && <Balance />}
+        <NavigationContainer>
+          <NavigationSection>
+            <Navigation />
+            {isBalanceShow && <Balance />}
+          </NavigationSection>
           {isCurrencyShow && <Currency />}
-        </div>
+        </NavigationContainer>
         {(!isCurrencyOpen || !isMobile) && (
-          <div>
+          <MainContainer>
             <Outlet />
-          </div>
+          </MainContainer>
         )}
       </ContainerPages>
     </BlurContainer>
