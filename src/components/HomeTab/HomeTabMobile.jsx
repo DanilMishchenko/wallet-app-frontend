@@ -43,6 +43,73 @@ export const HomeTabMobile = () => {
         {data[0] &&
           data
             .map(item => {
+              if (item.result) {
+                return (
+                  <TableMobile
+                    type={String(item.result.type)}
+                    key={item.result._id}
+                  >
+                    <TableBodyMobile>
+                      <RowMobile>
+                        <ColumnHeaderMobile>
+                          {COLUMNS[0].Header}
+                        </ColumnHeaderMobile>
+                        <ColumnMobile>
+                          {moment.utc(item.result.date).format('MM.DD.YYYY')}
+                        </ColumnMobile>
+                      </RowMobile>
+                      <RowMobile>
+                        <ColumnHeaderMobile>
+                          {COLUMNS[1].Header}
+                        </ColumnHeaderMobile>
+                        <ColumnMobile>
+                          {item.result.type === false ? '-' : '+'}
+                        </ColumnMobile>
+                      </RowMobile>
+                      <RowMobile>
+                        <ColumnHeaderMobile>
+                          {COLUMNS[3].Header}
+                        </ColumnHeaderMobile>
+                        <ColumnMobile onClick={onCommentClick}>
+                          {!showComment ? (
+                            <EllipsisText
+                              text={item.result.comment}
+                              length={18}
+                            />
+                          ) : (
+                            <EllipsisText
+                              text={item.result.comment}
+                              length={60}
+                            />
+                          )}
+                        </ColumnMobile>
+                      </RowMobile>
+                      <RowMobile>
+                        <ColumnHeaderMobile>
+                          {COLUMNS[2].Header}
+                        </ColumnHeaderMobile>
+                        <ColumnMobile>{item.result.category}</ColumnMobile>
+                      </RowMobile>
+                      <RowMobile>
+                        <ColumnHeaderMobile>
+                          {COLUMNS[4].Header}
+                        </ColumnHeaderMobile>
+                        <ColumnMobile type={String(item.result.type)}>
+                          {getAmount(item.result.sum)}
+                        </ColumnMobile>
+                      </RowMobile>
+                      <RowMobile>
+                        <ColumnHeaderMobile>
+                          {COLUMNS[5].Header}
+                        </ColumnHeaderMobile>
+                        <ColumnMobile>
+                          {getAmount(item.result.balance)}
+                        </ColumnMobile>
+                      </RowMobile>
+                    </TableBodyMobile>
+                  </TableMobile>
+                );
+              }
               return (
                 <TableMobile type={String(item.type)} key={item._id}>
                   <TableBodyMobile>
