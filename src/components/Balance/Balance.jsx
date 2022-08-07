@@ -1,17 +1,23 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBalance, getBalance } from '../../redux/balance';
 
-import { authSelectors } from '../../redux/auth';
 import { BalanceBoard, HeadText, Content, Symbol } from './Balance.styled';
 
 export const Balance = () => {
-  const balance = useSelector(authSelectors.getBalance);
+  const dispatch = useDispatch();
+  const balance = useSelector(getBalance);
+
+  useEffect(() => {
+    dispatch(fetchBalance());
+  }, [dispatch]);
 
   return (
     <BalanceBoard>
       <HeadText>Your balance</HeadText>
       <Content>
         <Symbol>₴</Symbol>
-        <p>{balance.toFixed(2)}</p>
+        {balance && <p>{balance.toFixed(2)}</p>}
       </Content>
     </BalanceBoard>
   );

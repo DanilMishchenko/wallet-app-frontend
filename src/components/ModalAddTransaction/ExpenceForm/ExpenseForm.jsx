@@ -9,7 +9,11 @@ import DatePicker from 'react-datepicker';
 import { PrimaryButton } from '../../PrimaryButton/PrimaryButton';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import { addTransaction } from '../../../redux/transactions/transactions-operations';
+import {
+  addTransaction,
+  fetchTransactions,
+} from '../../../redux/transactions/transactions-operations';
+import { fetchBalance } from '../../../redux/balance';
 
 import {
   SelectContainer,
@@ -54,10 +58,12 @@ export const ExpenseForm = ({ onClose }) => {
   //const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
 
-  const handleTransactionSubmit = values => {
+  const handleTransactionSubmit = async values => {
     dispatch(addTransaction(values));
-    toast.success(`transaction amount ${values.sum} was saved`);
+    await dispatch(fetchTransactions());
+    await dispatch(fetchBalance());
     onClose();
+    toast.success(`transaction amount ${values.sum} was saved`);
   };
 
   const selectStyles = {
