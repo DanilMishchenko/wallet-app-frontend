@@ -44,8 +44,6 @@ export const IncomeForm = ({ onClose }) => {
     dispatch(addTransaction(values));
     toast.success(`transaction amount ${values.sum} was saved`);
     onClose();
-
-    console.log(values);
   };
 
   return (
