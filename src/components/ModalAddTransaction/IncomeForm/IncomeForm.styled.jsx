@@ -5,6 +5,7 @@ export const SelectContainer = styled.div`
   /* display: flex;
   align-items: center;
   position: relative; */
+  position: relative;
   margin-bottom: 40px;
 
   /* ::after {

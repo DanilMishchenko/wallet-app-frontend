@@ -7,6 +7,7 @@ export const SelectContainer = styled.div`
   align-items: center;
   position: relative; */
   margin-bottom: 40px;
+  position: relative;
 
   /* ::after {
     content: '';
