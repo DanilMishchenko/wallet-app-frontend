@@ -53,7 +53,7 @@ Table.propTypes = {
   tableData: PropTypes.arrayOf(
     PropTypes.shape({
       category: PropTypes.string,
-      totalSum: PropTypes.string,
+      totalSum: PropTypes.number,
     }),
   ).isRequired,
 };
