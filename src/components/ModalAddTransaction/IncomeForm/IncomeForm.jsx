@@ -10,7 +10,6 @@ import { PrimaryButton } from '../../PrimaryButton/PrimaryButton';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import { addTransaction } from '../../../redux/transactions/transactions-operations';
-
 import {
   SelectContainer,
   //ArrowSvg,
@@ -52,8 +51,6 @@ export const IncomeForm = ({ onClose }) => {
     dispatch(addTransaction(values));
     toast.success(`transaction amount ${values.sum} was saved`);
     onClose();
-
-    console.log(values);
   };
 
   const selectStyles = {
@@ -166,7 +163,7 @@ export const IncomeForm = ({ onClose }) => {
                   selected={values.date}
                   name="date"
                   onChange={date => setFieldValue('date', date)}
-                  dateFormat="dd MM.yyyy"
+                  dateFormat="dd.MM.yyyy"
                   maxDate={new Date()}
                   customInput={<InputSum />}
                 />

@@ -58,8 +58,6 @@ export const ExpenseForm = ({ onClose }) => {
     dispatch(addTransaction(values));
     toast.success(`transaction amount ${values.sum} was saved`);
     onClose();
-
-    console.log(values);
   };
 
   const selectStyles = {
@@ -129,7 +127,6 @@ export const ExpenseForm = ({ onClose }) => {
                 // onChange={handleChange}
                 // value={values.category}
               >
-               
               </FieldSelect>
               <ArrowSvg src={arrow} alt="arrow" />
             </SelectContainer> */}
@@ -171,7 +168,7 @@ export const ExpenseForm = ({ onClose }) => {
                   selected={values.date}
                   name="date"
                   onChange={date => setFieldValue('date', date)}
-                  dateFormat="dd MM.yyyy"
+                  dateFormat="dd.MM.yyyy"
                   maxDate={new Date()}
                   customInput={<InputSum />}
                   required

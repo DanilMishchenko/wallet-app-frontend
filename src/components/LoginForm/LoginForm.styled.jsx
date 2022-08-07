@@ -133,8 +133,8 @@ export const ButtonDiv = styled.div`
 
 export const PasswordEye = styled.div`
   position: absolute;
-  top: 75%;
-  right: 1%;
+  top: 0%;
+  right: 0%;
 
   :hover,
   :focus {

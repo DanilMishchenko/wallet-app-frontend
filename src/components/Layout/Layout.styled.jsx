@@ -3,13 +3,13 @@ import beigeShape1 from '../../images/beigeShape1.svg';
 import purpleShape from '../../images/purpleShape.svg';
 
 export const MainBackground = styled.div`
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
   z-index: -1;
 
   @media screen and (min-width: 768px) {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100%;
     background-image: url(${purpleShape});
     background-position: bottom -50px left 0px;
     background-repeat: no-repeat;
