@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTransactions } from '../../redux/transactions/transactions-selectors';
 import { fetchTransactions } from '../../redux/transactions/transactions-operations';
 import moment from 'moment';
+import { COLUMNS } from './table-helpers';
 import EllipsisText from 'react-ellipsis-text';
 import Media from 'react-media';
 import {
@@ -21,6 +22,17 @@ import { HomeTabMobile } from './HomeTabMobile';
 export const HomeTab = () => {
   const data = useSelector(getTransactions);
   const dispatch = useDispatch();
+  const [showComment, setShowComment] = useState(false);
+
+  const onCommentClick = () => {
+    if (showComment === false) {
+      setShowComment(true);
+      return;
+    } else {
+      setShowComment(false);
+      return;
+    }
+  };
 
   useEffect(() => {
     dispatch(fetchTransactions());
@@ -48,43 +60,67 @@ export const HomeTab = () => {
                     <TableHeader>
                       <tr>
                         <ColumnHeader>
-                          <ColumnHeaderContent>Date</ColumnHeaderContent>
+                          <ColumnHeaderContent>
+                            {COLUMNS[0].Header}
+                          </ColumnHeaderContent>
                         </ColumnHeader>
                         <ColumnHeader>
-                          <ColumnHeaderContent>Type</ColumnHeaderContent>
+                          <ColumnHeaderContent>
+                            {COLUMNS[1].Header}
+                          </ColumnHeaderContent>
                         </ColumnHeader>
                         <ColumnHeader>
-                          <ColumnHeaderContent>Category</ColumnHeaderContent>
+                          <ColumnHeaderContent>
+                            {COLUMNS[2].Header}
+                          </ColumnHeaderContent>
                         </ColumnHeader>
                         <ColumnHeader>
-                          <ColumnHeaderContent>Comment</ColumnHeaderContent>
+                          <ColumnHeaderContent>
+                            {COLUMNS[3].Header}
+                          </ColumnHeaderContent>
                         </ColumnHeader>
                         <ColumnHeader>
-                          <ColumnHeaderContent>Amount</ColumnHeaderContent>
+                          <ColumnHeaderContent>
+                            {COLUMNS[4].Header}
+                          </ColumnHeaderContent>
                         </ColumnHeader>
                         <ColumnHeader>
-                          <ColumnHeaderContent>Balance</ColumnHeaderContent>{' '}
+                          <ColumnHeaderContent>
+                            {COLUMNS[5].Header}
+                          </ColumnHeaderContent>{' '}
                         </ColumnHeader>
                       </tr>
                     </TableHeader>
                     <tbody>
                       {data[0] &&
-                        data.map(item => (
-                          <Row key={item._id}>
-                            <Column>
-                              {moment.utc(item.date).format('MM.DD.YYYY')}
-                            </Column>
-                            <Column>{item.type === false ? '-' : '+'}</Column>
-                            <Column>{item.category}</Column>
-                            <Column>
-                              <EllipsisText text={item.comment} length={15} />
-                            </Column>
-                            <Column type={String(item.type)}>
-                              {formatAmount(item.sum)}
-                            </Column>
-                            <Column>{formatAmount(item.balance)}</Column>
-                          </Row>
-                        ))}
+                        data
+                          .map(item => (
+                            <Row key={item._id}>
+                              <Column>
+                                {moment.utc(item.date).format('MM.DD.YYYY')}
+                              </Column>
+                              <Column>{item.type === false ? '-' : '+'}</Column>
+                              <Column>{item.category}</Column>
+                              <Column onClick={onCommentClick}>
+                                {!showComment ? (
+                                  <EllipsisText
+                                    text={item.comment}
+                                    length={12}
+                                  />
+                                ) : (
+                                  <EllipsisText
+                                    text={item.comment}
+                                    length={50}
+                                  />
+                                )}
+                              </Column>
+                              <Column type={String(item.type)}>
+                                {formatAmount(item.sum)}
+                              </Column>
+                              <Column>{formatAmount(item.balance)}</Column>
+                            </Row>
+                          ))
+                          .reverse()}
                     </tbody>
                   </Table>
                 )}
