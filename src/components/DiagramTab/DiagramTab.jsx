@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
   Title,
+  Container,
+  CategorySection,
   SelectWrapper,
   CustomSelect,
   BtnWrapper,
@@ -40,41 +42,45 @@ export const DiagramTab = () => {
   }, [dispatch, selectYear, selectMonth]);
 
   return (
-    <>
-      <Title>Statistics</Title>
-      <Chart />
-      <SelectWrapper>
-        <BtnWrapper>
-          <CustomSelect
-            id="mounth"
-            onChange={e => handleSelect(e, setSelectMonth)}
-          >
-            <option value={'hide'}>Month</option>
-            {months.map(({ title, value }) => (
-              <option key={title + value} value={value}>
-                {title}
-              </option>
-            ))}
-          </CustomSelect>
-          <img src={arrow} width="18px" height="9px" alt="arrow" />
-        </BtnWrapper>
+    <Container>
+      <div>
+        <Title>Statistics</Title>
+        <Chart />
+      </div>
+      <CategorySection>
+        <SelectWrapper>
+          <BtnWrapper>
+            <CustomSelect
+              id="mounth"
+              onChange={e => handleSelect(e, setSelectMonth)}
+            >
+              <option value={'hide'}>Month</option>
+              {months.map(({ title, value }) => (
+                <option key={title + value} value={value}>
+                  {title}
+                </option>
+              ))}
+            </CustomSelect>
+            <img src={arrow} width="18px" height="9px" alt="arrow" />
+          </BtnWrapper>
 
-        <BtnWrapper>
-          <CustomSelect
-            id="year"
-            onChange={e => handleSelect(e, setSelectYear)}
-          >
-            <option value="hide">Year</option>
-            {years.map((year, index) => (
-              <option key={year * index} value={year}>
-                {year}
-              </option>
-            ))}
-          </CustomSelect>
-          <img src={arrow} width="18px" height="9px" alt="arrow" />
-        </BtnWrapper>
-      </SelectWrapper>
-      {categories && <Table tableData={categories} />}
-    </>
+          <BtnWrapper>
+            <CustomSelect
+              id="year"
+              onChange={e => handleSelect(e, setSelectYear)}
+            >
+              <option value="hide">Year</option>
+              {years.map((year, index) => (
+                <option key={year * index} value={year}>
+                  {year}
+                </option>
+              ))}
+            </CustomSelect>
+            <img src={arrow} width="18px" height="9px" alt="arrow" />
+          </BtnWrapper>
+        </SelectWrapper>
+        {categories && <Table tableData={categories} />}
+      </CategorySection>
+    </Container>
   );
 };

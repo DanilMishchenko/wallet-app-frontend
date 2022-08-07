@@ -1,5 +1,17 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+`;
+
+export const CategorySection = styled.div`
+  @media screen and (min-width: 768px) {
+    margin-left: 32px;
+  }
+`;
+
 export const Title = styled.h2`
   font-family: 'Poppins';
   font-weight: 400;
