@@ -9,9 +9,67 @@ import {
   BtnWrapper,
 } from './DiagramTab.styled';
 
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getStatistics } from '../../redux/statistics/statistics-operations';
+
 export const DiagramTab = () => {
-  const data = [
+  const data = useSelector(state => state.transactions.items);
+
+  // const lastElement = arrBalance.slice(-1);
+
+  // const data = [
+  //   {
+  //     color: '#FED057',
+  //     category: 'Basic expenses',
+  //     sum: '8700.00',
+  //   },
+  //   {
+  //     color: '#FFD8D0',
+  //     category: 'Products',
+  //     sum: '3800.74',
+  //   },
+  //   {
+  //     color: '#FD9498',
+  //     category: 'Car',
+  //     sum: '1500.00',
+  //   },
+  //   {
+  //     color: '#C5BAFF',
+  //     category: 'Self care',
+  //     sum: '800.0',
+  //   },
+  //   {
+  //     color: '#6E78E8',
+  //     category: 'Child care',
+  //     sum: '2208.50',
+  //   },
+  //   {
+  //     color: '#4A56E2',
+  //     category: 'Household products',
+  //     sum: '300',
+  //   },
+  //   {
+  //     color: '#81E1FF',
+  //     category: 'Education',
+  //     sum: '3400.00',
+  //   },
+  //   {
+  //     color: '#24CCA7',
+  //     category: 'Leisure',
+  //     sum: '1230.00',
+  //   },
+  //   {
+  //     color: '#00AD84',
+  //     category: 'Other expenses',
+  //     sum: '610.00',
+  //   },
+  // ];
+
+  const color = [
     {
+      id: 1,
       color: '#FED057',
       category: 'Basic expenses',
       sum: '8700.00',
@@ -58,6 +116,22 @@ export const DiagramTab = () => {
     },
   ];
 
+  const currentMonth = new Date().getMonth() + 1;
+  const currentYear = new Date().getFullYear();
+  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
+  const [selectedYear, setSelectedYear] = useState(currentYear);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      getStatistics({
+        month: String(selectedMonth),
+        year: String(selectedYear),
+      }),
+    );
+  }, [dispatch, selectedMonth, selectedYear]);
+
   return (
     <>
       <Title>Statistics</Title>
@@ -92,7 +166,7 @@ export const DiagramTab = () => {
           <img src={arrow} width="18px" height="9px" alt="arrow" />
         </BtnWrapper>
       </SelectWrapper>
-      <Table tableData={data} />
+      <Table tableData={data} color={color} />
     </>
   );
 };

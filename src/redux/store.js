@@ -15,6 +15,7 @@ import authSlice from './auth/authSlice';
 import { transactionsSlice } from './transactions/transactions-reducers';
 import { currencySlice } from './currency/currency-reducer';
 import { balanceSlice } from './balance/balance-reducer';
+import { statisticsSlice } from './statistics/statistics-reducers';
 
 const authPersistConfig = {
   key: 'auth',
@@ -29,6 +30,7 @@ export const store = configureStore({
     currency: currencySlice.reducer,
     transactions: transactionsSlice.reducer,
     balance: balanceSlice.reducer,
+    statistics: statisticsSlice.reducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
