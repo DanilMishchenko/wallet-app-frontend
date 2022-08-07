@@ -26,6 +26,7 @@ import calendarIcon from '../../../images/calendarIcon.svg';
 import { FieldSelect } from '../ExpenceForm/ExpenseForm.styled';
 
 const schema = yup.object().shape({
+  category: yup.string().required('this field is required'),
   sum: yup.number().required('this field is required'),
   date: yup.string().required('this field is required'),
   comment: yup.string().max(50, '50 symbols maximum'),
@@ -33,7 +34,7 @@ const schema = yup.object().shape({
 
 const initialValues = {
   type: true,
-  category: 'Select a category',
+  category: '',
   sum: '',
   date: new Date(),
 };
@@ -136,6 +137,15 @@ export const IncomeForm = ({ onClose }) => {
                 touched={touched.options}
                 styles={selectStyles}
               />
+              <ErrorMessage
+                name="category"
+                component="div"
+                style={{
+                  color: '#FF6596',
+                  position: 'absolute',
+                  top: '130%',
+                }}
+              />
             </SelectContainer>
             <Wrapper>
               <InputContainer>
@@ -154,7 +164,7 @@ export const IncomeForm = ({ onClose }) => {
                   style={{
                     color: '#FF6596',
                     position: 'absolute',
-                    top: '100%',
+                    top: '130%',
                   }}
                 />
               </InputContainer>
@@ -183,7 +193,7 @@ export const IncomeForm = ({ onClose }) => {
                   style={{
                     color: '#FF6596',
                     position: 'absolute',
-                    top: '100%',
+                    top: '130%',
                   }}
                 />
               </DataContainer>
