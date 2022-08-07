@@ -64,7 +64,6 @@ export const ExpenseForm = ({ onClose }) => {
                 onChange={handleChange}
                 value={values.category}
               >
-                <option value="Select a category">Select a category</option>
                 <option value="Basic expenses">Basic expenses</option>
                 <option value="Products">Products</option>
                 <option value="Car">Car</option>
@@ -72,7 +71,7 @@ export const ExpenseForm = ({ onClose }) => {
                 <option value="Child care">Child care</option>
                 <option value="Household products">Household products</option>
                 <option value="Education">Education</option>
-                <option value="Leisure">Products</option>
+                <option value="Leisure">Leisure</option>
                 <option value="Other expenses">Other expenses</option>
               </FieldSelect>
               <ArrowSvg src={arrow} alt="arrow" />

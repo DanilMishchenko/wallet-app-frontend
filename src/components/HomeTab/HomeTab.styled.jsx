@@ -15,7 +15,6 @@ export const Tab = styled.div`
     overflow-y: auto;
     max-height: 60vh;
     margin-top: 46px;
-    margin-left: 30px;
   }
   td {
     border-bottom: 1px solid #dcdcdf;

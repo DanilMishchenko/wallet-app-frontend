@@ -36,12 +36,32 @@ import {
 
 const schema = Yup.object({
   email: Yup.string()
-    .email('no valid email')
-    .required('this field is required'),
+    .email('No valid email')
+    .min(10, 'Too short')
+    .max(30, 'Too long')
+    .required('This field is required')
+    .test('isValid', 'No valid', email => {
+      if (email === undefined) {
+        email = ' ';
+      }
+      if (
+        email[0] === '-' ||
+        email.indexOf('@') < 2 ||
+        /[а-яА-ЯЁёІі]/.test(email)
+      ) {
+        return false;
+      }
+      return true;
+    }),
   password: Yup.string()
     .min(6, '6 symbols minimum')
-    .max(12, '12 symbols maximum')
-    .required('this field is required'),
+    .max(16, '16 symbols maximum')
+    .required('This field is required')
+    .test('isValid', 'Has to contain letters and numbers', password => {
+      if (/[A-Za-zА-Яа-я]/.test(password) && /[0-9]/.test(password)) {
+        return true;
+      } else return false;
+    }),
 });
 
 const initialValues = {
@@ -94,30 +114,31 @@ export const LoginForm = () => {
                     placeholder="E-mail"
                     type="email"
                   />
-
-                  <TextInput
-                    label={<PasswordIcon />}
-                    name="password"
-                    placeholder="Password"
-                    type={showPassword ? 'password' : 'text'}
-                  />
-                  <PasswordEye onClick={toggleClick}>
-                    {showPassword ? (
-                      <img
-                        src={eyeSlash}
-                        width="21px"
-                        heigth="21px"
-                        alt="hidden"
-                      />
-                    ) : (
-                      <img
-                        src={eye}
-                        width="21px"
-                        heigth="21px"
-                        alt="visibility"
-                      />
-                    )}
-                  </PasswordEye>
+                  <div style={{ position: 'relative', marginBottom: '40px' }}>
+                    <TextInput
+                      label={<PasswordIcon />}
+                      name="password"
+                      placeholder="Password"
+                      type={showPassword ? 'password' : 'text'}
+                    />
+                    <PasswordEye onClick={toggleClick}>
+                      {showPassword ? (
+                        <img
+                          src={eyeSlash}
+                          width="21px"
+                          heigth="21px"
+                          alt="hidden"
+                        />
+                      ) : (
+                        <img
+                          src={eye}
+                          width="21px"
+                          heigth="21px"
+                          alt="visibility"
+                        />
+                      )}
+                    </PasswordEye>
+                  </div>
                 </InputForm>
                 <ButtonDiv>
                   <PrimaryButton
