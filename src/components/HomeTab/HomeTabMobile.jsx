@@ -135,9 +135,9 @@ export const HomeTabMobile = () => {
                       </ColumnHeaderMobile>
                       <ColumnMobile onClick={onCommentClick}>
                         {!showComment ? (
-                          <EllipsisText text={item.comment} length={18} />
+                          <EllipsisText text={item.comment || ''} length={18} />
                         ) : (
-                          <EllipsisText text={item.comment} length={60} />
+                          <EllipsisText text={item.comment || ''} length={60} />
                         )}
                       </ColumnMobile>
                     </RowMobile>
