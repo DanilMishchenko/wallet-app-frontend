@@ -93,7 +93,7 @@ export const HomeTab = () => {
   // }, [items]);
 
   const formatAmount = amount => {
-    return amount.toFixed(2);
+    return amount;
   };
 
   return (
