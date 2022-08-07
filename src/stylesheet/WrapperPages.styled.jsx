@@ -39,3 +39,40 @@ export const BlurContainer = styled.div`
     filter: blur(50px);
   }
 `;
+
+export const NavigationContainer = styled.div`
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    display: flex;
+  }
+
+  @media screen and (min-width: 1280px) {
+    position: relative;
+
+    ::after {
+      content: '';
+      position: absolute;
+      top: -45px;
+      left: 100%;
+      margin-left: 70px;
+
+      display: block;
+      width: 1px;
+      height: calc(100% + 90px);
+      background: var(--outline);
+      box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
+        1px 0px 0px rgba(255, 255, 255, 0.6);
+    }
+  }
+`;
+
+export const NavigationSection = styled.div`
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    margin-right: 32px;
+  }
+`;
+
+export const MainContainer = styled.div`
+  @media screen and (min-width: 1280px) {
+    margin-left: 140px;
+  }
+`;
