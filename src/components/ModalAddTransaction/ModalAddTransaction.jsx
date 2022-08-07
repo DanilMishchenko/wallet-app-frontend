@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { useEffect, useState } from 'react';
 import Switch from 'react-switch';
-
+import { useDispatch } from 'react-redux';
 import {
   Overlay,
   Container,
@@ -18,14 +18,14 @@ import minusIcon from '../../images/minusIcon.svg';
 import { IncomeForm } from './IncomeForm/IncomeForm';
 import { ExpenseForm } from './ExpenceForm/ExpenseForm';
 import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
-
+import { fetchTransactions } from '../../redux/transactions/transactions-operations';
 import closeModal from '../../images/closeModal.svg';
 
 const modalRoot = document.querySelector('#modal-transaction');
 
 export const ModalAddTransaction = ({ onModal }) => {
+  const dispatch = useDispatch();
   const [checked, setChecked] = useState(true);
-
   //Работа модалки
   useEffect(() => {
     const handleKeyDown = e => {
@@ -35,9 +35,10 @@ export const ModalAddTransaction = ({ onModal }) => {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => {
+      dispatch(fetchTransactions());
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onModal]);
+  }, [dispatch, onModal]);
 
   const handleBackdropClick = event => {
     if (event.currentTarget === event.target) {

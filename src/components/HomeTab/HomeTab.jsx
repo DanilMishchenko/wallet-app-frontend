@@ -1,16 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AiOutlineUp, AiOutlineDown } from 'react-icons/ai';
-import { useSortBy, useTable } from 'react-table';
-import { COLUMNS, VALUES_TO_FORMAT } from './table-helpers';
 import { getTransactions } from '../../redux/transactions/transactions-selectors';
 import { fetchTransactions } from '../../redux/transactions/transactions-operations';
 import moment from 'moment';
-import {
-  incrementByAmount,
-  decrementByAmount,
-} from '../../redux/balance/balance-reducer';
-import { nanoid } from 'nanoid';
+import { COLUMNS } from './table-helpers';
 import EllipsisText from 'react-ellipsis-text';
 import Media from 'react-media';
 import {
@@ -26,71 +19,24 @@ import {
 } from './HomeTab.styled';
 import { HomeTabMobile } from './HomeTabMobile';
 
-const data = [
-  {
-    amount: 899,
-    type: '-',
-    category: 'Shoping',
-    date: '2022-07-31',
-    balance: 10211,
-    comment: '00000000000000000000000000',
-    owner: '62e63a1794f183c86c330d5a',
-    createdAt: '2022-07-31T08:34:27.687Z',
-    updatedAt: '2022-07-31T08:34:27.687Z',
-    year: 2022,
-    month: 7,
-    id: '1',
-  },
-  {
-    amount: 233,
-    type: '+',
-    category: 'Car',
-    date: '2022-07-31',
-    balance: 10211,
-    comment: '6990',
-    owner: '62e63a1794f183c86c330d5a',
-    createdAt: '2022-07-31T08:34:27.687Z',
-    updatedAt: '2022-07-31T08:34:27.687Z',
-    year: 2022,
-    month: 7,
-    id: '2',
-  },
-];
-
 export const HomeTab = () => {
-  const columns = useMemo(() => COLUMNS, []);
-  const balance = useSelector(state => state.balance);
-  const [balanceShow, setBalanceShow] = useState(balance.value);
-  const items = useSelector(state => state.transactions.items);
   const data = useSelector(getTransactions);
   const dispatch = useDispatch();
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable(
-      {
-        columns,
-        data,
-      },
-      useSortBy,
-    );
+  const [showComment, setShowComment] = useState(false);
+
+  const onCommentClick = () => {
+    if (showComment === false) {
+      setShowComment(true);
+      return;
+    } else {
+      setShowComment(false);
+      return;
+    }
+  };
 
   useEffect(() => {
     dispatch(fetchTransactions());
-  }, []);
-
-  // useEffect(() => {
-  //   if (items[items.length - 1]) {
-  //     if (items[items.length - 1].type === false) {
-  //       dispatch(decrementByAmount(items[items.length - 1].sum));
-  //       setBalanceShow(balance.value);
-  //       return;
-  //     } else {
-  //       dispatch(incrementByAmount(items[items.length - 1].sum));
-  //       setBalanceShow(balance.value);
-  //       return;
-  //     }
-  //   }
-  //   return;
-  // }, [items]);
+  }, [dispatch]);
 
   const formatAmount = amount => {
     return amount;
@@ -110,156 +56,71 @@ export const HomeTab = () => {
                 {!mobile ? (
                   <HomeTabMobile />
                 ) : (
-                  <Table {...getTableProps()}>
+                  <Table>
                     <TableHeader>
-                      {headerGroups.map(headerGroup => (
-                        <tr
-                          key={() => {
-                            nanoid();
-                          }}
-                          {...headerGroup.getHeaderGroupProps()}
-                        >
-                          {headerGroup.headers.map(column => (
-                            <ColumnHeader
-                              key={() => {
-                                nanoid();
-                              }}
-                              {...column.getHeaderProps(
-                                column.getSortByToggleProps(),
-                              )}
-                            >
-                              <ColumnHeaderContent>
-                                {column.render('Header')}
-                                <span>
-                                  {column.isSorted ? (
-                                    column.isSortedDesc ? (
-                                      <AiOutlineDown />
-                                    ) : (
-                                      <AiOutlineUp />
-                                    )
-                                  ) : (
-                                    ''
-                                  )}
-                                </span>
-                              </ColumnHeaderContent>
-                            </ColumnHeader>
-                          ))}
-                        </tr>
-                      ))}
+                      <tr>
+                        <ColumnHeader>
+                          <ColumnHeaderContent>
+                            {COLUMNS[0].Header}
+                          </ColumnHeaderContent>
+                        </ColumnHeader>
+                        <ColumnHeader>
+                          <ColumnHeaderContent>
+                            {COLUMNS[1].Header}
+                          </ColumnHeaderContent>
+                        </ColumnHeader>
+                        <ColumnHeader>
+                          <ColumnHeaderContent>
+                            {COLUMNS[2].Header}
+                          </ColumnHeaderContent>
+                        </ColumnHeader>
+                        <ColumnHeader>
+                          <ColumnHeaderContent>
+                            {COLUMNS[3].Header}
+                          </ColumnHeaderContent>
+                        </ColumnHeader>
+                        <ColumnHeader>
+                          <ColumnHeaderContent>
+                            {COLUMNS[4].Header}
+                          </ColumnHeaderContent>
+                        </ColumnHeader>
+                        <ColumnHeader>
+                          <ColumnHeaderContent>
+                            {COLUMNS[5].Header}
+                          </ColumnHeaderContent>{' '}
+                        </ColumnHeader>
+                      </tr>
                     </TableHeader>
-
-                    <tbody {...getTableBodyProps()}>
-                      {rows.map(row => {
-                        prepareRow(row);
-                        return (
-                          <Row
-                            key={() => {
-                              nanoid();
-                            }}
-                            {...row.getRowProps()}
-                          >
-                            {row.cells.map(cell => {
-                              if (
-                                cell.column.id === 'date' &&
-                                typeof cell.value !== 'boolean'
-                              ) {
-                                return (
-                                  <Column
-                                    type={String(row.values.type)}
-                                    key={() => {
-                                      nanoid();
-                                    }}
-                                    {...cell.getCellProps()}
-                                  >
-                                    {moment
-                                      .utc(cell.value)
-                                      .format('MM.DD.YYYY')}
-                                  </Column>
-                                );
-                              }
-                              if (
-                                cell.column.id === VALUES_TO_FORMAT.sum &&
-                                typeof cell.value !== 'boolean'
-                              ) {
-                                return (
-                                  <Column
-                                    type={String(row.values.type)}
-                                    key={() => {
-                                      nanoid();
-                                    }}
-                                    {...cell.getCellProps()}
-                                  >
-                                    {formatAmount(cell.value)}
-                                  </Column>
-                                );
-                              }
-                              if (typeof cell.value === 'boolean') {
-                                return (
-                                  <Column
-                                    type={String(row.values.type)}
-                                    key={() => {
-                                      nanoid();
-                                    }}
-                                    {...cell.getCellProps()}
-                                  >
-                                    {cell.value === false ? '-' : '+'}
-                                  </Column>
-                                );
-                              }
-                              if (
-                                cell.value &&
-                                typeof cell.value !== 'boolean'
-                              ) {
-                                return (
-                                  <Column
-                                    type={String(row.values.type)}
-                                    key={() => {
-                                      nanoid();
-                                    }}
-                                    {...cell.getCellProps()}
-                                  >
-                                    <EllipsisText
-                                      text={String(cell.value)}
-                                      length={12}
-                                    />
-                                  </Column>
-                                );
-                              }
-                              if (!cell.value && cell.column.id !== 'balance') {
-                                return (
-                                  <Column
-                                    type={String(row.values.type)}
-                                    key={() => {
-                                      nanoid();
-                                    }}
-                                    {...cell.getCellProps()}
-                                  >
-                                    {' '}
-                                  </Column>
-                                );
-                              }
-                              if (cell.column.id === 'balance' && !cell.value) {
-                                return (
-                                  <Column
-                                    type={String(row.values.type)}
-                                    key={() => {
-                                      nanoid();
-                                    }}
-                                    {...cell.getCellProps()}
-                                  >
-                                    {/* {items[items.length - 1].type === false
-                                      ? balance.value -
-                                        items[items.length - 1].sum
-                                      : balance.value +
-                                        items[items.length - 1].sum} */}
-                                    {formatAmount(balanceShow)}
-                                  </Column>
-                                );
-                              }
-                            })}
-                          </Row>
-                        );
-                      })}
+                    <tbody>
+                      {data[0] &&
+                        data
+                          .map(item => (
+                            <Row key={item._id}>
+                              <Column>
+                                {moment.utc(item.date).format('MM.DD.YYYY')}
+                              </Column>
+                              <Column>{item.type === false ? '-' : '+'}</Column>
+                              <Column>{item.category}</Column>
+                              <Column onClick={onCommentClick}>
+                                {!showComment ? (
+                                  <EllipsisText
+                                    text={item.comment}
+                                    length={12}
+                                  />
+                                ) : (
+                                  <EllipsisText
+                                    text={item.comment}
+                                    length={50}
+                                  />
+                                )}
+                              </Column>
+                              <Column type={String(item.type)}>
+                                {formatAmount(item.sum)}
+                              </Column>
+                              <Column>{formatAmount(item.balance)}</Column>
+                            </Row>
+                          ))
+                          .reverse()}
                     </tbody>
                   </Table>
                 )}

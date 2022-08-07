@@ -10,10 +10,10 @@ export const Tab = styled.div`
   @media screen and (min-width: 768px) {
     margin-top: 76px;
   }
-  
+
   @media screen and (min-width: 1280px) {
     overflow-y: auto;
-    max-height: 312px;
+    max-height: 60vh;
     margin-top: 46px;
     margin-left: 30px;
   }
@@ -120,14 +120,15 @@ export const ColumnHeaderMobile = styled.td`
 export const Column = styled.td`
   font-size: 16px;
   font-weight: 400;
-  line-height: 54px;
+  line-height: 44px;
   word-wrap: break-word;
   color: #000;
   :nth-child(5) {
-    ${props =>
-      props.type === TRANSACTION_TYPES.add
-        ? `color : #24cca7;`
-        : `color:#ff6596;`}
+    ${props => {
+      return props.type === TRANSACTION_TYPES.add
+        ? `color: #24cca7;`
+        : `color: #ff6596;`;
+    }}
   }
 `;
 
