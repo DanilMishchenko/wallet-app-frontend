@@ -1,29 +1,30 @@
-import { Chart } from '../Chart/Chart';
-import { Table } from '../Table/Table';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import arrow from '../../images/arrow.svg';
 import {
   Title,
   SelectWrapper,
   CustomSelect,
   BtnWrapper,
 } from './DiagramTab.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { fetchTransactionsDetails } from '../../redux/transactions/transactions-operations';
 import { getCategories } from '../../redux/transactions/transactions-selectors';
-import { months, years, currentYear } from './constants';
-import { useEffect } from 'react';
-import {
-  fetchTransactionsByCategory,
-  fetchTransactionsDetails,
-} from '../../redux/transactions/transactions-operations';
+import { Chart } from '../Chart/Chart';
+import { Table } from '../Table/Table';
+import { months, years, currentYear, currentMonth } from './constants';
+import arrow from '../../images/arrow.svg';
 
 export const DiagramTab = () => {
+  const [selectYear, setSelectYear] = useState(currentYear.toString());
+  const [selectMonth, setSelectMonth] = useState(currentMonth.toString());
   const categories = useSelector(getCategories);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTransactionsDetails({ year: currentYear.toString() }));
-  }, [dispatch]);
+    dispatch(
+      fetchTransactionsDetails({ year: selectYear, month: selectMonth }),
+    );
+  }, [dispatch, selectYear, selectMonth]);
 
   return (
     <>
@@ -31,11 +32,14 @@ export const DiagramTab = () => {
       <Chart />
       <SelectWrapper>
         <BtnWrapper>
-          <CustomSelect id="mounth">
+          <CustomSelect
+            id="mounth"
+            onChange={e => setSelectMonth(e.target.value)}
+          >
             <option value="hide">Month</option>
-            {months.map((month, index) => (
-              <option key={month + index} value={month}>
-                {month}
+            {months.map(({ title, value }) => (
+              <option key={title + value} value={value}>
+                {title}
               </option>
             ))}
           </CustomSelect>
@@ -43,7 +47,7 @@ export const DiagramTab = () => {
         </BtnWrapper>
 
         <BtnWrapper>
-          <CustomSelect id="year">
+          <CustomSelect id="year" onChange={e => setSelectYear(e.target.value)}>
             <option value="hide">Year</option>
             {years.map((year, index) => (
               <option key={year * index} value={year}>
