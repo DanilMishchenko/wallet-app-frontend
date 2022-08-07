@@ -1,5 +1,6 @@
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import Select from 'react-select';
 import { toast } from 'react-toastify';
 //import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -11,8 +12,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { addTransaction } from '../../../redux/transactions/transactions-operations';
 import {
   SelectContainer,
-  ArrowSvg,
-  FieldSelect,
+  //ArrowSvg,
+  //FieldSelect,
   InputContainer,
   Wrapper,
   InputSum,
@@ -20,8 +21,9 @@ import {
   TextAreaComment,
   CommentContainer,
 } from './IncomeForm.styled';
-import arrow from '../../../images/arrow.svg';
+//import arrow from '../../../images/arrow.svg';
 import calendarIcon from '../../../images/calendarIcon.svg';
+import { FieldSelect } from '../ExpenceForm/ExpenseForm.styled';
 
 const schema = yup.object().shape({
   sum: yup.number().required('this field is required'),
@@ -31,10 +33,15 @@ const schema = yup.object().shape({
 
 const initialValues = {
   type: true,
-  category: 'Regular Income',
+  category: 'Select a category',
   sum: '',
   date: new Date(),
 };
+
+const options = [
+  { value: 'Regular Income', label: 'Regular Income' },
+  { value: 'Irregular Income', label: 'Irregular Income' },
+];
 
 export const IncomeForm = ({ onClose }) => {
   //const [startDate, setStartDate] = useState(new Date());
@@ -46,6 +53,49 @@ export const IncomeForm = ({ onClose }) => {
     onClose();
   };
 
+  const selectStyles = {
+    control: styles => ({
+      ...styles,
+      fontFamily: 'Circe',
+      fontWeight: '400',
+      fontSize: '18px',
+      lineHeight: '1.5',
+      color: '#BDBDBD',
+      outline: 'none',
+      border: 'none',
+      borderBottom: '1px solid #E0E0E0',
+    }),
+    options: (styles, state) => ({
+      ...styles,
+      fontFamily: 'Circe',
+      fontStyle: 'normal',
+      fontWeight: '400',
+      fontSize: '18px',
+      lineHeight: '1.5',
+      height: '44px',
+
+      color: state.isSelected ? '#FF6596' : 'black',
+
+      '&:hover': {
+        backgroundColor: 'white',
+        color: '#FF6596',
+      },
+    }),
+    menu: (base, state) => ({
+      ...base,
+      padding: '10px',
+      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+      boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
+      //backdropFilter:' blur(50px)',
+      borderRadius: '20px',
+    }),
+
+    menuList: (base, state) => ({
+      ...base,
+      cursor: 'pointer',
+    }),
+  };
+
   return (
     <>
       <Formik
@@ -53,9 +103,17 @@ export const IncomeForm = ({ onClose }) => {
         validationSchema={schema}
         onSubmit={handleTransactionSubmit}
       >
-        {({ handleSubmit, values, handleChange, setFieldValue, dirty }) => (
+        {({
+          handleSubmit,
+          values,
+          handleChange,
+          setFieldValue,
+          setFieldTouched,
+          touched,
+          dirty,
+        }) => (
           <Form onSubmit={handleSubmit}>
-            <SelectContainer>
+            {/* <SelectContainer>
               <FieldSelect
                 as="select"
                 name="category"
@@ -66,6 +124,18 @@ export const IncomeForm = ({ onClose }) => {
                 <option value="Irregular Income">Irregular Income</option>
               </FieldSelect>
               <ArrowSvg src={arrow} alt="arrow" />
+            </SelectContainer> */}
+            <SelectContainer>
+              <Select
+                placeholder="Select a category"
+                name="category"
+                options={options}
+                onChange={category => setFieldValue('category', category.value)}
+                onBlur={setFieldTouched}
+                value={values.options}
+                touched={touched.options}
+                styles={selectStyles}
+              />
             </SelectContainer>
             <Wrapper>
               <InputContainer>
