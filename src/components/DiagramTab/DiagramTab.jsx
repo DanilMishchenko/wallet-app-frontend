@@ -10,7 +10,11 @@ import {
   BtnWrapper,
 } from './DiagramTab.styled';
 import { fetchTransactionsDetails } from '../../redux/transactions/transactions-operations';
-import { getCategories } from '../../redux/transactions/transactions-selectors';
+import {
+  getCategories,
+  getSumExpenses,
+  getSumIncome,
+} from '../../redux/transactions/transactions-selectors';
 import { Chart } from '../Chart/Chart';
 import { Table } from '../Table/Table';
 import { months, years, currentYear, defaultCategories } from './constants';
@@ -20,6 +24,8 @@ export const DiagramTab = () => {
   const [selectYear, setSelectYear] = useState(currentYear.toString());
   const [selectMonth, setSelectMonth] = useState('hide');
   const categories = useSelector(getCategories);
+  const summaryExpenses = useSelector(getSumExpenses);
+  const summaryIncome = useSelector(getSumIncome);
 
   const dispatch = useDispatch();
 
@@ -48,6 +54,7 @@ export const DiagramTab = () => {
         <Title>Statistics</Title>
         <Chart
           categories={categories.length === 0 ? defaultCategories : categories}
+          summaryExpenses={summaryExpenses}
         />
       </div>
       <CategorySection>
@@ -82,7 +89,13 @@ export const DiagramTab = () => {
             <img src={arrow} width="18px" height="9px" alt="arrow" />
           </BtnWrapper>
         </SelectWrapper>
-        {categories && <Table tableData={categories} />}
+        {categories && (
+          <Table
+            tableData={categories}
+            summaryExpenses={summaryExpenses}
+            summaryIncome={summaryIncome}
+          />
+        )}
       </CategorySection>
     </Container>
   );

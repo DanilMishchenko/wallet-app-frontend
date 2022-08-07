@@ -9,6 +9,8 @@ import {
 const initialState = {
   items: [],
   category: [],
+  summaryIncome: '',
+  summaryExpenses: '',
   isLoading: false,
   error: null,
 };
@@ -55,7 +57,12 @@ export const transactionsSlice = createSlice({
     },
 
     [fetchTransactionsDetails.fulfilled](state, { payload }) {
+      const summary = payload.data.result.filter(item => !item.category);
       state.category = payload.data.result;
+      state.summaryExpenses = summary.find(
+        ({ type }) => type === false,
+      )?.totalSum;
+      state.summaryIncome = summary.find(({ type }) => type === true)?.totalSum;
       state.isLoading = false;
     },
     [fetchTransactionsDetails.pending](state) {

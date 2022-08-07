@@ -8,7 +8,7 @@ import { getColor } from '../../stylesheet/chartColor';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const Chart = ({ categories }) => {
+export const Chart = ({ categories, summaryExpenses }) => {
   const values = categories.map(category => category.totalSum);
   const colorMap = categories.map(({ category }) => getColor(category));
 
@@ -39,10 +39,14 @@ export const Chart = ({ categories }) => {
     <Container>
       <Doughnut data={data} options={options} />
       <Text>
-        {'\u20B4'} {0}
+        {'\u20B4'} {summaryExpenses}
       </Text>
     </Container>
   );
+};
+
+Chart.defaultProps = {
+  summaryExpenses: '0',
 };
 
 Chart.propTypes = {
@@ -52,4 +56,5 @@ Chart.propTypes = {
       totalSum: PropTypes.number,
     }),
   ).isRequired,
+  summaryExpenses: PropTypes.string,
 };
