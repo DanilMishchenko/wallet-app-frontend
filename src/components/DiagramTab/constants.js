@@ -19,3 +19,7 @@ export const months = [
 ];
 
 export const years = [currentYear, previousYear, prevPreviousYear];
+
+export const defaultCategories = [
+  { category: 'Irregular Income', totalSum: 1000 },
+];

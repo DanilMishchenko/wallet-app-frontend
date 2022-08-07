@@ -13,7 +13,7 @@ import { fetchTransactionsDetails } from '../../redux/transactions/transactions-
 import { getCategories } from '../../redux/transactions/transactions-selectors';
 import { Chart } from '../Chart/Chart';
 import { Table } from '../Table/Table';
-import { months, years, currentYear } from './constants';
+import { months, years, currentYear, defaultCategories } from './constants';
 import arrow from '../../images/arrow.svg';
 
 export const DiagramTab = () => {
@@ -46,7 +46,9 @@ export const DiagramTab = () => {
     <Container>
       <div>
         <Title>Statistics</Title>
-        <Chart categories={categories} />
+        <Chart
+          categories={categories.length === 0 ? defaultCategories : categories}
+        />
       </div>
       <CategorySection>
         <SelectWrapper>

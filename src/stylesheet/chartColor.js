@@ -12,7 +12,7 @@ export const chartColor = [
   { color: '#00AD84', category: 'Other expenses' },
 ];
 
-const defaultColor = '#24cca7';
+export const defaultColor = '#24cca7';
 
 export const getColor = queryCategory =>
   chartColor.find(({ category }) => queryCategory === category)?.color ||
