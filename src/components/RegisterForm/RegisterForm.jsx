@@ -68,22 +68,21 @@ export const RegisterForm = () => {
     backgroundColor: '#E5F1EF',
   });
 
-  const ifEmailIsValid = string => {
-    // if (string[0]=== '-'){
-    throw Error('no valid email');
-    // }
-  };
-  Yup.addMethod(Yup.string, 'valid', ifEmailIsValid);
   const validationForm = Yup.object({
     email: Yup.string()
       .email('No valid email')
-      .min(10)
-      .max(30)
+      .min(10, 'Too short')
+      .max(30, 'Too long')
       .required('This field is required')
       .test('isValid', 'No valid', email => {
-        const dog = email.split('@');
-
-        if (email[0] === '-' || dog[0].length < 2) {
+        if (email === undefined) {
+          email = ' ';
+        }
+        if (
+          email[0] === '-' ||
+          email.indexOf('@') < 2 ||
+          /[а-яА-ЯЁёІі]/.test(email)
+        ) {
           return false;
         }
         return true;
@@ -92,7 +91,12 @@ export const RegisterForm = () => {
     password: Yup.string()
       .min(6, '6 symbols minimum')
       .max(16, '16 symbols maximum')
-      .required('This field is required'),
+      .required('This field is required')
+      .test('isValid', 'Has to contain letters and numbers', password => {
+        if (/[A-Za-zА-Яа-я]/.test(password) && /[0-9]/.test(password)) {
+          return true;
+        } else return false;
+      }),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password')], 'Passwords do not match')
       .required('This field is required'),
@@ -117,7 +121,7 @@ export const RegisterForm = () => {
           </Wrapper>
           <Formik
             initialValues={{
-              email: ' ',
+              email: '',
               password: '',
               confirmPassword: '',
               name: '',
