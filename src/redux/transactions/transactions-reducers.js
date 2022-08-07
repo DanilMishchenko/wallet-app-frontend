@@ -55,7 +55,7 @@ export const transactionsSlice = createSlice({
     },
 
     [fetchTransactionsDetails.fulfilled](state, { payload }) {
-      state.items = payload.data.result;
+      state.category = payload.data.result;
       state.isLoading = false;
     },
     [fetchTransactionsDetails.pending](state) {
