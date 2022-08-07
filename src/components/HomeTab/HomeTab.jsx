@@ -141,12 +141,12 @@ export const HomeTab = () => {
                                 <Column onClick={onCommentClick}>
                                   {!showComment ? (
                                     <EllipsisText
-                                      text={item.comment}
+                                      text={item.comment || ''}
                                       length={12}
                                     />
                                   ) : (
                                     <EllipsisText
-                                      text={item.comment}
+                                      text={item.comment || ''}
                                       length={50}
                                     />
                                   )}
