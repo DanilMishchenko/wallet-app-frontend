@@ -53,7 +53,7 @@ export const Wrapper = styled.div`
 
 export const InputSum = styled.input`
   display: block;
-  text-align: center;
+  padding-left: 20px;
   width: 100%;
   height: 34px;
   font-size: 18px;
@@ -65,6 +65,10 @@ export const InputSum = styled.input`
 
   ::placeholder {
     color: #bdbdbd;
+  }
+  @media screen and (min-width: 768px) {
+    padding-left: 0px;
+    text-align: center;
   }
 `;
 

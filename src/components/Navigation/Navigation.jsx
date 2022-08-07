@@ -22,7 +22,6 @@ export const Navigation = () => {
         <StyledLink
           key={icon + index}
           to={link}
-          className={isActive => (isActive ? 'activeLink' : '')}
           onClick={() => dispatch(setClose())}
         >
           <img src={icon} alt="home link" />
@@ -30,11 +29,7 @@ export const Navigation = () => {
         </StyledLink>
       ))}
       {isMobile && (
-        <StyledLink
-          to={'#'}
-          className={isActive => (isActive ? 'activeLink' : '')}
-          onClick={() => dispatch(setOpen())}
-        >
+        <StyledLink to={'/#'} onClick={() => dispatch(setOpen())}>
           <img src={currency} alt="currency link" />
         </StyledLink>
       )}

@@ -14,12 +14,19 @@ export const Wrapper = styled.div`
   }
 `;
 
-const Link = props => <NavLink {...props}>{props.children}</NavLink>;
+export const StyledLink = props => <Styled {...props}>{props.children}</Styled>;
 
-export const StyledLink = styled(Link)`
+const Styled = styled(NavLink)`
   display: flex;
   &:not(:first-child) {
     margin-left: 40px;
+  }
+
+  &.active {
+    font-weight: 700;
+    & img {
+      box-shadow: 0px 6px 15px rgba(118, 138, 225, 0.5);
+    }
   }
 
   img {
@@ -48,13 +55,6 @@ export const StyledLink = styled(Link)`
     img {
       width: 18px;
       height: 18px;
-    }
-  }
-
-  .activeLink {
-    font-weight: 700;
-    img {
-      box-shadow: 0px 6px 15px rgba(118, 138, 225, 0.5);
     }
   }
 `;

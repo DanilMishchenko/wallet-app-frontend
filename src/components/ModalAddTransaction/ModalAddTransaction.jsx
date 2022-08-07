@@ -109,7 +109,11 @@ export const ModalAddTransaction = ({ onModal }) => {
           <ExpenseTrigger checked={checked}>Expense</ExpenseTrigger>
         </Container>
         <FormContainer>
-          {!checked ? <IncomeForm /> : <ExpenseForm />}
+          {!checked ? (
+            <IncomeForm onClose={onModal} />
+          ) : (
+            <ExpenseForm onClose={onModal} />
+          )}
         </FormContainer>
         <SecondaryButton textBtn="cancel" onClick={() => onModal()} />
       </Wrapper>
