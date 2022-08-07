@@ -3,11 +3,10 @@ import styled from 'styled-components';
 export const Label = styled.label`
   display: flex;
   align-items: center;
-  padding-left: 25px;
+  padding-left: 12.5px;
   border-bottom: 1px solid #e0e0e0;
   color: #bdbdbd;
-  /* margin-bottom: 25px; */
-  margin-top: 40px;
+  margin-bottom: 40px;
 `;
 
 export const Input = styled.input`
@@ -24,7 +23,7 @@ export const Input = styled.input`
     color: var(--secondary);
   }
 
-  @media screen and (min-width: $TabletWidth) {
-    width: 409px;
+  @media screen and (min-width: 768px) {
+    width: 410px;
   }
 `;

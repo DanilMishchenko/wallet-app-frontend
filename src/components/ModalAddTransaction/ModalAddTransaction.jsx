@@ -24,8 +24,8 @@ import closeModal from '../../images/closeModal.svg';
 const modalRoot = document.querySelector('#modal-transaction');
 
 export const ModalAddTransaction = ({ onModal }) => {
-  const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
+  const [checked, setChecked] = useState(true);
   //Работа модалки
   useEffect(() => {
     const handleKeyDown = e => {
@@ -110,7 +110,11 @@ export const ModalAddTransaction = ({ onModal }) => {
           <ExpenseTrigger checked={checked}>Expense</ExpenseTrigger>
         </Container>
         <FormContainer>
-          {!checked ? <IncomeForm /> : <ExpenseForm />}
+          {!checked ? (
+            <IncomeForm onClose={onModal} />
+          ) : (
+            <ExpenseForm onClose={onModal} />
+          )}
         </FormContainer>
         <SecondaryButton textBtn="cancel" onClick={() => onModal()} />
       </Wrapper>

@@ -1,4 +1,6 @@
-import { Formik, Form } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
+import * as yup from 'yup';
+import { toast } from 'react-toastify';
 //import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
@@ -14,7 +16,6 @@ import {
   InputContainer,
   Wrapper,
   InputSum,
-  InputDate,
   DataContainer,
   TextAreaComment,
   CommentContainer,
@@ -22,28 +23,39 @@ import {
 import arrow from '../../../images/arrow.svg';
 import calendarIcon from '../../../images/calendarIcon.svg';
 
+const schema = yup.object().shape({
+  sum: yup.number().required('this field is required'),
+  date: yup.string().required('this field is required'),
+  comment: yup.string().max(50, '50 symbols maximum'),
+});
+
 const initialValues = {
   type: true,
   category: 'Regular Income',
   sum: '',
   date: new Date(),
-  comment: '',
 };
 
-export const IncomeForm = () => {
+export const IncomeForm = ({ onClose }) => {
   //const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
+
+  const handleTransactionSubmit = values => {
+    dispatch(addTransaction(values));
+    toast.success(`transaction amount ${values.sum} was saved`);
+    onClose();
+
+    console.log(values);
+  };
 
   return (
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={({ type, category, sum, date, comment }) => {
-          dispatch(addTransaction({ type, category, sum, date, comment }));
-          console.log(type, category, sum, date, comment);
-        }}
+        validationSchema={schema}
+        onSubmit={handleTransactionSubmit}
       >
-        {({ handleSubmit, values, handleChange, setFieldValue }) => (
+        {({ handleSubmit, values, handleChange, setFieldValue, dirty }) => (
           <Form onSubmit={handleSubmit}>
             <SelectContainer>
               <FieldSelect
@@ -67,18 +79,18 @@ export const IncomeForm = () => {
                   placeholder="0.00"
                   onChange={handleChange}
                   value={values.sum}
-                  required
+                />
+                <ErrorMessage
+                  name="sum"
+                  component="div"
+                  style={{
+                    color: '#FF6596',
+                    position: 'absolute',
+                    top: '100%',
+                  }}
                 />
               </InputContainer>
               <DataContainer>
-                {/*
-              <InputSum
-                type="date"
-                name="date"
-                onChange={handleChange}
-                required
-              /> 
-              */}
                 <DatePicker
                   selected={values.date}
                   name="date"
@@ -86,7 +98,6 @@ export const IncomeForm = () => {
                   dateFormat="dd MM.yyyy"
                   maxDate={new Date()}
                   customInput={<InputSum />}
-                  required
                 />
                 <img
                   style={{
@@ -98,17 +109,32 @@ export const IncomeForm = () => {
                   src={calendarIcon}
                   alt="calendarIcon"
                 />
+                <ErrorMessage
+                  name="date"
+                  component="div"
+                  style={{
+                    color: '#FF6596',
+                    position: 'absolute',
+                    top: '100%',
+                  }}
+                />
               </DataContainer>
             </Wrapper>
             <CommentContainer>
               <TextAreaComment
+                rows={2}
+                maxLength="51"
                 name="comment"
                 placeholder="Comment"
                 onChange={handleChange}
               ></TextAreaComment>
+              <ErrorMessage
+                name="comment"
+                component="div"
+                style={{ color: '#FF6596', position: 'absolute', top: '100%' }}
+              />
             </CommentContainer>
-
-            <PrimaryButton textBtn="add" />
+            <PrimaryButton textBtn="add" disabled={!dirty} type="submit" />
           </Form>
         )}
       </Formik>

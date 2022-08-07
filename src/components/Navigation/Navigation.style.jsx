@@ -14,12 +14,19 @@ export const Wrapper = styled.div`
   }
 `;
 
-const Link = props => <NavLink {...props}>{props.children}</NavLink>;
+export const StyledLink = props => <Styled {...props}>{props.children}</Styled>;
 
-export const StyledLink = styled(Link)`
+const Styled = styled(NavLink)`
   display: flex;
   &:not(:first-child) {
     margin-left: 40px;
+  }
+
+  &.active {
+    font-weight: 700;
+    & img {
+      box-shadow: 0px 6px 15px rgba(118, 138, 225, 0.5);
+    }
   }
 
   img {
@@ -50,18 +57,6 @@ export const StyledLink = styled(Link)`
       height: 18px;
     }
   }
-
-  .activeLink {
-    font-weight: 700;
-    img {
-      box-shadow: 0px 6px 15px rgba(118, 138, 225, 0.5);
-    }
-  }
-`;
-
-export const CurrencyLink = styled(StyledLink)`
-  @media screen and (min-width: 767px) {
-    display: none;
 `;
 
 export const NavText = styled.div`
