@@ -55,8 +55,8 @@ export const IncomeForm = ({ onClose }) => {
 
   const handleTransactionSubmit = async values => {
     dispatch(addTransaction(values));
-    dispatch(fetchTransactions());
-    dispatch(fetchBalance());
+    await dispatch(fetchTransactions());
+    await dispatch(fetchBalance());
     onClose();
     toast.success(`transaction amount ${values.sum} was saved`);
   };
