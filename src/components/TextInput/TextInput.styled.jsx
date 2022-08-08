@@ -7,6 +7,12 @@ export const Label = styled.label`
   border-bottom: 1px solid #e0e0e0;
   color: #bdbdbd;
   margin-top: 40px;
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    border-bottom: 1px solid var(--green);
+  }
 `;
 
 export const Input = styled.input`
@@ -21,6 +27,11 @@ export const Input = styled.input`
   line-height: 27px;
   &::placeholder {
     color: var(--secondary);
+  }
+  &:hover,
+  &:focus,
+  &:focus-within {
+    background-color: invert(0) sepia(0);
   }
 
   @media screen and (min-width: 768px) {

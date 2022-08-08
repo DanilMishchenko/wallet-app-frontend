@@ -22,7 +22,7 @@ export const Button = styled.button`
   }
 
   :disabled {
-    background-color: #21b897;
+    background-color: #98b8b1;
     box-shadow: none;
   }
 
