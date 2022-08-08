@@ -5,7 +5,7 @@ export const ButtonAddTransactions = ({ onModal }) => {
   return (
     <>
       <Container onClick={onModal}>
-        <img src={plus} alt="girl" />
+        <img src={plus} alt="plus" />
       </Container>
     </>
   );
