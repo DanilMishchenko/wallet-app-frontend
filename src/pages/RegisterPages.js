@@ -7,7 +7,7 @@ export default function RegisterPages() {
   return (
     <>
       <ToastContainer />
-      <RegisterForm />;
+      <RegisterForm />
     </>
   );
 }

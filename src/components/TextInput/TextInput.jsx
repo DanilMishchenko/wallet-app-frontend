@@ -6,7 +6,7 @@ export const TextInput = ({ label, ...props }) => {
   const [field] = useField(props);
   return (
     <>
-      <Label htmlFor={field.name} className="label">
+      <Label htmlFor={field.name}>
         {label}
         <Input {...field} {...props} autoComplete="off" />
       </Label>
