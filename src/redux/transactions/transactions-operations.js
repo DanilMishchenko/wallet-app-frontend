@@ -36,7 +36,6 @@ export const fetchTransactionsByCategory = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/transactions/categories`);
-      console.log(data);
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -48,8 +47,7 @@ export const fetchTransactionsDetails = createAsyncThunk(
   'transactions/fetchTransactionsDetails',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(`/transactions/details`, credentials);
-      console.log(data);
+      const { data } = await axios.post(`/transactions/details?`, credentials);
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);

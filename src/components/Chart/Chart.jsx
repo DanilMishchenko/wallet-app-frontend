@@ -1,27 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
 import { Container, Text } from './Chart.styled';
+import { getColor } from '../../stylesheet/chartColor';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const Chart = () => {
+export const Chart = ({ categories, summaryExpenses }) => {
+  const values = categories.map(category => category.totalSum);
+  const colorMap = categories.map(({ category }) => getColor(category));
+
   const data = {
     datasets: [
       {
-        data: [8700, 3800.74, 1500, 800, 2208.5, 300, 3400, 1230, 610],
-        backgroundColor: [
-          '#FED057',
-          '#FFD8D0',
-          '#FD9498',
-          '#C5BAFF',
-          '#6E78E8',
-          '#4A56E2',
-          '#81E1FF',
-          '#24CCA7',
-          '#00AD84',
-        ],
+        data: values,
+        backgroundColor: colorMap,
         borderWidth: 0,
         cutout: '70%',
         hoverOffset: 4,
@@ -44,8 +39,22 @@ export const Chart = () => {
     <Container>
       <Doughnut data={data} options={options} />
       <Text>
-        {'\u20B4'} {0}
+        {'\u20B4'} {summaryExpenses}
       </Text>
     </Container>
   );
+};
+
+Chart.defaultProps = {
+  summaryExpenses: '0',
+};
+
+Chart.propTypes = {
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      category: PropTypes.string,
+      totalSum: PropTypes.number,
+    }),
+  ).isRequired,
+  summaryExpenses: PropTypes.string,
 };

@@ -1,98 +1,102 @@
-import { Chart } from '../Chart/Chart';
-import { Table } from '../Table/Table';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import arrow from '../../images/arrow.svg';
 import {
   Title,
+  Container,
+  CategorySection,
   SelectWrapper,
   CustomSelect,
   BtnWrapper,
 } from './DiagramTab.styled';
+import { fetchTransactionsDetails } from '../../redux/transactions/transactions-operations';
+import {
+  getCategories,
+  getSumExpenses,
+  getSumIncome,
+} from '../../redux/transactions/transactions-selectors';
+import { Chart } from '../Chart/Chart';
+import { Table } from '../Table/Table';
+import { months, years, currentYear, defaultCategories } from './constants';
+import arrow from '../../images/arrow.svg';
 
 export const DiagramTab = () => {
-  const data = [
-    {
-      color: '#FED057',
-      category: 'Basic expenses',
-      sum: '8700.00',
-    },
-    {
-      color: '#FFD8D0',
-      category: 'Products',
-      sum: '3800.74',
-    },
-    {
-      color: '#FD9498',
-      category: 'Car',
-      sum: '1500.00',
-    },
-    {
-      color: '#C5BAFF',
-      category: 'Self care',
-      sum: '800.0',
-    },
-    {
-      color: '#6E78E8',
-      category: 'Child care',
-      sum: '2208.50',
-    },
-    {
-      color: '#4A56E2',
-      category: 'Household products',
-      sum: '300',
-    },
-    {
-      color: '#81E1FF',
-      category: 'Education',
-      sum: '3400.00',
-    },
-    {
-      color: '#24CCA7',
-      category: 'Leisure',
-      sum: '1230.00',
-    },
-    {
-      color: '#00AD84',
-      category: 'Other expenses',
-      sum: '610.00',
-    },
-  ];
+  const [selectYear, setSelectYear] = useState(currentYear.toString());
+  const [selectMonth, setSelectMonth] = useState('hide');
+  const categories = useSelector(getCategories);
+  const summaryExpenses = useSelector(getSumExpenses);
+  const summaryIncome = useSelector(getSumIncome);
+
+  const dispatch = useDispatch();
+
+  const handleSelect = ({ target }, action) => action(target.value);
+
+  const getTransactionsDetails = data =>
+    dispatch(fetchTransactionsDetails(data));
+
+  const requestData = () => {
+    if (selectYear === 'hide') {
+      return { year: currentYear.toString() };
+    } else if (selectMonth === 'hide') {
+      return { year: selectYear };
+    } else {
+      return { year: selectYear, month: selectMonth };
+    }
+  };
+
+  useEffect(() => {
+    getTransactionsDetails(requestData());
+  }, [dispatch, selectYear, selectMonth]);
 
   return (
-    <>
-      <Title>Statistics</Title>
-      <Chart />
-      <SelectWrapper>
-        <BtnWrapper>
-          <CustomSelect id="mounth">
-            <option value="hide">Month</option>
-            <option value="january">January</option>
-            <option value="february">February</option>
-            <option value="march">March</option>
-            <option value="april">April</option>
-            <option value="may">May</option>
-            <option value="june">June</option>
-            <option value="july">July</option>
-            <option value="august">August</option>
-            <option value="september">September</option>
-            <option value="october">October</option>
-            <option value="november">November</option>
-            <option value="december">December</option>
-          </CustomSelect>
-          <img src={arrow} width="18px" height="9px" alt="arrow" />
-        </BtnWrapper>
+    <Container>
+      <div>
+        <Title>Statistics</Title>
+        <Chart
+          categories={categories.length === 0 ? defaultCategories : categories}
+          summaryExpenses={summaryExpenses}
+        />
+      </div>
+      <CategorySection>
+        <SelectWrapper>
+          <BtnWrapper>
+            <CustomSelect
+              id="mounth"
+              onChange={e => handleSelect(e, setSelectMonth)}
+            >
+              <option value={'hide'}>Month</option>
+              {months.map(({ title, value }) => (
+                <option key={title + value} value={value}>
+                  {title}
+                </option>
+              ))}
+            </CustomSelect>
+            <img src={arrow} width="18px" height="9px" alt="arrow" />
+          </BtnWrapper>
 
-        <BtnWrapper>
-          <CustomSelect id="year">
-            <option value="hide">Year</option>
-            <option value="2022">2022</option>
-            <option value="2021">2021</option>
-            <option value="2020">2020</option>
-          </CustomSelect>
-          <img src={arrow} width="18px" height="9px" alt="arrow" />
-        </BtnWrapper>
-      </SelectWrapper>
-      <Table tableData={data} />
-    </>
+          <BtnWrapper>
+            <CustomSelect
+              id="year"
+              onChange={e => handleSelect(e, setSelectYear)}
+            >
+              <option value="hide">Year</option>
+              {years.map((year, index) => (
+                <option key={year * index} value={year}>
+                  {year}
+                </option>
+              ))}
+            </CustomSelect>
+            <img src={arrow} width="18px" height="9px" alt="arrow" />
+          </BtnWrapper>
+        </SelectWrapper>
+        {categories && (
+          <Table
+            tableData={categories}
+            summaryExpenses={summaryExpenses}
+            summaryIncome={summaryIncome}
+          />
+        )}
+      </CategorySection>
+    </Container>
   );
 };
