@@ -17,13 +17,17 @@ import {
 } from '../../redux/transactions/transactions-selectors';
 import { Chart } from '../Chart/Chart';
 import { Table } from '../Table/Table';
-import { months, years, currentYear, defaultCategories } from './constants';
 import arrow from '../../images/arrow.svg';
+import { expenses } from '../../stylesheet/chartColor';
+import { months, years, currentYear, defaultCategories } from './constants';
 
 export const DiagramTab = () => {
   const [selectYear, setSelectYear] = useState(currentYear.toString());
   const [selectMonth, setSelectMonth] = useState('hide');
   const categories = useSelector(getCategories);
+  const chartCategories = () =>
+    categories.filter(({ category }) => expenses.includes(category));
+
   const summaryExpenses = useSelector(getSumExpenses);
   const summaryIncome = useSelector(getSumIncome);
 
@@ -33,7 +37,6 @@ export const DiagramTab = () => {
 
   const getTransactionsDetails = data =>
     dispatch(fetchTransactionsDetails(data));
-
   const requestData = () => {
     if (selectYear === 'hide') {
       return { year: currentYear.toString() };
@@ -53,7 +56,11 @@ export const DiagramTab = () => {
       <div>
         <Title>Statistics</Title>
         <Chart
-          categories={categories.length === 0 ? defaultCategories : categories}
+          categories={
+            chartCategories().length !== 0
+              ? chartCategories()
+              : defaultCategories
+          }
           summaryExpenses={summaryExpenses}
         />
       </div>
@@ -91,7 +98,7 @@ export const DiagramTab = () => {
         </SelectWrapper>
         {categories && (
           <Table
-            tableData={categories}
+            tableData={chartCategories()}
             summaryExpenses={summaryExpenses}
             summaryIncome={summaryIncome}
           />
