@@ -37,17 +37,22 @@ export const Title = styled.div`
   }
 `;
 
-export const Logout = styled.button`
+export const LogoutButton = styled.button`
   display: flex;
   align-items: center;
   padding: 0;
   margin: 0;
   color: var(--secondary);
+  fill: #bdbdbd;
   background-color: unset;
   border: none;
   font-size: 18px;
   line-height: 1.47;
   cursor: pointer;
+  &:hover {
+    color: var(--green);
+    fill: var(--green);
+  }
 
   @media (min-width: 768px) {
     border-left: 1px solid var(--secondary);
@@ -69,6 +74,8 @@ export const LogoutText = styled.p`
   padding: 0;
   margin: 0;
   display: none;
+  margin-top: 2px;
+  line-height: 1.9;
 
   @media (min-width: 768px) {
     display: block;
