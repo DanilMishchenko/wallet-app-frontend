@@ -37,4 +37,7 @@ export const Input = styled.input`
   @media screen and (min-width: 768px) {
     width: 410px;
   }
+  &::-ms-reveal {
+    display: none;
+  }
 `;

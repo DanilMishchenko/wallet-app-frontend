@@ -81,7 +81,8 @@ export const RegisterForm = () => {
         if (
           email[0] === '-' ||
           email.indexOf('@') < 2 ||
-          /[а-яА-ЯЁёІі]/.test(email)
+          /[а-яА-ЯЁёІіЇїҐґ]/.test(email) ||
+          email[0] === ' '
         ) {
           return false;
         }
@@ -96,7 +97,8 @@ export const RegisterForm = () => {
         if (/[A-Za-zА-Яа-я]/.test(password) && /[0-9]/.test(password)) {
           return true;
         } else return false;
-      }),
+      })
+      .matches(/^$/, 'Space is not allowed'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password')], 'Passwords do not match')
       .required('This field is required'),
@@ -104,7 +106,10 @@ export const RegisterForm = () => {
       .typeError()
       .min(1, '1 symbol minimum')
       .max(12, '12 symbols maximum')
-      .matches(/^[A-Za-zА-Яа-я0-9]*$/, 'Only letters and numbers are allowed')
+      .matches(
+        /^[A-Za-zА-Яа-я0-9ІіЇїҐґ]*$/,
+        'Only letters and numbers are allowed',
+      )
       .required('This field is required'),
   });
   return (
