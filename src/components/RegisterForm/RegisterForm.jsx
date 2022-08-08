@@ -82,13 +82,13 @@ export const RegisterForm = () => {
           email[0] === '-' ||
           email.indexOf('@') < 2 ||
           /[а-яА-ЯЁёІіЇїҐґ]/.test(email) ||
-          email[0] === ' '
+          email[0] === ' ' ||
+          /--/.test(email)
         ) {
           return false;
         }
         return true;
       }),
-
     password: Yup.string()
       .min(6, '6 symbols minimum')
       .max(16, '16 symbols maximum')
@@ -98,7 +98,7 @@ export const RegisterForm = () => {
           return true;
         } else return false;
       })
-      .matches(/^$/, 'Space is not allowed'),
+      .matches(/^[A-Za-z0-9]*$/, 'Only letters and numbers'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password')], 'Passwords do not match')
       .required('This field is required'),
@@ -136,7 +136,6 @@ export const RegisterForm = () => {
             validationSchema={validationForm}
             onSubmit={({ email, password, name }) => {
               dispatch(authOperations.register({ email, password, name }));
-              navigate('/');
             }}
           >
             {({ dirty, isValid }) => (
