@@ -5,8 +5,8 @@ export const Overlay = styled.div`
   overflow: auto;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 
   @media screen and (min-width: 768px) {
     height: 100vh;
@@ -26,6 +26,7 @@ export const Wrapper = styled.div`
   height: 100vh;
   padding: 20px 20px 37px;
   background-color: #ffffff;
+  overflow: scroll;
 
   @media screen and (min-width: 768px) {
     max-width: 540px;
