@@ -47,7 +47,7 @@ const Styled = styled(NavLink)`
     }
   }
 
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 768px) {
     align-items: center;
 
     &:not(:first-child) {

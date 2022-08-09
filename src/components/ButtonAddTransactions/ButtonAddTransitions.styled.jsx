@@ -8,6 +8,7 @@ export const Container = styled.div`
   width: 44px;
   border-radius: 50%;
   background-color: var(--green);
+  box-shadow: 0px 6px 15px rgba(92, 99, 98, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;

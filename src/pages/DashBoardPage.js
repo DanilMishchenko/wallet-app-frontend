@@ -19,7 +19,7 @@ import useMediaQuery from '../hooks/useMediaQuery';
 
 export default function DashBoardPage() {
   const { pathname } = useLocation();
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobile = useMediaQuery('(max-width: 767px)');
   const isCurrencyOpen = useSelector(isOpen);
   const isCurrencyShow = isMobile ? isCurrencyOpen : true;
   const isBalanceShow = isMobile ? pathname === '/home' : true;

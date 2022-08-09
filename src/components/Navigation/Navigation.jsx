@@ -9,7 +9,7 @@ import currency from '../../assets/images/currencyIcon.svg';
 
 export const Navigation = () => {
   const dispatch = useDispatch();
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobile = useMediaQuery('(max-width: 767px)');
 
   return (
     <Wrapper>

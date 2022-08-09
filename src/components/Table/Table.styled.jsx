@@ -76,7 +76,6 @@ export const ExpensesItem = styled.li`
 `;
 
 export const IncomeItem = styled.li`
-  margin-bottom: 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;

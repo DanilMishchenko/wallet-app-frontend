@@ -7,6 +7,7 @@ export const ContainerPages = styled.div`
   padding-top: 72px;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 35px;
 
   @media screen and (min-width: 768px) {
     width: 768px;
