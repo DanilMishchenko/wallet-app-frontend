@@ -136,17 +136,10 @@ export const HomeTab = () => {
                               <Column>{item.type === false ? '-' : '+'}</Column>
                               <Column>{item.category}</Column>
                               <Column onClick={onCommentClick}>
-                                {!showComment ? (
-                                  <EllipsisText
-                                    text={item.comment}
-                                    length={12}
-                                  />
-                                ) : (
-                                  <EllipsisText
-                                    text={item.comment}
-                                    length={50}
-                                  />
-                                )}
+                                <EllipsisText
+                                  text={item.comment}
+                                  length={!showComment ? 12 : 50}
+                                />
                               </Column>
                               <Column type={String(item.type)}>
                                 {formatAmount(item.sum).toFixed(2)}
