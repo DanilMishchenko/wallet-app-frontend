@@ -46,9 +46,11 @@ export const App = () => {
               <Route
                 path="/"
                 element={
-                  <PrivateRoute>
-                    <DashBoardPage />
-                  </PrivateRoute>
+                  <Suspense fallback={<Loader />}>
+                    <PrivateRoute>
+                      <DashBoardPage />
+                    </PrivateRoute>
+                  </Suspense>
                 }
               >
                 <Route index element={<HomePages />} />
@@ -58,17 +60,21 @@ export const App = () => {
               <Route
                 path="login"
                 element={
-                  <PublicRoute>
-                    <LoginPages />
-                  </PublicRoute>
+                  <Suspense fallback={<Loader />}>
+                    <PublicRoute>
+                      <LoginPages />
+                    </PublicRoute>
+                  </Suspense>
                 }
               />
               <Route
                 path="register"
                 element={
-                  <PublicRoute>
-                    <RegisterPages />
-                  </PublicRoute>
+                  <Suspense fallback={<Loader />}>
+                    <PublicRoute>
+                      <RegisterPages />
+                    </PublicRoute>
+                  </Suspense>
                 }
               />
               <Route path="*" element={<NotFoundPages />} />
