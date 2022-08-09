@@ -27,7 +27,7 @@ import calendarIcon from '../../../assets/images/calendarIcon.svg';
 
 const schema = yup.object().shape({
   category: yup.string().required('this field is required'),
-  sum: yup.number().required('this field is required'),
+  sum: yup.number().positive().required('this field is required'),
   date: yup.string().required('this field is required'),
   comment: yup.string().max(50, '50 symbols maximum'),
 });
@@ -189,7 +189,7 @@ export const IncomeForm = ({ onClose }) => {
             <CommentContainer>
               <TextAreaComment
                 rows={2}
-                maxLength="51"
+                maxLength="50"
                 name="comment"
                 placeholder="Comment"
                 onChange={handleChange}
