@@ -6,6 +6,8 @@ import moment from 'moment';
 import { COLUMNS } from './table-helpers';
 import EllipsisText from 'react-ellipsis-text';
 import Media from 'react-media';
+import usePagination from '../../hooks/usePaginacion';
+
 import {
   Tab,
   Table,
@@ -23,6 +25,20 @@ export const HomeTab = () => {
   const data = useSelector(getTransactions);
   const dispatch = useDispatch();
   const [showComment, setShowComment] = useState(false);
+
+  // Кастомный хук для пагинации
+  const {
+    firstContentIndex,
+    lastContentIndex,
+    nextPage,
+    prevPage,
+    page,
+    setPage,
+    totalPages,
+  } = usePagination({
+    contentPerPage: 3,
+    count: data.length,
+  });
 
   const onCommentClick = () => {
     if (showComment === false) {
@@ -151,6 +167,40 @@ export const HomeTab = () => {
                           );
                         })}
                     </tbody>
+
+                    {/* Тут начало контейнера пагинации */}
+                    <div className="items">
+                      {data
+                        .slice(firstContentIndex, lastContentIndex)
+                        .map(el => (
+                          <div className="item" key={el._id}>
+                            {String(el.category)}
+                          </div>
+                        ))}
+                    </div>
+
+                    {/* Тут логика кнопок */}
+                    <div className="pagination">
+                      <p className="text">
+                        {page}/{totalPages}
+                      </p>
+                      <button onClick={prevPage} className="page">
+                        &larr;
+                      </button>
+                      {/* @ts-ignore */}
+                      {[...Array(totalPages).keys()].map(el => (
+                        <button
+                          onClick={() => setPage(el + 1)}
+                          key={el}
+                          className={`page ${page === el + 1 ? 'active' : ''}`}
+                        >
+                          {el + 1}
+                        </button>
+                      ))}
+                      <button onClick={nextPage} className="page">
+                        &rarr;
+                      </button>
+                    </div>
                   </Table>
                 )}
               </Tab>
