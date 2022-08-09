@@ -67,6 +67,7 @@ export const IconWrap = styled.div`
   @media (min-width: 768px) {
     display: block;
     margin-left: 8px;
+    margin-bottom: 2px;
   } ;
 `;
 
@@ -74,7 +75,6 @@ export const LogoutText = styled.p`
   padding: 0;
   margin: 0;
   display: none;
-  margin-top: 2px;
   line-height: 1.9;
 
   @media (min-width: 768px) {

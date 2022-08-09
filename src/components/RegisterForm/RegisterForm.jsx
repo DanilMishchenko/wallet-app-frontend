@@ -1,23 +1,23 @@
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import authOperations from '../../redux/auth/auth-operations';
 
-import { ReactComponent as EmailIcon } from '../../images/email.svg';
-import { ReactComponent as PasswordIcon } from '../../images/passwordLock.svg';
-import { ReactComponent as NameIcon } from '../../images/nameIcon.svg';
+import { ReactComponent as EmailIcon } from '../../assets/images/email.svg';
+import { ReactComponent as PasswordIcon } from '../../assets/images/passwordLock.svg';
+import { ReactComponent as NameIcon } from '../../assets/images/nameIcon.svg';
 
 import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
 import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
 
 import { TextInput } from '../TextInput/TextInput';
-import logo from '../../images/logoApp.svg';
-import girl from '../../images/registerMiniature.svg';
-import eye from '../../images/eye.svg';
-import eyeSlash from '../../images/eye-slash.svg';
+import logo from '../../assets/images/logoApp.svg';
+import girl from '../../assets/images/registerMiniature.svg';
+import eye from '../../assets/images/eye.svg';
+import eyeSlash from '../../assets/images/eye-slash.svg';
 
 import {
   MainContainer,
@@ -37,7 +37,6 @@ export const RegisterForm = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(true);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const number = password.length;
 

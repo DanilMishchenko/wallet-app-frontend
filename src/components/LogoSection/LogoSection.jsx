@@ -1,7 +1,5 @@
-import React from 'react';
-
-import logoApp from '../../images/logoApp.svg';
 import { Wrapper, LogoLink, LogoIcon, Title } from './LogoSection.styled';
+import logoApp from '../../assets/images/logoApp.svg';
 
 export const LogoSection = () => (
   <Wrapper>

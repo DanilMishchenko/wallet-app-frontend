@@ -1,23 +1,10 @@
 import styled from 'styled-components';
 import { Field } from 'formik';
-//import Select from 'react-select'
 
 export const SelectContainer = styled.div`
-  /* display: flex;
-  align-items: center;
-  position: relative; */
   margin-bottom: 40px;
   position: relative;
 
-  /* ::after {
-    content: '';
-    position: absolute;
-    display: block;
-    bottom: 0;
-    height: 1px;
-    width: 100%;
-    background-color: #bdbdbd;
-  } */
   @media screen and (min-width: 768px) {
     margin-bottom: 20px;
   }
@@ -151,14 +138,3 @@ export const InputDate = styled.input`
   cursor: pointer;
   outline: none;
 `;
-
-// export const CategorySelect = styled(Select)`
-// font-weight: 400;
-// font-size: 18px;
-// line-height: 1.5;
-// outline: none;
-// /* background: rgba(255, 255, 255, 0.7);
-// box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
-// backdrop-filter: blur(50px);
-// border-radius: 20px; */
-// `

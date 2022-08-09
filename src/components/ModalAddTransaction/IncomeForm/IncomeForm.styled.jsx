@@ -2,21 +2,8 @@ import styled from 'styled-components';
 import { Field } from 'formik';
 
 export const SelectContainer = styled.div`
-  /* display: flex;
-  align-items: center;
-  position: relative; */
   position: relative;
   margin-bottom: 40px;
-
-  /* ::after {
-    content: '';
-    position: absolute;
-    display: block;
-    bottom: 0;
-    height: 1px;
-    width: 100%;
-    background-color: #bdbdbd;
-  } */
 
   @media screen and (min-width: 768px) {
     margin-bottom: 40px;

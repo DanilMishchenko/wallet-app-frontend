@@ -4,8 +4,8 @@ import { setOpen, setClose } from '../../redux/currency/currency-reducer';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import { navConfig } from '../../utils/navConfig';
 
-import currency from '../../images/currencyIcon.svg';
 import { Wrapper, StyledLink, NavText } from './Navigation.style';
+import currency from '../../assets/images/currencyIcon.svg';
 
 export const Navigation = () => {
   const dispatch = useDispatch();

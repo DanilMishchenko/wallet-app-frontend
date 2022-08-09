@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import wave from '../../images/wave.svg';
+import wave from '../../assets/images/wave.svg';
 
 export const CurrencyLayout = styled.div`
-  width: 280px;
+  width: 380px;
   height: 175px;
   overflow: hidden;
   background: linear-gradient(

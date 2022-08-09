@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CurrencyLayout, WrapperLoader } from './Currency.styled';
+
 import { getRates, getStatus } from '../../redux/currency/currency-selectors';
-import { Loader } from '../Loader/Loader';
 import currencyOperations from '../../redux/currency/currency-operations';
+
+import { Loader } from '../Loader/Loader';
 import CurrencyTab from './CurrencyTab';
+import { CurrencyLayout, WrapperLoader } from './Currency.styled';
 
 export const Currency = () => {
   const dispatch = useDispatch();

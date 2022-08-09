@@ -8,7 +8,7 @@ import {
   IconWrap,
   LogoutText,
 } from './AccountSection.style';
-import { ReactComponent as LogoutIcon } from '../../../images/logoutIcon.svg';
+import { ReactComponent as LogoutIcon } from '../../../assets/images/logoutIcon.svg';
 
 export const AccountSection = ({ onModal }) => {
   const userName = useSelector(authSelectors.getUserName);
@@ -18,7 +18,7 @@ export const AccountSection = ({ onModal }) => {
       <Title>{userName}</Title>
       <LogoutButton onClick={onModal}>
         <IconWrap>
-          <LogoutIcon />
+          <LogoutIcon fill="current" />
         </IconWrap>
         <LogoutText>Exit</LogoutText>
       </LogoutButton>

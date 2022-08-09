@@ -4,20 +4,18 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-import { ReactComponent as EmailIcon } from '../../images/email.svg';
-import { ReactComponent as PasswordIcon } from '../../images/passwordLock.svg';
+import authOperations from '../../redux/auth/auth-operations';
 
 import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
 import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
-
 import { TextInput } from '../TextInput/TextInput';
 
-import authOperations from '../../redux/auth/auth-operations';
-
-import loginImage from '../../images/loginMiniature.svg';
-import eye from '../../images/eye.svg';
-import eyeSlash from '../../images/eye-slash.svg';
-import logo from '../../images/logoApp.svg';
+import { ReactComponent as EmailIcon } from '../../assets/images/email.svg';
+import { ReactComponent as PasswordIcon } from '../../assets/images/passwordLock.svg';
+import loginImage from '../../assets/images/loginMiniature.svg';
+import eye from '../../assets/images/eye.svg';
+import eyeSlash from '../../assets/images/eye-slash.svg';
+import logo from '../../assets/images/logoApp.svg';
 
 import {
   Wrapper,

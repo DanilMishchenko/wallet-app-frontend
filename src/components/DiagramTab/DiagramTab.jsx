@@ -17,7 +17,7 @@ import {
 } from '../../redux/transactions/transactions-selectors';
 import { Chart } from '../Chart/Chart';
 import { Table } from '../Table/Table';
-import arrow from '../../images/arrow.svg';
+import arrow from '../../assets/images/arrow.svg';
 import { expenses } from '../../stylesheet/chartColor';
 import { months, years, currentYear, defaultCategories } from './constants';
 

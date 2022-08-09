@@ -10,10 +10,9 @@ export const LogoLink = styled(Link)`
   display: flex;
   align-items: center;
 
-  &:hover,
-  &:focus {
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-      0px 4px 4px rgba(0, 0, 0, 0.25);
+  &:hover {
+    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25),
+      0px 3px 3px rgba(0, 0, 0, 0.25);
     img {
       box-shadow: 0px 6px 15px rgba(118, 138, 225, 0.3);
     }

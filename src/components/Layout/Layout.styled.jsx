@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import beigeShape1 from '../../images/beigeShape1.svg';
-import purpleShape from '../../images/purpleShape.svg';
+import beigeShape1 from '../../assets/images/beigeShape1.svg';
+import purpleShape from '../../assets/images/purpleShape.svg';
 
 export const MainBackground = styled.div`
   width: 100%;

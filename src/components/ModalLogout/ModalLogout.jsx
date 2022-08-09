@@ -1,13 +1,14 @@
 import { useDispatch } from 'react-redux';
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
+
 import authOperations from '../../redux/auth/auth-operations';
 
 import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
 import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
 
 import { Overlay, Mod, Title, Wrapper, H, Div } from './ModalLogout.styled';
-import logo from '../../images/logoApp.svg';
+import logo from '../../assets/images/logoApp.svg';
 
 const modalRoot = document.querySelector('#modal-logout');
 

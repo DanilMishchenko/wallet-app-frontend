@@ -2,6 +2,13 @@ import { createPortal } from 'react-dom';
 import { useEffect, useState } from 'react';
 import Switch from 'react-switch';
 import { useDispatch } from 'react-redux';
+
+import { fetchTransactions } from '../../redux/transactions/transactions-operations';
+
+import { IncomeForm } from './IncomeForm/IncomeForm';
+import { ExpenseForm } from './ExpenceForm/ExpenseForm';
+import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
+
 import {
   Overlay,
   Container,
@@ -13,13 +20,9 @@ import {
   Wrapper,
   CloseButton,
 } from './ModalAddTransition.styled';
-import plusIcon from '../../images/plusIcon.svg';
-import minusIcon from '../../images/minusIcon.svg';
-import { IncomeForm } from './IncomeForm/IncomeForm';
-import { ExpenseForm } from './ExpenceForm/ExpenseForm';
-import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
-import { fetchTransactions } from '../../redux/transactions/transactions-operations';
-import closeModal from '../../images/closeModal.svg';
+import plusIcon from '../../assets/images/plusIcon.svg';
+import minusIcon from '../../assets/images/minusIcon.svg';
+import closeModal from '../../assets/images/closeModal.svg';
 
 const modalRoot = document.querySelector('#modal-transaction');
 
