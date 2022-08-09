@@ -64,7 +64,7 @@ export const HomeTab = () => {
                             {COLUMNS[0].Header}
                           </ColumnHeaderContent>
                         </ColumnHeader>
-                        <ColumnHeader>
+                        <ColumnHeader style={{ width: '70px' }}>
                           <ColumnHeaderContent>
                             {COLUMNS[1].Header}
                           </ColumnHeaderContent>

@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  padding-bottom: 1px;
   @media screen and (min-width: 768px) {
     display: flex;
+    padding-bottom: 0;
   }
 `;
 

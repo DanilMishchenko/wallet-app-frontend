@@ -119,7 +119,8 @@ export const ColumnHeaderMobile = styled.td`
 export const Column = styled.td`
   font-size: 16px;
   font-weight: 400;
-  line-height: 44px;
+  height: 54px;
+  line-height: 1.5;
   word-wrap: break-word;
   color: #000;
   :nth-child(5) {
