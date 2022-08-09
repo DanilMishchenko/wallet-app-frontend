@@ -23,6 +23,7 @@ import { expenses } from '../../stylesheet/chartColor';
 import {
   months,
   years,
+  currentMonth,
   currentYear,
   getMonthConfig,
   getYearConfig,
@@ -31,7 +32,7 @@ import {
 
 export const DiagramTab = () => {
   const [selectYear, setSelectYear] = useState(currentYear.toString());
-  const [selectMonth, setSelectMonth] = useState('hide');
+  const [selectMonth, setSelectMonth] = useState(currentMonth.toString());
   const categories = useSelector(getCategories);
   const chartCategories = () =>
     categories.filter(({ category }) => expenses.includes(category));
