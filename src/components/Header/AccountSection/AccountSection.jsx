@@ -4,11 +4,11 @@ import { authSelectors } from '../../../redux/auth';
 import {
   Wrapper,
   Title,
-  Logout,
+  LogoutButton,
   IconWrap,
   LogoutText,
 } from './AccountSection.style';
-import logout from '../../../images/logoutIcon.svg';
+import { ReactComponent as LogoutIcon } from '../../../images/logoutIcon.svg';
 
 export const AccountSection = ({ onModal }) => {
   const userName = useSelector(authSelectors.getUserName);
@@ -16,12 +16,12 @@ export const AccountSection = ({ onModal }) => {
   return (
     <Wrapper>
       <Title>{userName}</Title>
-      <Logout onClick={onModal}>
+      <LogoutButton onClick={onModal}>
         <IconWrap>
-          <img src={logout} alt="exit button" />
+          <LogoutIcon />
         </IconWrap>
         <LogoutText>Exit</LogoutText>
-      </Logout>
+      </LogoutButton>
     </Wrapper>
   );
 };
