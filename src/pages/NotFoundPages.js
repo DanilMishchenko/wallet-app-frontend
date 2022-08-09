@@ -1,7 +1,13 @@
+import { Link } from 'react-router-dom';
+import { ContainerPages } from '../stylesheet/WrapperPages.styled';
+
 export default function NotFoundView() {
   return (
-    <>
-      <h1>NotFoundView</h1>
-    </>
+    <ContainerPages>
+      <h1>
+        404 Страница не найдена, вернитесь на {''}
+        <Link to="/">домашнюю страницу</Link>
+      </h1>
+    </ContainerPages>
   );
 }

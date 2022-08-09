@@ -1,16 +1,11 @@
 import { useDispatch } from 'react-redux';
 
-import home from '../../images/homeIcon.svg';
-import currency from '../../images/currencyIcon.svg';
-import statistics from '../../images/statisticsIcon.svg';
-import { Wrapper, StyledLink, NavText } from './Navigation.style';
-import useMediaQuery from '../../hooks/useMediaQuery';
 import { setOpen, setClose } from '../../redux/currency/currency-reducer';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import { navConfig } from '../../utils/navConfig';
 
-const navConfig = [
-  { icon: home, title: 'home', link: '/home' },
-  { icon: statistics, title: 'statistics', link: '/diagram' },
-];
+import currency from '../../images/currencyIcon.svg';
+import { Wrapper, StyledLink, NavText } from './Navigation.style';
 
 export const Navigation = () => {
   const dispatch = useDispatch();
