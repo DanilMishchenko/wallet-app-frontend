@@ -70,7 +70,6 @@ export const CustomSelect = styled.select`
 
 export const BtnWrapper = styled.div`
   position: relative;
-  /* z-index: -1; */
 
   &:hover,
   &:focus {

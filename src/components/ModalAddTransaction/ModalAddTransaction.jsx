@@ -26,7 +26,7 @@ const modalRoot = document.querySelector('#modal-transaction');
 export const ModalAddTransaction = ({ onModal }) => {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(true);
-  //Работа модалки
+
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
@@ -46,7 +46,6 @@ export const ModalAddTransaction = ({ onModal }) => {
     }
   };
 
-  //Работа свитча
   const handleChange = nextChecked => {
     setChecked(nextChecked);
   };
