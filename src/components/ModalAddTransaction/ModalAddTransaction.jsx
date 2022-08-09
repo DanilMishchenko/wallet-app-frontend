@@ -18,8 +18,12 @@ import minusIcon from '../../images/minusIcon.svg';
 import { TransactionForm } from './TransactionForm/TransactionForm';
 //import { ExpenseForm } from './ExpenceForm/ExpenseForm';
 import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
-import { fetchTransactions } from '../../redux/transactions/transactions-operations';
+import {
+  addTransaction,
+  fetchTransactions,
+} from '../../redux/transactions/transactions-operations';
 import closeModal from '../../images/closeModal.svg';
+import { fetchBalance } from '../../redux/balance';
 
 const modalRoot = document.querySelector('#modal-transaction');
 
@@ -63,8 +67,15 @@ export const ModalAddTransaction = ({ onModal }) => {
     }
   };
 
-  const handleChange = nextChecked => {
-    setChecked(nextChecked);
+  const handleChange = () => setChecked(!checked);
+
+  const handleTransactionSubmit = async values => {
+    dispatch(addTransaction({ ...values, type: !checked }));
+
+    await dispatch(fetchTransactions());
+    await dispatch(fetchBalance());
+    onModal();
+    // toast.success(`transaction amount ${values.sum} was saved`);
   };
 
   return createPortal(
@@ -128,12 +139,12 @@ export const ModalAddTransaction = ({ onModal }) => {
         <FormContainer>
           <TransactionForm
             initialValues={{
-              type: checked ? true : false,
+              type: !checked ? true : false,
               category: '',
               sum: '',
               date: new Date(),
             }}
-            onClose={onModal}
+            onSubmit={handleTransactionSubmit}
             options={!checked ? IncomeOptions : ExpenseOptions}
           />
         </FormContainer>

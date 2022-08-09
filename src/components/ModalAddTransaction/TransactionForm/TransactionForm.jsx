@@ -49,29 +49,15 @@ const schema = yup.object().shape({
 //   { value: 'Irregular Income', label: 'Irregular Income' },
 // ];
 
-export const TransactionForm = ({
-  initialValues = { type: '', category: '', sum: '', date: new Date() },
-  options,
-  onClose,
-}) => {
+export const TransactionForm = ({ initialValues, options, onSubmit }) => {
   //const [startDate, setStartDate] = useState(new Date());
-  const dispatch = useDispatch();
-
-  const handleTransactionSubmit = async values => {
-    dispatch(addTransaction(values));
-    console.log(values);
-    await dispatch(fetchTransactions());
-    await dispatch(fetchBalance());
-    onClose();
-    toast.success(`transaction amount ${values.sum} was saved`);
-  };
 
   return (
     <>
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
-        onSubmit={handleTransactionSubmit}
+        onSubmit={onSubmit}
       >
         {({
           handleSubmit,
