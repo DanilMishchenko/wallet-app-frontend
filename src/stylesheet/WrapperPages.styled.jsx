@@ -41,7 +41,7 @@ export const BlurContainer = styled.div`
 `;
 
 export const NavigationContainer = styled.div`
-  @media screen and (min-width: 768px) and (max-width: 1280px) {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
     display: flex;
   }
 
