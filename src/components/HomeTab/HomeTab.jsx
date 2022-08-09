@@ -120,10 +120,10 @@ export const HomeTab = () => {
                                   )}
                                 </Column>
                                 <Column type={String(item.result.type)}>
-                                  {formatAmount(item.result.sum)}
+                                  {formatAmount(item.result.sum).toFixed(2)}
                                 </Column>
                                 <Column>
-                                  {formatAmount(item.result.balance)}
+                                  {formatAmount(item.result.balance).toFixed(2)}
                                 </Column>
                               </Row>
                             );
@@ -149,9 +149,11 @@ export const HomeTab = () => {
                                 )}
                               </Column>
                               <Column type={String(item.type)}>
-                                {formatAmount(item.sum)}
+                                {formatAmount(item.sum).toFixed(2)}
                               </Column>
-                              <Column>{formatAmount(item.balance)}</Column>
+                              <Column>
+                                {formatAmount(item.balance).toFixed(2)}
+                              </Column>
                             </Row>
                           );
                         })}

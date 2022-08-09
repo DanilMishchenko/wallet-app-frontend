@@ -67,6 +67,12 @@ export const HomeTabMobile = () => {
                     </RowMobile>
                     <RowMobile>
                       <ColumnHeaderMobile>
+                        {COLUMNS[2].Header}
+                      </ColumnHeaderMobile>
+                      <ColumnMobile>{item.result.category}</ColumnMobile>
+                    </RowMobile>
+                    <RowMobile>
+                      <ColumnHeaderMobile>
                         {COLUMNS[3].Header}
                       </ColumnHeaderMobile>
                       <ColumnMobile onClick={onCommentClick}>
@@ -85,16 +91,10 @@ export const HomeTabMobile = () => {
                     </RowMobile>
                     <RowMobile>
                       <ColumnHeaderMobile>
-                        {COLUMNS[2].Header}
-                      </ColumnHeaderMobile>
-                      <ColumnMobile>{item.result.category}</ColumnMobile>
-                    </RowMobile>
-                    <RowMobile>
-                      <ColumnHeaderMobile>
                         {COLUMNS[4].Header}
                       </ColumnHeaderMobile>
                       <ColumnMobile type={String(item.result.type)}>
-                        {getAmount(item.result.sum)}
+                        {getAmount(item.result.sum).toFixed(2)}
                       </ColumnMobile>
                     </RowMobile>
                     <RowMobile>
@@ -102,7 +102,7 @@ export const HomeTabMobile = () => {
                         {COLUMNS[5].Header}
                       </ColumnHeaderMobile>
                       <ColumnMobile>
-                        {getAmount(item.result.balance)}
+                        {getAmount(item.result.balance).toFixed(2)}
                       </ColumnMobile>
                     </RowMobile>
                   </TableBodyMobile>
@@ -125,6 +125,10 @@ export const HomeTabMobile = () => {
                     </ColumnMobile>
                   </RowMobile>
                   <RowMobile>
+                    <ColumnHeaderMobile>{COLUMNS[2].Header}</ColumnHeaderMobile>
+                    <ColumnMobile>{item.category}</ColumnMobile>
+                  </RowMobile>
+                  <RowMobile>
                     <ColumnHeaderMobile>{COLUMNS[3].Header}</ColumnHeaderMobile>
                     <ColumnMobile onClick={onCommentClick}>
                       {!showComment ? (
@@ -133,10 +137,6 @@ export const HomeTabMobile = () => {
                         <EllipsisText text={item.comment} length={60} />
                       )}
                     </ColumnMobile>
-                  </RowMobile>
-                  <RowMobile>
-                    <ColumnHeaderMobile>{COLUMNS[2].Header}</ColumnHeaderMobile>
-                    <ColumnMobile>{item.category}</ColumnMobile>
                   </RowMobile>
                   <RowMobile>
                     <ColumnHeaderMobile>{COLUMNS[4].Header}</ColumnHeaderMobile>
