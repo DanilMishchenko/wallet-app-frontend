@@ -1,20 +1,11 @@
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import { toast } from 'react-toastify';
-
-import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 
 import { CategorySelect } from '../ExpenceForm/CategorySelect/CategorySelect';
 import { PrimaryButton } from '../../PrimaryButton/PrimaryButton';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import {
-  addTransaction,
-  fetchTransactions,
-} from '../../../redux/transactions/transactions-operations';
-import { fetchBalance } from '../../../redux/balance';
-
 import {
   SelectContainer,
   //ArrowSvg,
@@ -32,26 +23,17 @@ import calendarIcon from '../../../images/calendarIcon.svg';
 
 const schema = yup.object().shape({
   category: yup.string().required('this field is required'),
-  sum: yup.number().required('this field is required'),
+  sum: yup
+    .number()
+    .min(0.01)
+    .max(10000000)
+    .required('this field is required')
+    .errormessage('sum must be greater than or equal to 0.01'),
   date: yup.string().required('this field is required'),
   comment: yup.string().max(50, '50 symbols maximum'),
 });
 
-// const initialValues = {
-//   type: true,
-// category: '',
-// sum: '',
-// date: new Date(),
-// };
-
-// const options = [
-//   { value: 'Regular Income', label: 'Regular Income' },
-//   { value: 'Irregular Income', label: 'Irregular Income' },
-// ];
-
 export const TransactionForm = ({ initialValues, options, onSubmit }) => {
-  //const [startDate, setStartDate] = useState(new Date());
-
   return (
     <>
       <Formik
