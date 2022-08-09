@@ -76,17 +76,10 @@ export const HomeTabMobile = () => {
                         {COLUMNS[3].Header}
                       </ColumnHeaderMobile>
                       <ColumnMobile onClick={onCommentClick}>
-                        {!showComment ? (
-                          <EllipsisText
-                            text={item.result.comment}
-                            length={18}
-                          />
-                        ) : (
-                          <EllipsisText
-                            text={item.result.comment}
-                            length={60}
-                          />
-                        )}
+                        <EllipsisText
+                          text={item.comment}
+                          length={!showComment ? 18 : 60}
+                        />
                       </ColumnMobile>
                     </RowMobile>
                     <RowMobile>
