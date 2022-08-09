@@ -44,32 +44,6 @@ export const SelectWrapper = styled.div`
   }
 `;
 
-export const CustomSelect = styled.select`
-  display: flex;
-  width: 100%;
-  padding: 12px 21px 14px 20px;
-  margin-bottom: 20px;
-  border: 1px solid var(--common-text);
-  border-radius: 30px;
-  font-family: 'Circe';
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  background: none;
-  outline: none;
-  appearance: none;
-  cursor: pointer;
-
-  @media screen and (min-width: 768px) {
-    width: 160px;
-    margin-bottom: 0;
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 181px;
-  }
-`;
-
 export const BtnWrapper = styled.div`
   position: relative;
 
@@ -93,3 +67,60 @@ export const BtnWrapper = styled.div`
     }
   }
 `;
+
+export const selectStyles = {
+  control: styles => ({
+    ...styles,
+    fontFamily: 'Circe',
+    fontWeight: '400',
+    fontSize: '18px',
+    lineHeight: '1.5',
+    color: '#BDBDBD',
+    outline: 'none',
+    border: '1px solid var(--common-text)',
+    borderRadius: '30px',
+    borderBottom: '1px solid #E0E0E0',
+    cursor: 'pointer',
+    appearance: 'none',
+    marginBottom: '20px',
+    padding: '12px 21px 14px 20px',
+    width: '100%',
+
+    '@media only screen and (min-width: 768px)': {
+      width: '160px',
+      marginBottom: 0,
+    },
+    '@media only screen and (min-width: 1280px)': {
+      width: '181px',
+    },
+  }),
+  options: (styles, state) => ({
+    ...styles,
+    fontFamily: 'Circe',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontSize: '16px',
+    lineHeight: '1.5',
+    height: '44px',
+    cursor: 'pointer',
+    color: state.isSelected ? '#FF6596' : 'black',
+
+    '&:hover': {
+      backgroundColor: 'white',
+      color: '#FF6596',
+    },
+  }),
+  menu: (base, state) => ({
+    ...base,
+    padding: '10px',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
+    //backdropFilter:' blur(50px)',
+    borderRadius: '20px',
+  }),
+
+  menuList: (base, state) => ({
+    ...base,
+    cursor: 'pointer',
+  }),
+};
