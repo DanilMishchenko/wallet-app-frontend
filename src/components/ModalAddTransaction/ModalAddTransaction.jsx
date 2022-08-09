@@ -1,6 +1,7 @@
 import { createPortal } from 'react-dom';
 import { useEffect, useState } from 'react';
 import Switch from 'react-switch';
+import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import {
   Overlay,
@@ -16,7 +17,6 @@ import {
 import plusIcon from '../../images/plusIcon.svg';
 import minusIcon from '../../images/minusIcon.svg';
 import { TransactionForm } from './TransactionForm/TransactionForm';
-//import { ExpenseForm } from './ExpenceForm/ExpenseForm';
 import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
 import {
   addTransaction,
@@ -31,12 +31,12 @@ export const ModalAddTransaction = ({ onModal }) => {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(true);
 
-  const IncomeOptions = [
+  const incomeOptions = [
     { value: 'Regular Income', label: 'Regular Income' },
     { value: 'Irregular Income', label: 'Irregular Income' },
   ];
 
-  const ExpenseOptions = [
+  const expenseOptions = [
     { value: 'Basic expenses', label: 'Basic expenses' },
     { value: 'Products', label: 'Products' },
     { value: 'Car', label: 'Car' },
@@ -75,7 +75,7 @@ export const ModalAddTransaction = ({ onModal }) => {
     await dispatch(fetchTransactions());
     await dispatch(fetchBalance());
     onModal();
-    // toast.success(`transaction amount ${values.sum} was saved`);
+    toast.success(`transaction amount ${values.sum} was saved`);
   };
 
   return createPortal(
@@ -145,7 +145,7 @@ export const ModalAddTransaction = ({ onModal }) => {
               date: new Date(),
             }}
             onSubmit={handleTransactionSubmit}
-            options={!checked ? IncomeOptions : ExpenseOptions}
+            options={!checked ? incomeOptions : expenseOptions}
           />
         </FormContainer>
         <SecondaryButton textBtn="cancel" onClick={() => onModal()} />
