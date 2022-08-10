@@ -162,6 +162,7 @@ export const IncomeForm = ({ onClose }) => {
                   name="date"
                   onChange={date => setFieldValue('date', date)}
                   dateFormat="dd.MM.yyyy"
+                  minDate={new Date()}
                   maxDate={new Date()}
                   customInput={<InputSum />}
                 />
