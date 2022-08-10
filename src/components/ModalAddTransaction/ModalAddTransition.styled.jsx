@@ -24,9 +24,7 @@ export const Wrapper = styled.div`
   transform: translate(-50%);
   width: 100%;
   height: 100vh;
-  padding: 20px 20px 37px;
   background-color: #ffffff;
-  overflow: scroll;
 
   @media screen and (min-width: 768px) {
     max-width: 540px;
