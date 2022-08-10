@@ -5,6 +5,7 @@ import { fetchTransactions } from '../../redux/transactions/transactions-operati
 import { COLUMNS } from './table-helpers';
 import moment from 'moment';
 import EllipsisText from 'react-ellipsis-text';
+import usePagination from '../../hooks/usePagination';
 import {
   TabMobile,
   TableMobile,
@@ -12,12 +13,31 @@ import {
   ColumnHeaderMobile,
   RowMobile,
   TableBodyMobile,
+  PaginationContainerMobile,
+  PaginationText,
+  PaginationButton,
+  PaginationNumberButton,
 } from './HomeTab.styled';
 
 export const HomeTabMobile = () => {
   const data = useSelector(getTransactions);
   const dispatch = useDispatch();
   const [showComment, setShowComment] = useState(false);
+
+  // Hook for pagination
+  const {
+    firstContentIndex,
+    lastContentIndex,
+    nextPage,
+    prevPage,
+    page,
+    gaps,
+    setPage,
+    totalPages,
+  } = usePagination({
+    contentPerPage: 5,
+    count: data.length,
+  });
 
   const onCommentClick = () => {
     if (showComment === false) {
@@ -41,7 +61,7 @@ export const HomeTabMobile = () => {
     <>
       <TabMobile>
         {data[0] &&
-          data.map(item => {
+          data.slice(firstContentIndex, lastContentIndex).map(item => {
             if (item.result) {
               return (
                 <TableMobile
@@ -145,6 +165,47 @@ export const HomeTabMobile = () => {
               </TableMobile>
             );
           })}
+        {/* Pagination button */}
+        <PaginationContainerMobile>
+          <PaginationText>
+            {page}/{totalPages}
+          </PaginationText>
+          <PaginationButton
+            onClick={prevPage}
+            className={`page ${page === 1 && 'disabled'}`}
+          >
+            &larr;
+          </PaginationButton>
+          <PaginationNumberButton
+            onClick={() => setPage(1)}
+            className={`${page === 1 && 'disabled'}`}
+          >
+            1
+          </PaginationNumberButton>
+          {gaps.before ? '...' : null}
+          {gaps.paginationGroup.map(el => (
+            <PaginationNumberButton
+              onClick={() => setPage(el)}
+              key={el}
+              className={`${page === el ? 'active' : ''}`}
+            >
+              {el}
+            </PaginationNumberButton>
+          ))}
+          {gaps.after ? '...' : null}
+          <PaginationNumberButton
+            onClick={() => setPage(totalPages)}
+            className={`${page === totalPages && 'disabled'}`}
+          >
+            {totalPages}
+          </PaginationNumberButton>
+          <PaginationButton
+            onClick={nextPage}
+            className={`${page === totalPages && 'disabled'}`}
+          >
+            &rarr;
+          </PaginationButton>
+        </PaginationContainerMobile>
       </TabMobile>
     </>
   );
