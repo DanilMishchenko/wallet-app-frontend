@@ -16,8 +16,8 @@ const usePagination = ({ contentPerPage, count }) => {
   const [pagesInBetween, setPagesInBetween] = useState([]);
 
   useEffect(() => {
-    if (pageCount > 1) {
-      const temp = new Array(pageCount - 1).fill(1).map((_, i) => i + 1);
+    if (pageCount > 2) {
+      const temp = new Array(pageCount - 2).fill(1).map((_, i) => i + 2);
       setPagesInBetween(temp);
     }
   }, [pageCount]);
@@ -28,31 +28,31 @@ const usePagination = ({ contentPerPage, count }) => {
     let before = false;
     let after = false;
     if (page === 1) {
-      paginationGroup = pagesInBetween.slice(0, 1);
+      paginationGroup = pagesInBetween.slice(0, 3);
     } else if (
       page === pageCount ||
       page === pageCount - 1 ||
       page === pageCount - 2
     ) {
-      paginationGroup = pagesInBetween.slice(-1, pageCount);
+      paginationGroup = pagesInBetween.slice(-3, pageCount);
     } else if (page === 2) {
       paginationGroup = pagesInBetween.slice(
         currentLocation,
-        currentLocation + 1,
+        currentLocation + 3,
       );
     } else {
       paginationGroup = [page - 1, page, page + 1];
     }
-    if (pageCount <= 3) {
+    if (pageCount <= 5) {
       before = false;
       after = false;
     } else {
       before = false;
       after = false;
-      if (paginationGroup[0] > 1) {
+      if (paginationGroup[0] > 2) {
         before = true;
       }
-      if (paginationGroup[1] < pageCount - 1) {
+      if (paginationGroup[2] < pageCount - 1) {
         after = true;
       }
     }

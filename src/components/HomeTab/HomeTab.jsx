@@ -193,10 +193,12 @@ export const HomeTab = () => {
             >
               &larr;
             </PaginationButton>
-            {/* <PaginationButton
+            <PaginationButton
               onClick={() => setPage(1)}
               className={`${page === 1 && 'disabled'}`}
-            ></PaginationButton> */}
+            >
+              1
+            </PaginationButton>
             {gaps.before ? '...' : null}
             {gaps.paginationGroup.map(el => (
               <PaginationButton
