@@ -7,7 +7,7 @@ import { COLUMNS } from './table-helpers';
 import EllipsisText from 'react-ellipsis-text';
 import Media from 'react-media';
 import usePagination from '../../hooks/usePagination';
-// import axios from "axios";
+
 import {
   Tab,
   Table,
@@ -29,7 +29,6 @@ export const HomeTab = () => {
   const dispatch = useDispatch();
   const [showComment, setShowComment] = useState(false);
 
-  // Hook for pagination
   const {
     firstContentIndex,
     lastContentIndex,
@@ -119,6 +118,7 @@ export const HomeTab = () => {
                             if (item.result) {
                               return (
                                 <Row key={item.result._id}>
+                                  {console.log('item', item)}
                                   <Column>
                                     {moment
                                       .utc(item.result.date)
@@ -193,12 +193,10 @@ export const HomeTab = () => {
             >
               &larr;
             </PaginationButton>
-            <PaginationButton
+            {/* <PaginationButton
               onClick={() => setPage(1)}
               className={`${page === 1 && 'disabled'}`}
-            >
-              1
-            </PaginationButton>
+            ></PaginationButton> */}
             {gaps.before ? '...' : null}
             {gaps.paginationGroup.map(el => (
               <PaginationButton
