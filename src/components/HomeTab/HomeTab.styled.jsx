@@ -203,32 +203,33 @@ export const PaginationText = styled.p`
 `;
 
 export const PaginationButton = styled.button`
-  color: var(--common-text);
-  height: 35px;
-  width: 35px;
+  color: var(--primary-text);
+  height: 40px;
+  width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: normal;
-  border: solid 2px var(--green);
-  background-color: transparent;
+  border: solid 1px var(--primary-text);
+  background-color: var(--blue);
   border-radius: 25%;
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
-    height: 40px;
-    width: 40px;
+    height: 34px;
+    width: 34px;
     font-weight: bold;
-    border: solid 3px var(--green);
+    border: solid 2px var(--blue);
   }
 
   &.active,
   &:hover {
-    background-color: var(--green);
+    color: var(--green);
   }
 
   &.disabled {
-    background-color: transparent;
+    color: var(--green);
+    background-color: var(--blue);
     cursor: not-allowed;
     opacity: 0.5;
   }
@@ -256,11 +257,12 @@ export const PaginationNumberButton = styled.button`
 
     &.active,
     &:hover {
-      background-color: var(--green);
+      color: var(--green);
     }
 
     &.disabled {
-      background-color: transparent;
+      color: var(--green);
+      background-color: var(--blue);
       cursor: not-allowed;
       opacity: 0.5;
     }
