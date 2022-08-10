@@ -13,6 +13,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  z-index: 999;
   @media (min-width: 768px) {
     bottom: 40px;
     right: 40px;
