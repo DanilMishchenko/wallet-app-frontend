@@ -77,7 +77,6 @@ export const selectStyles = {
     lineHeight: '1.5',
     color: '#BDBDBD',
     outline: 'none',
-    border: '1px solid var(--common-text)',
     borderRadius: '30px',
     borderBottom: '1px solid #E0E0E0',
     cursor: 'pointer',
