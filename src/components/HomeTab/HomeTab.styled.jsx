@@ -178,3 +178,95 @@ export const NoTransactionsMsg = styled.span`
   line-height: 45px;
   letter-spacing: 0em;
 `;
+
+export const PaginationContainer = styled.div`
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 1px 0;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+`;
+export const PaginationContainerMobile = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 1px 0;
+`;
+
+export const PaginationText = styled.p`
+  opacity: 0.6;
+  font-size: 12px;
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
+`;
+
+export const PaginationButton = styled.button`
+  color: var(--common-text);
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
+  border: solid 2px var(--green);
+  background-color: transparent;
+  border-radius: 25%;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    height: 40px;
+    width: 40px;
+    font-weight: bold;
+    border: solid 3px var(--green);
+  }
+
+  &.active,
+  &:hover {
+    background-color: var(--green);
+  }
+
+  &.disabled {
+    background-color: transparent;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+`;
+
+export const PaginationNumberButton = styled.button`
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    height: 40px;
+    width: 40px;
+    font-weight: bold;
+    border: solid 3px var(--green);
+    color: var(--common-text);
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    border: solid 2px var(--green);
+    background-color: transparent;
+    border-radius: 25%;
+    cursor: pointer;
+
+    &.active,
+    &:hover {
+      background-color: var(--green);
+    }
+
+    &.disabled {
+      background-color: transparent;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+`;

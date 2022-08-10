@@ -6,8 +6,8 @@ import moment from 'moment';
 import { COLUMNS } from './table-helpers';
 import EllipsisText from 'react-ellipsis-text';
 import Media from 'react-media';
-import usePagination from '../../hooks/usePaginacion';
-
+import usePagination from '../../hooks/usePagination';
+// import axios from "axios";
 import {
   Tab,
   Table,
@@ -18,6 +18,9 @@ import {
   ColumnHeaderContent,
   NoTransactions,
   NoTransactionsMsg,
+  PaginationContainer,
+  PaginationText,
+  PaginationButton,
 } from './HomeTab.styled';
 import { HomeTabMobile } from './HomeTabMobile';
 
@@ -26,17 +29,18 @@ export const HomeTab = () => {
   const dispatch = useDispatch();
   const [showComment, setShowComment] = useState(false);
 
-  // Кастомный хук для пагинации
+  // Hook for pagination
   const {
     firstContentIndex,
     lastContentIndex,
     nextPage,
     prevPage,
     page,
+    gaps,
     setPage,
     totalPages,
   } = usePagination({
-    contentPerPage: 3,
+    contentPerPage: 5,
     count: data.length,
   });
 
@@ -109,103 +113,116 @@ export const HomeTab = () => {
                     </TableHeader>
                     <tbody>
                       {data[0] &&
-                        data.map(item => {
-                          if (item.result) {
+                        data
+                          .slice(firstContentIndex, lastContentIndex)
+                          .map(item => {
+                            if (item.result) {
+                              return (
+                                <Row key={item.result._id}>
+                                  <Column>
+                                    {moment
+                                      .utc(item.result.date)
+                                      .format('DD.MM.YYYY')}
+                                  </Column>
+                                  <Column>
+                                    {item.result.type === false ? '-' : '+'}
+                                  </Column>
+                                  <Column>{item.result.category}</Column>
+                                  <Column onClick={onCommentClick}>
+                                    {!showComment ? (
+                                      <EllipsisText
+                                        text={item.result.comment}
+                                        length={12}
+                                      />
+                                    ) : (
+                                      <EllipsisText
+                                        text={item.result.comment}
+                                        length={50}
+                                      />
+                                    )}
+                                  </Column>
+                                  <Column type={String(item.result.type)}>
+                                    {formatAmount(item.result.sum).toFixed(2)}
+                                  </Column>
+                                  <Column>
+                                    {formatAmount(item.result.balance).toFixed(
+                                      2,
+                                    )}
+                                  </Column>
+                                </Row>
+                              );
+                            }
                             return (
-                              <Row key={item.result._id}>
+                              <Row key={item._id}>
                                 <Column>
-                                  {moment
-                                    .utc(item.result.date)
-                                    .format('DD.MM.YYYY')}
+                                  {moment.utc(item.date).format('DD.MM.YYYY')}
                                 </Column>
                                 <Column>
-                                  {item.result.type === false ? '-' : '+'}
+                                  {item.type === false ? '-' : '+'}
                                 </Column>
-                                <Column>{item.result.category}</Column>
+                                <Column>{item.category}</Column>
                                 <Column onClick={onCommentClick}>
-                                  {!showComment ? (
-                                    <EllipsisText
-                                      text={item.result.comment}
-                                      length={12}
-                                    />
-                                  ) : (
-                                    <EllipsisText
-                                      text={item.result.comment}
-                                      length={50}
-                                    />
-                                  )}
+                                  <EllipsisText
+                                    text={item.comment}
+                                    length={!showComment ? 12 : 50}
+                                  />
                                 </Column>
-                                <Column type={String(item.result.type)}>
-                                  {formatAmount(item.result.sum).toFixed(2)}
+                                <Column type={String(item.type)}>
+                                  {formatAmount(item.sum).toFixed(2)}
                                 </Column>
                                 <Column>
-                                  {formatAmount(item.result.balance).toFixed(2)}
+                                  {formatAmount(item.balance).toFixed(2)}
                                 </Column>
                               </Row>
                             );
-                          }
-                          return (
-                            <Row key={item._id}>
-                              <Column>
-                                {moment.utc(item.date).format('DD.MM.YYYY')}
-                              </Column>
-                              <Column>{item.type === false ? '-' : '+'}</Column>
-                              <Column>{item.category}</Column>
-                              <Column onClick={onCommentClick}>
-                                <EllipsisText
-                                  text={item.comment}
-                                  length={!showComment ? 12 : 50}
-                                />
-                              </Column>
-                              <Column type={String(item.type)}>
-                                {formatAmount(item.sum).toFixed(2)}
-                              </Column>
-                              <Column>
-                                {formatAmount(item.balance).toFixed(2)}
-                              </Column>
-                            </Row>
-                          );
-                        })}
+                          })}
                     </tbody>
-
-                    {/* Тут начало контейнера пагинации */}
-                    <div className="items">
-                      {data
-                        .slice(firstContentIndex, lastContentIndex)
-                        .map(el => (
-                          <div className="item" key={el._id}>
-                            {String(el.category)}
-                          </div>
-                        ))}
-                    </div>
-
-                    {/* Тут логика кнопок */}
-                    <div className="pagination">
-                      <p className="text">
-                        {page}/{totalPages}
-                      </p>
-                      <button onClick={prevPage} className="page">
-                        &larr;
-                      </button>
-                      {/* @ts-ignore */}
-                      {[...Array(totalPages).keys()].map(el => (
-                        <button
-                          onClick={() => setPage(el + 1)}
-                          key={el}
-                          className={`page ${page === el + 1 ? 'active' : ''}`}
-                        >
-                          {el + 1}
-                        </button>
-                      ))}
-                      <button onClick={nextPage} className="page">
-                        &rarr;
-                      </button>
-                    </div>
                   </Table>
                 )}
               </Tab>
             )}
           </Media>
+          {/*Pagination button*/}
+          <PaginationContainer>
+            <PaginationText>
+              {page}/{totalPages}
+            </PaginationText>
+            <PaginationButton
+              onClick={prevPage}
+              className={`page ${page === 1 && 'disabled'}`}
+            >
+              &larr;
+            </PaginationButton>
+            <PaginationButton
+              onClick={() => setPage(1)}
+              className={`${page === 1 && 'disabled'}`}
+            >
+              1
+            </PaginationButton>
+            {gaps.before ? '...' : null}
+            {gaps.paginationGroup.map(el => (
+              <PaginationButton
+                onClick={() => setPage(el)}
+                key={el}
+                className={`${page === el ? 'active' : ''}`}
+              >
+                {el}
+              </PaginationButton>
+            ))}
+            {gaps.after ? '...' : null}
+            <PaginationButton
+              onClick={() => setPage(totalPages)}
+              className={`${page === totalPages && 'disabled'}`}
+            >
+              {totalPages}
+            </PaginationButton>
+            <PaginationButton
+              onClick={nextPage}
+              className={`${page === totalPages && 'disabled'}`}
+            >
+              &rarr;
+            </PaginationButton>
+          </PaginationContainer>
         </>
       ) : (
         <NoTransactions>
