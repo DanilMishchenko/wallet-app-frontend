@@ -1,4 +1,6 @@
 export const getTransactions = state => state.transactions.items;
+export const getTotalItems = state => state.transactions.totalItems;
+export const getPage = state => state.transactions.page;
 export const getCategories = state =>
   state.transactions.category.filter(item => item.category);
 export const getIsLoading = state => state.transactions.isLoading;

@@ -2,9 +2,9 @@ import { Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
-
+import { getPage } from '../../../redux/transactions/transactions-selectors';
 import {
   addTransaction,
   fetchTransactions,
@@ -46,10 +46,11 @@ const options = [
 
 export const IncomeForm = ({ onClose }) => {
   const dispatch = useDispatch();
+  const page = useSelector(getPage);
 
   const handleTransactionSubmit = async values => {
     dispatch(addTransaction(values));
-    await dispatch(fetchTransactions());
+    await dispatch(fetchTransactions(page));
     await dispatch(fetchBalance());
     onClose();
     toast.success(`transaction amount ${values.sum} was saved`);

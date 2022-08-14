@@ -5,13 +5,17 @@ import { store } from '../store';
 
 export const fetchTransactions = createAsyncThunk(
   'transactions/fetchTransactions',
-  async (_, { rejectWithValue }) => {
+  async (page, { rejectWithValue }) => {
     const token = store.getState().auth.token;
     try {
-      const { data: response } = await axios.get(`/transactions`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      return response.data.result;
+      const { data: response } = await axios.get(
+        `/transactions?page=${page}&limit=5`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+      // return response.data.result;
+      return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
     }

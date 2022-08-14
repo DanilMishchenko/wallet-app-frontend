@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTransactions } from '../../redux/transactions/transactions-selectors';
+import {
+  getTotalItems,
+  getTransactions,
+} from '../../redux/transactions/transactions-selectors';
 import { fetchTransactions } from '../../redux/transactions/transactions-operations';
 import { COLUMNS } from './table-helpers';
 import moment from 'moment';
@@ -21,23 +24,16 @@ import {
 
 export const HomeTabMobile = () => {
   const data = useSelector(getTransactions);
+  const totalItems = useSelector(getTotalItems);
   const dispatch = useDispatch();
   const [showComment, setShowComment] = useState(false);
 
-  // Hook for pagination
-  const {
-    firstContentIndex,
-    lastContentIndex,
-    nextPage,
-    prevPage,
-    page,
-    gaps,
-    setPage,
-    totalPages,
-  } = usePagination({
-    contentPerPage: 5,
-    count: data.length,
-  });
+  const { nextPage, prevPage, page, gaps, setPage, totalPages } = usePagination(
+    {
+      contentPerPage: 5,
+      count: totalItems,
+    },
+  );
 
   const onCommentClick = () => {
     if (showComment === false) {
@@ -50,8 +46,8 @@ export const HomeTabMobile = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchTransactions());
-  }, [dispatch]);
+    dispatch(fetchTransactions(page));
+  }, [dispatch, page]);
 
   const getAmount = amount => {
     return amount.toFixed(2);
@@ -61,7 +57,7 @@ export const HomeTabMobile = () => {
     <>
       <TabMobile>
         {data[0] &&
-          data.slice(firstContentIndex, lastContentIndex).map(item => {
+          data.map(item => {
             if (item.result) {
               return (
                 <TableMobile
@@ -165,7 +161,9 @@ export const HomeTabMobile = () => {
               </TableMobile>
             );
           })}
-        {/* Pagination button */}
+      </TabMobile>
+      {/* Pagination button */}
+      {totalItems > 5 && (
         <PaginationContainerMobile>
           <PaginationText>
             {page}/{totalPages}
@@ -206,7 +204,7 @@ export const HomeTabMobile = () => {
             &rarr;
           </PaginationButton>
         </PaginationContainerMobile>
-      </TabMobile>
+      )}
     </>
   );
 };

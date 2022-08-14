@@ -1,14 +1,12 @@
 import { createPortal } from 'react-dom';
 import { useEffect, useState } from 'react';
 import Switch from 'react-switch';
-import { useDispatch } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchTransactions } from '../../redux/transactions/transactions-operations';
-
+import { getPage } from '../../redux/transactions/transactions-selectors';
 import { IncomeForm } from './IncomeForm/IncomeForm';
 import { ExpenseForm } from './ExpenceForm/ExpenseForm';
 import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
-
 import {
   Overlay,
   Container,
@@ -29,6 +27,7 @@ const modalRoot = document.querySelector('#modal-transaction');
 export const ModalAddTransaction = ({ onModal }) => {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(true);
+  const page = useSelector(getPage);
 
   useEffect(() => {
     const handleKeyDown = e => {
@@ -38,10 +37,10 @@ export const ModalAddTransaction = ({ onModal }) => {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => {
-      dispatch(fetchTransactions());
+      dispatch(fetchTransactions(page));
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [dispatch, onModal]);
+  }, [dispatch, onModal, page]);
 
   const handleBackdropClick = event => {
     if (event.currentTarget === event.target) {

@@ -9,6 +9,8 @@ import {
 const initialState = {
   items: [],
   category: [],
+  page: 1,
+  totalItems: 0,
   summaryIncome: '',
   summaryExpenses: '',
   isLoading: false,
@@ -20,7 +22,10 @@ export const transactionsSlice = createSlice({
   initialState,
   extraReducers: {
     [fetchTransactions.fulfilled](state, { payload }) {
-      state.items = payload;
+      state.items = payload.result;
+      state.page = payload.page;
+      state.totalItems = payload.totalItems;
+
       state.isLoading = false;
     },
     [fetchTransactions.pending](state) {

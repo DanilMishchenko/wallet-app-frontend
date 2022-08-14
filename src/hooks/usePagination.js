@@ -7,13 +7,11 @@ const usePagination = ({ contentPerPage, count }) => {
     paginationGroup: [],
     after: true,
   });
+  const [pagesInBetween, setPagesInBetween] = useState([]);
 
   const pageCount = Math.ceil(count / contentPerPage);
-
   const lastContentIndex = page * contentPerPage;
-
   const firstContentIndex = lastContentIndex - contentPerPage;
-  const [pagesInBetween, setPagesInBetween] = useState([]);
 
   useEffect(() => {
     if (pageCount > 2) {
